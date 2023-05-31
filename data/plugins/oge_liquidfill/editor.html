@@ -1,0 +1,60 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">值的设置</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">最小值</label>
+			<input type="number" class="gf-form-input width-6" placeholder="0" data-placement="right" ng-model="ctrl.panel.min" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-6">最大值</label>
+			<input type="number" class="gf-form-input width-6" placeholder="100" data-placement="right" ng-model="ctrl.panel.max" ng-change="ctrl.render()" required>
+
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">数据精度</label>
+			<input type="number" class="gf-form-input width-6" placeholder="0" data-placement="right" ng-model="ctrl.panel.dataPrecise" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-6">显示单位</label>
+			<input type="string" class="gf-form-input width-6" placeholder="m" data-placement="right" ng-model="ctrl.panel.unit" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">展示名称</label>
+			<input type="s" class="gf-form-input width-6" placeholder="水位" data-placement="right" ng-model="ctrl.panel.names" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-6">字体大小</label>
+			<input type="number" class="gf-form-input width-6" placeholder=20 data-placement="right" ng-model="ctrl.panel.fontSizes" ng-change="ctrl.render()" required>
+		</div>
+		<label class="gf-form-label width-6">水球样式</label>
+			<div class="gf-form-select-wrapper width-6">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.shapes" ng-options="f.value as f.name for f in ctrl.panel.shapesOption" ng-change="ctrl.render()" required></select>
+		</div>
+		
+	</div>
+
+	<div class="section gf-form-group">
+	<h5 class="section-heading width-6">背景颜色</h5>
+		<div class="gf-form" >
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.bgcolors" ng-change="ctrl.render()"></spectrum-picker>
+		</span>
+			<input type="string" class="gf-form-input width-14" ng-model="ctrl.panel.bgcolors" required>
+			<br>
+		</div>
+		<h5 class="section-heading width-6">波浪颜色</h5>
+		<div class="gf-form" ng-repeat="c in ctrl.panel.colors track by $index">
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.colors[$index]" ng-change="ctrl.render()"></spectrum-picker>
+		</span>
+			<input type="string" class="gf-form-input width-14" ng-model="ctrl.panel.colors[$index]" required>
+			<br>
+		</div>
+				
+	</div>
+
+	<div class="section gf-form-group">
+		<h5 class="section-heading width-6">颜色设置</h5>
+		<div class="gf-form">
+			<button class="btn btn-inverse width-8 " ng-click="ctrl.invertColorOrder()">颜色倒序</button></div>
+		<div class="gf-form">
+			<button class="btn btn-inverse width-8 " ng-click="ctrl.onEditorAddColors()">增加颜色</button></div>
+		<div class="gf-form">
+			<button class="btn btn-inverse width-8 " ng-click="ctrl.onEditorDeleteColors()">减少颜色</button></div>
+	</div>
+
+</div>

@@ -1,0 +1,35 @@
+<section class="grafana-metric-options gf-form-group">
+    <div class="gf-form-inline">
+      <div class="gf-form max-width-15">
+        <span class="gf-form-label width-7">取数方式</span>
+        <select class="gf-form-input" ng-model="ctrl.panelCtrl.panel.kdm.dataType" ng-options="f.value as f.name for f in ctrl.dataTypeOptions"
+          required ng-change="ctrl.panelCtrl.refresh()"></select>
+      </div>
+      <div class="gf-form max-width-10" ng-if="ctrl.panelCtrl.panel.kdm.dataType == 2" ng-change="ctrl.panelCtrl.refresh()">
+        <gf-form-switch class="gf-form" label="是否插值" checked="ctrl.panelCtrl.panel.kdm.isStep">
+          <div class="gf-form-switch">
+            <input type="checkbox" ng-model="ctrl.panelCtrl.panel.kdm.isStep" class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-empty">
+            <label data-on="Yes" data-off="No"></label>
+          </div>
+        </gf-form-switch>
+      </div>
+      <div class="gf-form max-width-15" ng-if="ctrl.panelCtrl.panel.kdm.dataType == 2 && ctrl.panelCtrl.panel.kdm.isStep">
+        <span class="gf-form-label">插值时间</span>
+        <input type="number" class="gf-form-input" ng-model="ctrl.panelCtrl.panel.kdm.queryPoints"
+          bs-tooltip="'获取数据时，是否选择插值处理（如果插值，将根据插值数值返回点）'"
+          data-placement="right" ng-model-onblur ng-change="ctrl.panelCtrl.refresh()"
+          spellcheck='false' placeholder="auto">
+        </input>
+      </div>
+      <div class="gf-form max-width-15">
+        <gf-form-switch class="gf-form" label="是否获取告警" ng-change="ctrl.panelCtrl.refresh()" label-class="width-8" checked="ctrl.panelCtrl.panel.kdm.isAlert"
+          switch-class="max-width-6">
+          <label class="gf-form-label pointer"></label>
+          <div class="gf-form-switch">
+            <input type="checkbox" ng-model="ctrl.panelCtrl.panel.kdm.isAlert" class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-empty">
+            <label data-on="Yes" data-off="No"></label>
+          </div>
+        </gf-form-switch>
+      </div>
+    </div>
+  </section>

@@ -1,0 +1,79 @@
+panel-plugin-oge-kdm-airgap .oge-space-buttons {
+  text-align: center;
+  display:inline-block;
+}
+panel-plugin-oge-kdm-airgap .oge-space-buttons > div {
+  display: inline-block;
+  margin: 5px 3px;
+  vertical-align: bottom;
+}
+
+panel-plugin-oge-kdm-airgap .oge-space-buttons a.btn {
+  padding: 3px 5px;
+  font-size: 20px;
+}
+
+panel-plugin-oge-kdm-airgap .oge-space-buttons a.btn.checked {
+  border-bottom-width: 5px;
+  height: 33px;
+}
+
+panel-plugin-oge-kdm-airgap .os-info div {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: small;
+  vertical-align: top;
+  color: #a2a2a2;
+}
+
+panel-plugin-oge-kdm-airgap .os-info p {
+  margin-bottom: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #33B5E5;
+}
+
+panel-plugin-oge-kdm-airgap .os-info ul {
+  list-style-type: none;
+}
+
+panel-plugin-oge-kdm-airgap div.oge-chart-content {
+  clear: both;
+}
+
+panel-plugin-oge-kdm-airgap div.data-panel-circle {
+  text-align:left;
+  display:inline-block;
+}
+
+panel-plugin-oge-kdm-airgap .os-current {
+    color: yellow;
+    text-align: center;
+}
+
+panel-plugin-oge-kdm-airgap .os-current div {
+  display: inline-block;
+}
+panel-plugin-oge-kdm-airgap .page-header-tabs li {
+  padding: 5px;
+  margin: 5px;
+  border-bottom: transparent 2px solid;
+  font-size: 18px;
+}
+
+panel-plugin-oge-kdm-airgap .page-header-tabs li:hover, panel-plugin-oge-kdm-airgap .page-header-tabs li.active {
+  border-bottom-color: #dF7518;
+}
+
+
+panel-plugin-oge-kdm-airgap .os-current span {
+  margin: 0 5px;
+  color: yellow;
+  display: inline-block;
+}
+
+
+
+panel-plugin-oge-kdm-airgap div.data-panel-circle canvas {
+  position: absolute;
+}

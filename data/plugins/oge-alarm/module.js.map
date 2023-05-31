@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["OgeAlarmCtrl"],"mappings":";;;;;;;;AAAQA,kB,eAAAA,Y;;;2BAGNA,Y","file":"module.js","sourcesContent":["import {OgeAlarmCtrl} from './alarm_ctrl';\r\n\r\nexport {\r\n  OgeAlarmCtrl as PanelCtrl\r\n};\r\n"]}

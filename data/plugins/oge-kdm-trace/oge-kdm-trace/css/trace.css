@@ -1,0 +1,37 @@
+panel-plugin-oge-kdm-space .oge-space-buttons {
+  text-align: center;
+  height:35px;
+}
+panel-plugin-oge-kdm-space .oge-space-buttons > div {
+  display: inline-block;
+  margin: 5px 3px;
+  vertical-align: bottom;
+}
+
+panel-plugin-oge-kdm-space .oge-space-buttons a.btn {
+  padding: 3px 5px;
+  font-size: 20px;
+}
+
+panel-plugin-oge-kdm-space div.data-panel {
+  min-height:200px;
+  text-align:left;
+  display:inline-block;
+  width:100%;
+  height:85%;
+}
+
+
+panel-plugin-oge-kdm-space .os-current {
+  color: yellow;
+}
+
+panel-plugin-oge-kdm-space .os-current div {
+  display: inline-block;
+}
+
+panel-plugin-oge-kdm-space .os-current span {
+  margin: 0 5px;
+  color: yellow;
+  display: inline-block;
+}

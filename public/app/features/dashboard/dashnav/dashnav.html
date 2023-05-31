@@ -1,0 +1,101 @@
+<div class="navbar">
+
+	<div ng-show="::ctrl.dashboard.meta.canEdit">
+		<a class="navbar-page-btn" ng-click="ctrl.showSearch()">
+			<i class="gicon gicon-dashboard"></i>
+			<span ng-if="ctrl.dashboard.meta.folderId > 0" class="navbar-page-btn--folder">{{ctrl.dashboard.meta.folderTitle}} / </span>{{ctrl.dashboard.title}}
+			<i class="fa fa-caret-down"></i>
+		</a>
+	</div>
+
+	<div class="navbar__spacer"></div>
+
+	<div class="navbar-buttons navbar-buttons--playlist" ng-if="ctrl.playlistSrv.isPlaying">
+		<a class="navbar-button navbar-button--tight" ng-click="ctrl.playlistSrv.prev()"><i class="fa fa-step-backward"></i></a>
+		<a class="navbar-button navbar-button--tight" ng-click="ctrl.playlistSrv.stop()"><i class="fa fa-stop"></i></a>
+		<a class="navbar-button navbar-button--tight" ng-click="ctrl.playlistSrv.next()"><i class="fa fa-step-forward"></i></a>
+	</div>
+
+	<div class="navbar-buttons navbar-buttons--actions">
+		<button class="btn navbar-button navbar-button--add-panel" ng-show="::ctrl.dashboard.meta.canSave" bs-tooltip="'添加面板'" data-placement="bottom" ng-click="ctrl.addPanel()">
+			<i class="gicon gicon-add-panel"></i>
+		</button>
+
+		<button class="btn navbar-button navbar-button--star" ng-show="::ctrl.dashboard.meta.canStar" ng-click="ctrl.starDashboard()" bs-tooltip="'标记收藏'" data-placement="bottom">
+			<i class="fa" ng-class="{'fa-star-o': !ctrl.dashboard.meta.isStarred, 'fa-star': ctrl.dashboard.meta.isStarred}"></i>
+		</button>
+
+    <button class="btn navbar-button navbar-button--share" ng-show="::ctrl.dashboard.meta.canShare" ng-click="ctrl.shareDashboard(0)" bs-tooltip="'分享仪表盘'" data-placement="bottom">
+			<i class="fa fa-share-square-o"></i></a>
+		</button>
+
+    <button class="btn navbar-button navbar-button--save" ng-show="ctrl.dashboard.meta.canSave" ng-click="ctrl.saveDashboard()" bs-tooltip="'保存仪表盘<br> CTRL+S'" data-placement="bottom">
+			<i class="fa fa-save"></i>
+		</button>
+
+		<a class="btn navbar-button navbar-button--snapshot-origin" ng-if="::ctrl.dashboard.snapshot.originalUrl" href="{{ctrl.dashboard.snapshot.originalUrl}}" bs-tooltip="'打开原始仪表盘'" data-placement="bottom">
+			<i class="fa fa-link"></i>
+		</a>
+
+		<button class="btn navbar-button navbar-button--settings" ng-click="ctrl.toggleSettings()" bs-tooltip="'设置'" data-placement="bottom" ng-show="ctrl.dashboard.meta.showSettings">
+			<i class="fa fa-cog"></i>
+		</button>
+	</div>
+
+	<div class="navbar-buttons navbar-buttons--tv">
+    <button class="btn navbar-button navbar-button--tv" ng-click="ctrl.toggleViewMode()" bs-tooltip="'循环查看模式'" data-placement="bottom">
+      <i class="fa fa-desktop"></i>
+    </button>
+	</div>
+
+	<!-- [OGE]专业工具 -->
+	<div class="navbar-buttons navbar-buttons--actions">
+		<li class="dropdown navbar-buttons">
+			<button class="btn navbar-button " ng-click="ctrl.hideTooltip($event)" bs-tooltip="'专业工具'" data-placement="bottom" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
+			<ul class="dropdown-menu">
+				<li>
+					<a class="pointer" ng-href="dashboard/db/__shu-zhi-fen-xi">
+						<i class="fa fa-line-chart"></i> 数值分析
+						<div class="dropdown-desc">对点值数据趋势进行对比分析</div>
+					</a>
+				</li>
+				<li>
+					<a class="pointer" ng-href="dashboard/db/__pin-pu-fen-xi">
+						<i class="fa fa-area-chart"></i> 频谱分析
+						<div class="dropdown-desc">对振摆波形数据进行时域和频域的分析展示</div>
+					</a>
+				</li>
+				<li>
+					<a class="pointer" ng-href="dashboard/db/__zhou-xian-fen-xi">
+						<i class="fa fa-ioxhost"></i> 轴线分析
+						<div class="dropdown-desc">对机组的轴系进行弯曲量、影响量等分析展示</div>
+					</a>
+				</li>
+				<li>
+					<a class="pointer" ng-href="dashboard/db/__qi-xi-fen-xi">
+						<i class="fa fa-dot-circle-o"></i> 气隙分析
+						<div class="dropdown-desc">对发电机的空气间隙进行中心偏移，磁极伸长等分析展示</div>
+					</a>
+				</li>
+				<li>
+					<a class="pointer" ng-href="dashboard/db/__mo-xing-fen-xi">
+						<i class="fa fa-cube"></i> 3D模型分析
+						<div class="dropdown-desc">对关联数据进行三维空间分析展示</div>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</div>
+	<!-- 结束 -->
+
+	<gf-time-picker class="gf-timepicker-nav" dashboard="ctrl.dashboard" ng-if="!ctrl.dashboard.timepicker.hidden"></gf-time-picker>
+
+	<div class="navbar-buttons navbar-buttons--close">
+		<button class="btn navbar-button navbar-button--primary" ng-click="ctrl.close()" bs-tooltip="'返回仪表盘'" data-placement="bottom">
+			<i class="fa fa-reply"></i>
+		</button>
+	</div>
+  <span style="margin-right: 10px;margin-top: 20px;">{{nowTime|date:'yyyy-MM-dd hh:mm:ss'}}</span>
+</div>
+
+<dashboard-search></dashboard-search>

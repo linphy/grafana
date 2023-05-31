@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "OGE-温度计",
+  "id": "oge_thermometer",
+
+  "info": {
+    "description": "echarts plugin for grafana",
+    "author": {
+      "name": "OGE LPY",
+      "url": "http://raintank.io"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "src/img/logo.png",
+      "large": "src/img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/thermometer"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "src/img/screenshot-thermometer.png"},
+      {"name": "Options", "path": "src/img/screenshot-thermometer-options.png"}
+    ],
+    "version": "0.0.1",
+    "updated": "2016-07-27"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

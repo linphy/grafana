@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["ButtonPanelCtrl"],"mappings":";;;;;;;;AAAQA,qB,gBAAAA,e;;;2BAGNA,e","file":"module.js","sourcesContent":["import {ButtonPanelCtrl} from './button_ctrl';\r\n\r\nexport {\r\n  ButtonPanelCtrl as PanelCtrl\r\n};\r\n"]}

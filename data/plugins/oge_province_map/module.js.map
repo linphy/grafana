@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["ProvinceMapPanelCtrl"],"mappings":";;;;;;;;AAAQA,0B,aAAAA,oB;;;2BAGNA,oB","file":"module.js","sourcesContent":["import {ProvinceMapPanelCtrl} from './map_ctrl';\r\n\r\nexport {\r\n  ProvinceMapPanelCtrl as PanelCtrl\r\n};\r\n"]}

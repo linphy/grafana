@@ -1,0 +1,575 @@
+<input type="hidden" id="link" class="gf-form-input max-width-14">
+<input type="hidden" id="dashboardName" class="gf-form-input max-width-14">
+<div class="editor-row" style="height:400px; ">
+	<div class="col-md-6" style="height:400px; overflow:auto;">
+		<h5 class="page headering playlist-column-header">数据树绑定</h5>
+		<table id="tableTree" class="grafana-options-table playlist-available-list">
+			<tr style="display:none">
+				<td onclick='displayChild(this)'>
+					<div class="levelShadow" style="float:left; position:relative; top:-5px; height:38px; left:-10px;margin-bottom:-15px; background-color:#1f1d1d;"></div>
+					<i class="fa fa-folder-open">&nbsp;&nbsp;设备状态</i>
+				</td>
+				<td class="selected-playlistitem-settings">
+					<button class="btn btn-inverse btn-mini" onclick="moveData(this, true)">
+						<i class="fa fa-arrow-up"></i>
+					</button>
+					<button class="btn btn-inverse btn-mini" onclick="moveData(this, false)">
+						<i class="fa fa-arrow-down"></i>
+					</button>
+					<button class="btn btn-inverse btn-mini" onclick="removeData(this)">
+						<i class="fa fa-remove"></i>
+					</button>
+					<button class="btn btn-inverse btn-mini" onclick="editData(this)">
+						<i class="fa fa-edit"></i>
+					</button>
+					<button class="btn btn-inverse btn-mini" onclick="addCurrent(this)">
+						<i class="fa fa-plus"></i>&nbsp;&nbsp;同级
+					</button>
+					<button class="btn btn-inverse btn-mini" onclick="addChild(this)">
+						<i class="fa fa-plus"></i>&nbsp;&nbsp;子级
+					</button>
+					<button class="btn btn-inverse btn-mini" onclick="copyCurrent(this)">
+						<i  class="fa fa-plus btn_copy"></i>&nbsp;&nbsp;克隆
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-md-6" style="height:400px; overflow:auto;">
+		<h5 class="page headering playlist-column-header">基本设置</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-7">别名</label>
+			<input id="alias" type="text" class="gf-form-input width-30 ng-pristine ng-untouched ng-valid ng-not-empty">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-7">KKS</label>
+			<input id="kks" type="text" class="gf-form-input width-30 ng-pristine ng-untouched ng-valid ng-not-empty" required>
+		</div>
+		<div class="gf-form">
+			<label for="check-687" class="gf-form-label width-7 pointer">
+			  显示值
+			</label>
+			<div class="gf-form-switch ">
+				<input id="check-687" type="checkbox" checked="checked" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+				<label for="check-687" data-on="Yes" data-off="No"></label>
+			</div>
+		</div>
+		<div class="gf-form">
+			<label for="check-warntype-687" class="gf-form-label width-7">报警</label>
+			<div class="gf-form-switch ">
+				<input id="check-warntype-687" type="checkbox" checked="checked" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+				<label for="check-warntype-687" data-on="Yes" data-off="No"></label>
+			</div>
+			<label for="check-childen-687" class="gf-form-label width-7">子级报警</label>
+			<div class="gf-form-switch ">
+				<input id="check-childen-687" type="checkbox" checked="checked" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+				<label for="check-childen-687" data-on="Yes" data-off="No"></label>
+			</div>
+		</div>
+		<div style="margin-top: 20px;">
+			<div class="gf-form-group">
+				<div class="gf-form-inline">
+					<div class="gf-form width-2">
+						<i class="fa fa-fw fa-unlink"></i>
+					</div>
+					<div class="gf-form">
+						<span class="gf-form-label width-7">Type</span>
+						<div class="gf-form-select-wrapper width-14">
+							<select id="linkType" class="gf-form-input" onchange="changeLinkType();">
+								<option value="" selected="selected">请选择</option>
+								<option value="dashboard">dashboard</option>
+								<option value="absolute">absolute</option>
+							</select>
+						</div>
+					</div>
+					<div class="gf-form" id="linkDashboardDiv">
+						<span class="gf-form-label width-7">Dashboard</span>
+						<input id="linkDashboard" type="text" bs-typeahead="ctrl.searchDashboards" class="gf-form-input max-width-14" ng-blur="ctrl.dashboardChanged(link)">
+					</div>
+					<div class="gf-form" id="linkUrlDiv" style="display: none;">
+						<span class="gf-form-label width-7">Url</span>
+						<input id="linkUrl" type="text" class="gf-form-input max-width-14" ng-blur="ctrl.dashboardChanged()">
+					</div>
+				</div>
+				<div class="gf-form-inline">
+					<div class="gf-form width-2">
+						<i class="fa fa-fw fa-unlink invisible"></i>
+					</div>
+				</div>
+			</div>
+			<div class="gf-form-button-row" style="text-align:center;">
+				<button class="btn btn-inverse" onclick="changeTreeData()">
+				<i class="fa fa-save">&nbsp;&nbsp;提交</i>
+			</button>
+			</div>
+			<div class="gf-form-group">
+				<h5 class="section-heading">JSON树</h5>
+				<div class="gf-form">
+					<textarea rows="7" id="treeJsonText" class="gf-form-input" ng-change="ctrl.render()" ng-model="ctrl.panel.treeDataStr" readonly></textarea>
+				</div>
+			</div>
+			<div>
+			</div>
+			<script>
+				var treeData;
+
+				//我理解的是：grafana先要处理好所有界面，然后放到浏览器展示；所以这里的方法，必须放在timeOut里面执行，否则拿不到值
+				$(document).ready(function () {
+					setTimeout(function () {
+						treeData = $.parseJSON($('#treeJsonText').val());
+						drawTable();
+					}, 500);
+				})
+
+				//获取提交至后台的数据（本身的json包含currentId、topId、level、index不需要）
+				function getFormatData(tempData) {
+					for (var i = 0; i < tempData.length; i++) {
+						if (tempData[i].kks == null) {
+							tempData[i].kks = '';
+						}
+
+						if (tempData[i].level != null) {
+							delete tempData[i].level;
+						}
+						if (tempData[i].index != null) {
+							delete tempData[i].index;
+						}
+						if (tempData[i].currentId != null) {
+							delete tempData[i].currentId;
+						}
+						if (tempData[i].topId != null) {
+							delete tempData[i].topId;
+						}
+
+						if (tempData[i].children != null) {
+							getFormatData(tempData[i].children);
+						}
+					}
+				}
+
+				function drawTable() {
+					for (var i = 0; i < treeData.length; i++) {
+						treeData[i].level = 0;
+						treeData[i].index = i;
+						initJson(treeData[i], randomString(8), treeData[i].level + 1);
+					}
+
+					for (var i = 0; i < treeData.length; i++) {
+						showTreeTable(treeData[i], treeData.length);
+					}
+
+					showJsonData();
+				}
+
+				function showJsonData() {
+					var jsonData = $.map(treeData, function (obj) {
+						return $.extend(true, {}, obj); //返回对象的深拷贝
+					});
+					//var jsonData = treeData.concat(); 第一层好使，内部数据不好使
+					getFormatData(jsonData);
+
+					$("#treeJsonText").val(JSON.stringify(jsonData, false, 4));
+				}
+
+				function clearTable() {
+					//清空表格（非第一行）
+					var trArr = $("#tableTree tr");
+					for (var i = 1; i < trArr.length; i++) {
+						$(trArr[i]).remove();
+					}
+				}
+
+				//处理数据，生成父子节点关系；有子节点的都生成currentId
+				function initJson(tempData, childId, level) {
+					if (tempData.children != null && tempData.children.length > 0) { //父节点
+						tempData.currentId = childId;
+						for (var i = 0; i < tempData.children.length; i++) {
+							tempData.children[i].topId = childId;
+							tempData.children[i].level = level;
+							tempData.children[i].index = i;
+							initJson(tempData.children[i], randomString(8), level + 1);
+						}
+					} else {
+						delete tempData.currentId;
+						if (tempData.children && tempData.children.length == 0) {
+							delete tempData.children;
+						}
+					}
+				}
+
+				function changeLinkType() {
+					$('#link').val('');
+					$('#dashboardName').val('');
+						$('#linkDashboardDiv').hide();
+						$('#linkUrlDiv').hide();
+					if ($('#linkType').val() == 'absolute') {
+						$('#linkUrlDiv').show();
+					} else if ($('#linkType').val() == 'dashboard') {
+						$('#linkDashboardDiv').show();
+					}
+				}
+
+				function randomString(length) {
+					var str = '';
+					for (; str.length < length;) {
+						str += Math.random().toString(36).substr(2);
+					}
+					return str.substr(0, length);
+				}
+
+				//节点数据，同级节点长度
+				function showTreeTable(tempData, levelSize) {
+					var currentTr = $("#tableTree tr:last");
+
+					var tr = $("#tableTree tr").eq(0).clone().show();
+					tr.attr("id", tempData.level + "_" + tempData.index);
+
+					if (tempData.index == 0) { //同级第一个节点
+						tr.find(".fa-arrow-up").parent().hide(); //顶级节点：向上移动隐藏
+						if (levelSize == 1) { //同级只有一个，向下移动隐藏
+							tr.find(".fa-arrow-down").parent().hide()
+						}
+						if (tempData.level == 0) { //同级最后一个节点
+							tr.find(".fa-remove").parent().hide();
+						}
+					} else if (tempData.index == (levelSize - 1)) { //
+						tr.find(".fa-arrow-down").parent().hide();
+					}
+
+					var css = "fa-folder-open";
+					if (tempData.currentId) { //父节点
+						//改变图标
+						var tdi = tr.find("." + css);
+						tdi.removeClass(css);
+						css = "fa-folder";
+						tdi.addClass(css);
+						//改变鼠标状态
+						tr.children('td').eq(0).css("cursor", "pointer");
+						//指定子节点
+						tr.attr("currentId", tempData.currentId);
+					}
+
+					if (tempData.topId != null) { //有父节点，那就是子节点了
+						//阴影区域增加
+						var blank = "";
+						for (var x = 0; x < tempData.level; x++) {
+							blank += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+						}
+						tr.find(".levelShadow").html(blank);
+						//不显示克隆
+						tr.find(".btn_copy").parent().hide();
+						//指定父节点
+						tr.attr("topId", tempData.topId);
+					}
+
+					tr.find("." + css).html('&nbsp;&nbsp;' + tempData.name);
+
+					currentTr.after(tr);
+
+					if (tempData.children != null) {
+						for (var i = 0; i < tempData.children.length; i++) {
+							showTreeTable(tempData.children[i], tempData.children.length);
+						}
+					}
+				}
+
+				function displayChild(obj) {
+					var childId = $(obj).parent().attr("currentId");
+					var firstTr = $($("[topId=" + childId + "]")[0]);
+					var isHidden = firstTr.is(":hidden");
+					displayById(childId, isHidden);
+				}
+
+				function displayById(childId, isHidden) {
+					$("[topId=" + childId + "]").each(function () {
+						if (isHidden) {
+							$(this).show();
+						} else {
+							$(this).hide();
+						}
+
+						var trId = $(this).attr("currentId");
+						if (trId != null) {
+							displayById(trId, isHidden);
+						}
+					});
+				}
+
+				function moveData(obj, isUp) {
+					clearTable();
+
+					//获取数据索引
+					var currentTr = $(obj).parent().parent();
+					var wantId = currentTr.attr("id");
+					var wantIdArr = wantId.split("_");
+					var level = parseInt(wantIdArr[0]);
+					var index = parseInt(wantIdArr[1]);
+					var topId = currentTr.attr("topId");
+					var currentData = getLevelData(treeData, level, index, topId);
+					currentData = $.extend({}, currentData);
+
+					var nextIndex = -1; //默认向上，那么它要移动的位置就是-1
+					if (isUp == false) {
+						nextIndex = 1;
+					}
+
+					var prevData = getLevelData(treeData, level, index + nextIndex, topId);
+					prevData = $.extend({}, prevData);
+
+					//替换数据
+					var newTreeData = [];
+					currentData.index = currentData.index + nextIndex;
+					setLevelData(newTreeData, treeData, currentData, level, index + nextIndex, topId);
+
+					treeData = [];
+					prevData.index = prevData.index - nextIndex;
+					setLevelData(treeData, newTreeData, prevData, level, index, topId);
+
+					//重新生成表格
+					for (var i = 0; i < treeData.length; i++) {
+						showTreeTable(treeData[i], treeData.length);
+					}
+
+					showJsonData();
+				}
+
+				//根据索引获取数据
+				function getLevelData(tempData, level, index, topId) {
+					for (var i = 0; i < tempData.length; i++) {
+						if (tempData[i].level == level && tempData[i].index == index && tempData[i].topId == topId) {
+							return tempData[i];
+						} else {
+							if (tempData[i].children != null) {
+								var data = getLevelData(tempData[i].children, level, index, topId);
+								if (data != null) {
+									return data;
+								}
+							}
+						}
+					}
+				}
+
+				//根据索引修改/删除数据
+				function setLevelData(newTreeData, tempData, addData, level, index, topId) {
+					for (var i = 0; i < tempData.length; i++) {
+						if (tempData[i].level == level && tempData[i].index == index && tempData[i].topId == topId) {
+							if (addData == null) {
+								tempData.splice(i, 1);
+							} else {
+								tempData[i] = addData;
+							}
+						} else {
+							if (tempData[i].children != null) {
+								var temp = [];
+								setLevelData(temp, tempData[i].children, addData, level, index, topId);
+							}
+						}
+						if (tempData[i] != null && tempData[i] != []) {
+							newTreeData.push(tempData[i]);
+						}
+					}
+				}
+
+				function addLevelData(tempData, level, index, topId) {
+					for (var i = 0; i < tempData.length; i++) {
+						if (tempData[i].level == level && tempData[i].index == index && tempData[i].topId == topId) {
+							var addData = {
+								name: "未定义" + (tempData.length + 1)
+							};
+							tempData.splice(i + 1, 0, addData); //在索引i元素后加入元素，不能push
+							return true;
+						} else {
+							if (tempData[i].children != null) {
+								var flag = addLevelData(tempData[i].children, level, index, topId);
+								if (flag) {
+									return flag;
+								}
+							}
+						}
+					}
+				}
+
+				function addChildData(tempData, level, index, topId) {
+					for (var i = 0; i < tempData.length; i++) {
+						if (tempData[i].level == level && tempData[i].index == index && tempData[i].topId == topId) {
+							if (tempData[i].children == null) {
+								tempData[i].children = [];
+							}
+							var addData = {
+								name: "未定义" + (tempData[i].children.length + 1)
+							};
+							tempData[i].children.push(addData);
+							return true;
+						} else {
+							if (tempData[i].children != null) {
+								var flag = addChildData(tempData[i].children, level, index, topId);
+								if (flag) {
+									return flag;
+								}
+							}
+						}
+					}
+				}
+
+				function getLevelUpTrById(prevTR, wantId) {
+					prevTR = prevTR.prev();
+					var prevId = prevTR.attr("id");
+					if (prevId != wantId) {
+						prevTR = getLevelUpTrById(prevTR, wantId);
+					}
+					return prevTR;
+				}
+
+				function removeData(obj) {
+					clearTable();
+
+					//获取数据索引
+					var currentTr = $(obj).parent().parent();
+					var wantId = currentTr.attr("id");
+					var wantIdArr = wantId.split("_");
+					var level = parseInt(wantIdArr[0]);
+					var index = parseInt(wantIdArr[1]);
+					var topId = currentTr.attr("topId");
+
+					var newTreeData = [];
+					setLevelData(newTreeData, treeData, null, level, index, topId);
+					treeData = newTreeData.concat();
+
+					//console.log("removeData", treeData);
+					drawTable();
+				}
+
+				function addCurrent(obj) {
+					clearTable();
+
+					var currentTr = $(obj).parent().parent();
+					var wantId = currentTr.attr("id");
+					var wantIdArr = wantId.split("_");
+					var level = parseInt(wantIdArr[0]);
+					var index = parseInt(wantIdArr[1]);
+					var topId = currentTr.attr("topId");
+
+					addLevelData(treeData, level, index, topId);
+					//console.info("addCurrent", treeData);
+					drawTable();
+				}
+
+				function addChild(obj) {
+					clearTable();
+
+					var currentTr = $(obj).parent().parent();
+					var wantId = currentTr.attr("id");
+					var wantIdArr = wantId.split("_");
+					var level = parseInt(wantIdArr[0]);
+					var index = parseInt(wantIdArr[1]);
+					var topId = currentTr.attr("topId");
+
+					addChildData(treeData, level, index, topId);
+					//console.info("addChildData", treeData);
+					drawTable();
+				}
+
+				var currentEditData;
+
+				function editData(obj) {
+					var currentTr = $(obj).parent().parent();
+					var wantId = currentTr.attr("id");
+					var wantIdArr = wantId.split("_");
+					var level = parseInt(wantIdArr[0]);
+					var index = parseInt(wantIdArr[1]);
+					var topId = currentTr.attr("topId");
+					var currentData = getLevelData(treeData, level, index, topId);
+
+					currentEditData = $.extend({}, currentData);
+					$("#kks").val(currentEditData.kks);
+					$("#alias").val(currentEditData.name);
+
+					var checked = $('#check-687').is(":checked");
+					if (checked && currentEditData.showData != true) { //已选中
+						$('#check-687').trigger("click");
+					}
+					if (!checked && currentEditData.showData == true) {
+						$('#check-687').trigger("click");
+					}
+
+					var alertChecked = $("#check-warntype-687").is(":checked");
+					if (alertChecked && currentEditData.isAlert != true) {
+						$('#check-warntype-687').trigger("click");
+					}
+					if (!alertChecked && currentEditData.isAlert == true) {
+						$('#check-warntype-687').trigger("click");
+					}
+
+					var alertChildChecked = $("#check-childen-687").is(":checked");
+					if (alertChildChecked && currentEditData.childAlert != true) {
+						$('#check-childen-687').trigger("click");
+					}
+					if (!alertChildChecked && currentEditData.childAlert == true) {
+						$('#check-childen-687').trigger("click");
+					}
+
+					if (currentEditData.currentId == undefined || currentEditData.currentId == null) { //没有子集
+
+						$('#linkType').val(currentEditData.linkType);
+						$("#link").val(currentEditData.link);
+						$('#dashboardName').val(currentEditData.dashboardName);
+						$("#linkDashboard").val(currentEditData.dashboardName);
+						$("#linkUrl").val(currentEditData.link);
+						$("#linkDiv").show();
+						changeLinkType();
+					} else {
+						$("#linkDashboard").val("");
+						$("#linkDiv").hide();
+					}
+				}
+
+				function changeTreeData() {
+					if (currentEditData == null) {
+						$('#treeJsonText').trigger("change");
+						return;
+					}
+
+					clearTable();
+					currentEditData.kks = $("#kks").val();
+					currentEditData.name = $("#alias").val();
+					var link = $("#link").val();
+					var dashboardName = $("#dashboardName").val();
+					if (link != null && link != '') {
+						currentEditData.linkType = $('#linkType').val();
+						currentEditData.dashboardName = dashboardName;
+						currentEditData.link = link;
+					}else{
+						currentEditData.dashboardName = '';
+						currentEditData.link = '';
+					}
+					currentEditData.showData = $('#check-687').is(":checked");
+					currentEditData.isAlert = $('#check-warntype-687').is(":checked");
+					currentEditData.childAlert = $('#check-childen-687').is(":checked");
+					var newTreeData = [];
+					setLevelData(newTreeData, treeData, currentEditData, currentEditData.level, currentEditData.index, currentEditData
+						.topId);
+					treeData = newTreeData.concat();
+
+					for (var i = 0; i < treeData.length; i++) {
+						showTreeTable(treeData[i], treeData.length);
+					}
+
+					showJsonData();
+
+					$('#treeJsonText').trigger("change");
+				}
+
+				//克隆顶级
+				function copyCurrent(obj) {
+					clearTable();
+
+					var currentTr = $(obj).parent().parent();
+					var wantId = currentTr.attr("id");
+					var wantIdArr = wantId.split("_");
+					var index = parseInt(wantIdArr[1]);
+					var currentData = treeData[index];
+					treeData.splice(index + 1, 0, currentData);
+
+					drawTable();
+				}
+			</script>

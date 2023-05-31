@@ -1,0 +1,7 @@
+<div class="multistat-panel" ng-style="{height: ctrl.height}"> 
+    <div ng-repeat="item in ctrl.data track by $index" ng-style="ctrl.initShowPanel(item.color,$last)" class="multi-stat" ng-click = "ctrl.url($index)">
+    	<div class="pointNamesSaris"></div>
+        <div class="pointValuesSaris">{{item.value}}</div>
+        <div class="pointNamesSarisTwo"></div>
+    </div>
+</div>

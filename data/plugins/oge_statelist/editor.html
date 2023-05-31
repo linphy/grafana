@@ -1,0 +1,38 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading width-6">背景设置</h5>
+
+		<div class="gf-form">
+			<span class="gf-form-label">
+            	<spectrum-picker ng-model="ctrl.panel.defaultColor" ng-change="ctrl.render()"></spectrum-picker>
+			</span>
+			<input type="string" class="gf-form-input width-14" ng-model="ctrl.panel.defaultColor" required>
+		</div>
+		<h5 class="section-heading width-6">字体设置</h5>
+
+		<div class="gf-form">
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.sizecolor" ng-change="ctrl.render()"></spectrum-picker>
+		</span>
+			<input type="string" class="gf-form-input width-14" ng-model="ctrl.panel.sizecolor" required></div>
+		<br>
+		<h5 class="section-heading width-6">告警设置</h5>
+
+		<div class="gf-form" ng-repeat="c in ctrl.panel.threshold track by $index">
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.threshold[$index].colors" ng-change="ctrl.render()"></spectrum-picker>
+		</span>
+			<input type="string" class="gf-form-input width-14" ng-model="ctrl.panel.threshold[$index].colors" required>
+			<input type="text" class="gf-form-input width-6" ng-model="ctrl.panel.threshold[$index].thresholds" placeholder="30,60" ng-change="ctrl.render()" required>
+			<input type="text" class="gf-form-input width-6" ng-model="ctrl.panel.threshold[$index].name" placeholder="未定义" ng-change="ctrl.render()" required>
+			<button class="btn-inverse gf-form-btn btn-small" ng-click="ctrl.onDelete($index)"><i class="fa fa-trash"></i></button>
+			<br>
+		</div>
+	</div>
+	<div class="section gf-form-group">
+		<h5 class="section-heading width-6">指标设置</h5>
+		<div class="gf-form">
+			<button class="btn btn-inverse width-8 " ng-click="ctrl.onAdd()">增加指标</button></div>
+	</div>
+
+</div>

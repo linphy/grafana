@@ -1,0 +1,184 @@
+<div class="editor-row">
+  <div  class="gf-form">
+    <div class="section gf-form-group">
+      <h5 class="section-heading">Source setting<tip>用正则表达式来区分数据源（如果想用字符串进行区分，那么需要在字符两边加上单斜杠‘/’，如果不区分大小写，则需要在最后加‘i’。eg：/aAb05/i），并将其命名，方便之后的使用。</tip></h5>
+      <div class="gf-form-inline" ng-repeat="source in ctrl.panel.dataSources">
+        <div class="gf-form">
+          <div class="width-2 gf-form-label gf-form-query-letter-cell">
+            <span class="gf-form-query-letter-cell-letter">{{$index+1}}</span>
+          </div>
+          <input type="text" class="gf-form-input width-15" ng-model="source.regexOne" ng-change="ctrl.render()" ng-model-onblur>
+          <span class="gf-form-label">
+            <i class="fa fa-arrow-right"></i>
+          </span>
+          <span class="gf-form-label">别名</span>
+          <input ng-model="source.alisa" type="text"
+                    class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-12"
+                    placeholder="无" empty-to-null="1"  ng-change="ctrl.refresh();">
+          <span class="gf-form-label">
+            <i class="fa fa-remove pointer" ng-click="ctrl.removeHasSourceList($index)"></i>
+          </span>
+        </div>      
+      </div>
+      <div class="gf-form-button-row">
+        <button class="btn btn-inverse" ng-click="ctrl.addHasSourceList(index)">
+          <i class="fa fa-plus"></i>
+            Add a Source
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="gf-form">
+    <div class="section gf-form-group">
+      <h5 class="section-heading">Panel setting</h5>
+      <div class="gf-form-inline">
+        <div class="gf-form">
+          <label class="gf-form-label width-8">主导数据源为</label>
+          <div class="gf-form-select-wrapper">
+            <select class="gf-form-input width-7" ng-model="ctrl.panel.theMainSource" ng-options="f.regexOne as f.alisa for f in ctrl.panel.dataSources" ng-change="ctrl.refresh();"></select>
+          </div>
+        </div>
+      </div>
+      <div class="gf-form-inline">
+        <div class="gf-form">
+          <label class="gf-form-label width-8">每行显示个数</label>
+          <input type="text" class="gf-form-input width-7" ng-model="ctrl.panel.valueNum" ng-change="ctrl.initShowPanel()" ng-model-onblur>
+        </div>
+      </div>
+      <div class="gf-form-inline">
+        <div class="gf-form">
+          <label class="gf-form-label width-8">元素高度</label>
+          <input type="text" class="gf-form-input width-7" ng-model="ctrl.panel.valueEHeight" ng-change="ctrl.render()" ng-model-onblur>
+        </div>
+      </div>
+      <div class="gf-form-inline">
+        <div class="gf-form">
+          <label class="gf-form-label width-8">元素间距</label>
+          <input type="text" class="gf-form-input width-7" ng-model="ctrl.panel.marginLandR" ng-change="ctrl.render()" ng-model-onblur>
+        </div>
+      </div>   
+    </div>
+  </div>
+  <div  class="gf-form-inline">
+    <div class="section gf-form-group">
+      <h5 class="section-heading">Text setting</h5>
+      <div class="section">
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">展示的数据源为</label>
+            <div class="gf-form-select-wrapper">
+              <select class="gf-form-input width-7" ng-model="ctrl.panel.theShowSource" ng-options="f.regexOne as f.alisa for f in ctrl.panel.dataSources" ng-change="ctrl.refresh();"></select>
+            </div>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">字体大小</label>
+            <div class="gf-form-select-wrapper">
+              <select class="gf-form-input width-7" ng-model="ctrl.panel.valueFontSize" ng-options="f for f in ctrl.panel.fontSizes" ng-change="ctrl.render()"></select>
+            </div>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">标题字体大小</label>
+            <div class="gf-form-select-wrapper">
+              <select class="gf-form-input width-7" ng-model="ctrl.panel.titleFontSize" ng-options="f for f in ctrl.panel.fontSizes" ng-change="ctrl.render()"></select>
+            </div>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">标题位置</label>
+            <div class="gf-form-select-wrapper">
+              <select class="gf-form-input width-7" ng-model="ctrl.panel.titlePositionNow" ng-options="f for f in ctrl.titlePosition" ng-change="ctrl.render()"></select>
+            </div>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <gf-form-switch class="gf-form" label-class="width-8" label="是否显示单位" checked="ctrl.panel.showUnitOne" on-change="ctrl.render()"></gf-form-switch>
+          </div>
+        </div>
+        <div class="gf-form-inline" ng-if="ctrl.panel.showUnitOne">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">精度</label>
+            <input type="number" class="gf-form-input width-7" ng-model="ctrl.panel.dataUnitPrecise" placeholder="1" ng-change="ctrl.render()" ng-model-onblur>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">数据精度</label>
+            <input type="number" class="gf-form-input width-7" ng-model="ctrl.panel.dataPrecise" placeholder="0" ng-change="ctrl.render()" ng-model-onblur>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">标题</label>
+            <input type="text" class="gf-form-input width-7" ng-model="ctrl.panel.pointNamesSaris" ng-change="ctrl.render()" ng-model-onblur>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <label class="gf-form-label width-8">Value</label>
+            <metric-segment-model property="ctrl.panel.statvalues" options="ctrl.valueShowStatOptions" on-change="ctrl.render()" custom="false" css-class="width-7" select-mode="true"></metric-segment-model>
+          </div>
+        </div>
+        <div class="gf-form-inline">
+          <div class="gf-form">
+            <gf-form-switch class="gf-form" label-class="width-8" label="是否需要Url" checked="ctrl.panel.showNetUrl" on-change="ctrl.render()"></gf-form-switch>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div  class="gf-form" ng-show="ctrl.panel.showNetUrl">
+    <div class="section gf-form-group">
+      <h5 class="section-heading">Url setting</h5>
+      <div class="section">
+        <div class="gf-form max-width-25">
+          <span class="gf-form-label width-7">Type</span>
+          <div class="gf-form-select-wrapper gf-form--grow">
+            <select class="gf-form-input" ng-model="ctrl.panel.link.type" ng-options="f for f in ['dashboard','absolute']"></select>
+          </div>
+        </div>
+
+        <div class="gf-form max-width-25">
+          <span class="gf-form-label width-7" ng-show="ctrl.panel.link.type === 'dashboard'">Dashboard</span>
+          <input ng-show="ctrl.panel.link.type === 'dashboard'" type="text" ng-model="ctrl.panel.link.dashboard" bs-typeahead="ctrl.searchDashboards" class="gf-form-input" ng-blur="ctrl.dashboardChanged(ctrl.panel.link)">
+
+          <span class="gf-form-label width-7" ng-show="ctrl.panel.link.type === 'absolute'">Url</span>
+          <input ng-show="ctrl.panel.link.type === 'absolute'" type="text" ng-model="ctrl.panel.link.url" class="gf-form-input max-width-14">
+        </div>
+
+        <div class="gf-form max-width-25">
+          <div class="gf-form-label width-7">Title</div>
+          <input type="text" ng-model="ctrl.panel.link.title" class="gf-form-input">
+        </div>
+
+        <div class="gf-form max-width-25">
+          <div class="gf-form-label width-7">数据源为</div>
+          <div class="gf-form-select-wrapper">
+            <select class="gf-form-input" ng-model="ctrl.panel.theUrlSource" ng-options="f.regexOne as f.alisa for f in ctrl.panel.dataSources" ng-change="ctrl.refresh();"></select>
+          </div>
+        </div>
+
+        <div class="gf-form max-width-35">
+          <div class="gf-form-label width-7">正则</div>
+          <input type="text" class="gf-form-input" ng-model="ctrl.panel.theUrlRegex" ng-change="ctrl.refresh();" ng-model-onblur>
+        </div>
+      </div>
+      <div class="section">
+        <div class="gf-form">
+          <span class="gf-form-label width-10">Url params</span>
+          <input type="text" ng-model="ctrl.panel.link.paramsOne" class="gf-form-input width-15">
+        </div>
+        <gf-form-switch class="gf-form" label-class="width-10" label="Include time range" checked="ctrl.panel.link.keepTime"></gf-form-switch>
+        <gf-form-switch class="gf-form" label-class="width-10" label="Include variables" checked="ctrl.panel.link.includeVars"></gf-form-switch>
+        <gf-form-switch class="gf-form" label-class="width-10" label="Open in new tab " checked="ctrl.panel.link.targetBlank"></gf-form-switch>
+      </div>
+    </div>
+  </div>
+</div>

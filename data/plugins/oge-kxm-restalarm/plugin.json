@@ -1,0 +1,27 @@
+{
+    "name": "KXM实时报警数据源",
+    "id": "oge-kxm-restalarm",
+    "type": "datasource",
+    "partials": {
+        "config": "partials/config.html"
+    },
+    "metrics": true,
+    "annotations": true,
+    "alerting": true,
+    "info": {
+        "author": {
+            "name": "oge"
+        },
+        "description": "KXM实时报警数据源",
+        "logos": {
+            "small": "img/logo-small.svg",
+            "large": "img/logo-small.svg"
+        },
+        "version": "0.1.3",
+        "updated": "2020-11-10"
+    },
+    "dependencies": {
+        "grafanaVersion": "5.x.x",
+        "plugins": [ ]
+    }
+}

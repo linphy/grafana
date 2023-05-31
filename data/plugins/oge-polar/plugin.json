@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "OGE-极坐标",
+  "id": "oge-polar",
+
+  "info": {
+    "description": "oge polar plugin for grafana",
+    "author": {
+      "name": "OGE FanKai",
+      "url": "http://raintank.io"
+    },
+    "keywords": ["polar", "panel"],
+    "logos": {
+      "small": "src/img/timg.jpg",
+      "large": "src/img/timg.jpg"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/clock-panel"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "src/img/screenshot-showcase.png"},
+      {"name": "Options", "path": "src/img/screenshot-clock-options.png"}
+    ],
+    "version": "1.0.1",
+    "updated": "2018-11-26"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

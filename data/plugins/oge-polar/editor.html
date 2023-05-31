@@ -1,0 +1,73 @@
+<div class="editor-row">
+	<div class="gf-form">
+		<div class="section gf-form-group">
+		  <h5 class="section-heading">Panel setting</h5>
+		  <div class="gf-form-inline">
+			<div class="gf-form">
+			  <label class="gf-form-label width-10">轨迹圆的数量</label>
+			  <input type="number" class="gf-form-input width-15" ng-model="ctrl.panel.theCircleNum" ng-change="ctrl.drawPolar()" ng-model-onblur>
+			</div>
+		  </div>
+		  <div class="gf-form-inline">
+			<div class="gf-form">
+			  <label class="gf-form-label width-10">报警轨迹圆直径</label>
+			  <input type="number" class="gf-form-input width-15" ng-model="ctrl.panel.theAlarmCirR" ng-change="ctrl.drawPolar()" ng-model-onblur>
+			</div>
+		  </div>
+		  <div class="gf-form-inline">
+			<div class="gf-form">
+			  <label class="gf-form-label width-10">危险轨迹圆直径</label>
+			  <input type="number" class="gf-form-input width-15" ng-model="ctrl.panel.theDangerCirR" ng-change="ctrl.drawPolar()" ng-model-onblur>
+			</div>
+		  </div>
+		  <div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">数值名称</label>
+				  <input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.thelengedText" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">数值单位</label>
+				  <input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.thelengedUnit" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">方向名称</label>
+				  <input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.theDirectivelengedText" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">方向单位</label>
+				  <input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.theDirectivelengedUnit" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">倾斜量保留小数位</label>
+				  <input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.thelengedQXLNum" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">倾角方向保留小数位</label>
+				  <input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.thelengedQJNum" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+				  <label class="gf-form-label width-10">数据点颜色</label>
+				  <span class="gf-form-label">
+						<spectrum-picker ng-model="ctrl.panel.datapointColor" ng-change="ctrl.drawPolar()" ></spectrum-picker>
+					</span>
+					<input type="text" class="gf-form-input width-12" ng-model="ctrl.panel.datapointColor" ng-change="ctrl.drawPolar()" ng-model-onblur>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<gf-form-switch class="gf-form" label="Show Lenged" label-class="width-10" checked="ctrl.panel.showLenged" on-change="ctrl.drawPolar()"></gf-form-switch>
+			</div>
+		</div>
+	  </div>
+</div>

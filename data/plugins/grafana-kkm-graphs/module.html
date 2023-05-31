@@ -1,0 +1,93 @@
+<div ng-style="{height: ctrl.height}" style="text-align:center;">
+	<div ng-if="ctrl.panel.mode === 'all'">
+		<div style="width:100%; height:80px; line-height:80px" id="refreshDiv">
+			<span style="font-size:100%;font-weight:900;font-size:2em">{{ctrl.panel.kksTitle}}</span>
+		</div>
+		<div id="divGE" onclick="setKpiFlag('GE')" style="float:left; padding:0px 20px; height:70px; line-height:70px; cursor:pointer">
+			<span style="font-size:100%;font-weight:900;font-size:2em">运行监控</span>
+		</div>
+		<div id="divGB" onclick="setKpiFlag('GB')" style="margin-left:20px;float:left; height:70px; line-height:70px; padding:0px 20px;cursor:pointer">
+			<span style="font-size:100%;font-weight:900;font-size:2em">安装调试</span>
+		</div>
+		<script>
+			function setKpiFlag(flag){
+				var other = "GB";
+				if(flag == "GB"){
+					other = "GE";
+				}
+				var divArr = $("[id = detailDIV_" + flag + "]");
+				var otherArr = $("[id = detailDIV_" + other + "]");
+				for(var i=0; i<divArr.length; i++){
+					$(divArr[i]).show();
+				}
+				for(var i=0; i<otherArr.length; i++){
+					$(otherArr[i]).hide();
+				}
+				//console.log(otherArr.length);
+			}
+			
+			function refreshGEStatus(divFlag){
+				var maxAlarmCode = 999;
+				var divArr = $("[id = getAlarmDIV_" + divFlag +"]");
+				for(var i=0; i<divArr.length; i++){
+					var code = $(divArr[i]).attr("alarmCode");
+					if(!code){
+						continue;
+					}
+					if(i == 0 || maxAlarmCode < code){
+						maxAlarmCode = code;
+					}
+				}
+				//console.log(divFlag + "-" + maxAlarmCode);
+				
+				if(divArr.length == 0){
+					maxAlarmCode = 999;
+				}
+				$("#div" + divFlag).css(setColor(maxAlarmCode));
+			}
+			
+			var alarmColor = ["rgba(0, 255, 0, 0.7)", "rgba(0, 170, 0, 0.7)", "rgba(255, 255, 0, 0.7)", "rgba(255, 0, 0, 0.7)"];
+			function setColor(status) {
+				var p = "";
+				if (status <= 3) {
+					p = alarmColor[status];
+				}else{
+					p = '';
+				}
+				return {"background-color": p, "border": "2px solid #141414"};
+			};
+			
+			//定时扫描页面获取数据
+			setInterval("refreshGEStatus('GB')",1000);
+			setInterval("refreshGEStatus('GE')",1000);
+		</script>
+	</div>
+	
+	<div ng-if="ctrl.panel.mode === 'detail'" style="max-width:400px; text-align:center;margin:0 auto;">
+		<div id="refreshButton" style="margin-top:2px; height:50px; line-height:50px; cursor:pointer" ng-click="ctrl.setKpiFlag($event)">
+			<span style="font-size:100%;font-weight:900;font-size:2em">{{ctrl.panel.unit}}号机组</span>
+		</div>
+		<div>
+			<div id="detailDIV_GE" ng-repeat="col in ctrl.panel.GE" style="width:100%; margin-top:10px;display:none">
+				<div style="height:50px; line-height:50px; width:65%; float:left;" >
+					<span style="font-weight:200;font-size:1.5em">
+						<a href="/dashboard/db/{{ctrl.panel.detail}}?var-kks={{col.kks}}_{{col.name}}" target="_self">{{col.name}}</a>
+					</span>
+				</div>
+				<div id="getAlarmDIV_GE" alarmCode="{{col.alarmCode}}" style="height:40px; line-height:40px; width:30%; float:left; margin-left:10px" ng-style="ctrl.setColor(col.alarmCode)">
+					<span style="font-weight:200;font-size:1.5em">{{col.value}}</span>
+				</div>
+			</div>
+			<div id="detailDIV_GB" ng-repeat="col in ctrl.panel.GB" style="width:100%;margin-top:10px;">
+				<div style="height:50px; line-height:50px;  width:65%; float:left;">
+					<span style="font-weight:200;font-size:1.5em">
+						<a href="/dashboard/db/{{ctrl.panel.detail}}?var-kks={{col.kks}}_{{col.name}}" target="_self">{{col.name}}</a>
+					</span>
+				</div>
+				<div id="getAlarmDIV_GB" alarmCode="{{col.alarmCode}}" style="height:40px; line-height:40px;width:30%; float:left; margin-left:10px" ng-style="ctrl.setColor(col.alarmCode)">
+					<span style="font-weight:200;font-size:1.5em">{{col.value}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

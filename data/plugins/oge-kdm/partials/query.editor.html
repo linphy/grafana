@@ -1,0 +1,47 @@
+<query-editor-row query-ctrl="ctrl" style="width: 75px;">
+	<div class="gf-form-inline">
+		<div class="gf-form max-width-25" ng-if="ctrl.target.kdm.pointOrWave === 2">
+			<span class="gf-form-label width-7">取数来源</span>
+			<select class="gf-form-input width-18" ng-model="ctrl.target.dataSource" ng-options="f.value as f.name for f in ctrl.dataSource" required></select>
+		</div>
+		<div class="gf-form max-width-45">
+			<span class="gf-form-label width-7">取数标签</span>
+			<metric-segment-model property="ctrl.target.target" get-options="ctrl.getOptions()" on-change="ctrl.onChangeInternal()" css-class="gf-form-label--grow width-37"></metric-segment-model>
+		</div>
+	</div>
+	<div class="gf-form-inline" ng-if="ctrl.target.refId==='A'">
+		<div class="gf-form max-width-15">
+			<span class="gf-form gf-form-label width-7">数据类型</span>
+			<select class="gf-form-input" ng-model="ctrl.target.kdm.pointOrWave" ng-options="f.value as f.name for f in ctrl.pointOrWave" required ng-change="ctrl.changePW()" style="margin-bottom:0.25rem;"></select>
+		</div>
+		<div class="gf-form max-width-15" ng-if="ctrl.target.kdm.pointOrWave == 1">
+			<span class="gf-form gf-form-label width-7">取数方式</span>
+			<select class="gf-form-input" ng-model="ctrl.target.kdm.dataType" ng-options="f.value as f.name for f in ctrl.dataTypeOptions" required ng-change="ctrl.panelCtrl.refresh()" style="margin-bottom:0.25rem;"></select>
+		</div>
+		<div class="gf-form max-width-10" ng-if="ctrl.target.kdm.pointOrWave == 1 && ctrl.target.kdm.dataType == 2" ng-change="ctrl.panelCtrl.refresh()">
+			<gf-form-switch class="gf-form" label="是否插值" checked="ctrl.target.kdm.isStep">
+				<div class="gf-form-switch">
+					<input type="checkbox" ng-model="ctrl.target.kdm.isStep" class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-empty">
+					<label data-on="Yes" data-off="No"></label>
+				</div>
+			</gf-form-switch>
+		</div>
+		<div class="gf-form max-width-15" ng-if="ctrl.target.kdm.pointOrWave == 1 && ctrl.target.kdm.dataType == 2 && ctrl.target.kdm.isStep">
+			<span class="gf-form-label">插值点数</span>
+			<input type="text" class="gf-form-input" ng-model="ctrl.target.kdm.queryPoints"
+				bs-tooltip="'从后台取得数据时候，是否选择插值处理（如果插值，后台将根据插值点数，自动计算步长）'"
+				data-placement="right" ng-model-onblur ng-change="ctrl.panelCtrl.refresh()"
+				spellcheck='false' placeholder="auto">
+			</input>
+		</div>
+		<div class="gf-form max-width-15" ng-if="ctrl.target.kdm.pointOrWave == 1">
+			<gf-form-switch class="gf-form" label="是否获取告警" ng-change="ctrl.panelCtrl.refresh()" label-class="width-8" checked="ctrl.target.kdm.isAlert" switch-class="max-width-6">
+			  <label class="gf-form-label pointer"></label>
+			  <div class="gf-form-switch">
+				<input type="checkbox" ng-model="ctrl.target.kdm.isAlert"  class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-empty">
+				<label data-on="Yes" data-off="No"></label>
+			  </div>
+			</gf-form-switch>
+		</div>
+	</div>
+</query-editor-row>

@@ -1,0 +1,89 @@
+<div style="text-align:center;">
+    <div class="oge-space-buttons">
+        <div>
+            <a class="btn btn-outline-secondary" title="上一周" ng-click="ctrl.changeStyle(3)"><i class="fa fa-fw fa-angle-double-left" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-secondary" title="下一周" ng-click="ctrl.changeStyle(2)"><i class="fa fa-fw fa-angle-double-right" aria-hidden="true"></i></a>
+        </div>
+        <div>
+            <a class="btn btn-outline-danger" title="上一点" ng-click="ctrl.changeStyle(0)"><i class="fa fa-fw fa-angle-left" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-danger" title="下一点" ng-click="ctrl.changeStyle(1)"><i class="fa fa-fw fa-angle-right" aria-hidden="true"></i></a>
+        </div>
+        <div>
+            <a class="btn btn-outline-success" title="放　大" ng-click="ctrl.changeStyle(4)"><i class="fa fa-fw fa-search-plus" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-success" title="缩　小" ng-click="ctrl.changeStyle(5)"><i class="fa fa-fw fa-search-minus" aria-hidden="true"></i></a>
+        </div>
+        <div>
+            <a class="btn btn-outline-warning" title="左　旋" ng-click="ctrl.changeStyle(6)"><i class="fa fa-fw fa-rotate-left" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-warning" title="右　旋" ng-click="ctrl.changeStyle(7)"><i class="fa fa-fw fa-rotate-right" aria-hidden="true"></i></a>
+        </div>
+        <div style="width: 79.05px;">
+            <select ng-init="ctrl.panel.style.barringType='0'" ng-change="ctrl.pancheTypeChange(ctrl.panel.style.barringType)" ng-model="ctrl.panel.style.barringType" ng-options="i as n for (i, n) in ctrl.panel.barringTypeOptions" class="gf-form-inputng-touched" style="padding: 0px; height: 33px; width:100%; border:rgb(0, 95, 129) solid 1px; border-radius: 2px;">
+            </select>
+        </div>
+    </div>
+    <div>
+    </div>
+    <div class="os-current">
+        <span class="os-current-time">{{ctrl.spaceCacheData.waveTime}}</span>
+        <div>
+            <span>{{ctrl.panel.style.weekIndex+1}}/{{ctrl.spaceCacheData.length}} 周 </span>
+            <span>{{ctrl.panel.style.pointIndex+1}}/256 点</span>
+        </div>
+    </div>
+    <div class="data-panel"></div>
+    <div class="os-info" style="display:inline-block;text-align:left;vertical-align:top;width:161px">
+        <div>
+            <p ng-show="ctrl.sdTitle">上导</p>
+            <ul ng-show="ctrl.basicPanel">
+                <li>X向1X幅值：{{ctrl.spaceCacheData.X1[0].toFixed(1)}} μm</li>
+                <li>X向1X相位：{{ctrl.spaceCacheData.X1P[0].toFixed(1)}} °</li>
+                <li>Y向1X幅值：{{ctrl.spaceCacheData.X1[1].toFixed(1)}} μm</li>
+                <li>Y向1X相位：{{ctrl.spaceCacheData.X1P[1].toFixed(1)}} °</li>
+                <li>摆度影响量：{{ctrl.spaceCacheData.roundCaUpCapacitys.toFixed(1)}} μm</li>
+                <li>上导摆度影响量：{{ctrl.spaceCacheData.caUpCapacitys[ctrl.panel.style.pointIndex].toFixed(1)}} μm</li>
+                <li>振动影响量：{{ctrl.spaceCacheData.roundDaUpCapacitys.toFixed(1)}} μm</li>
+                <li>上机架振动影响量：{{ctrl.spaceCacheData.daUpCapacitys[ctrl.panel.style.pointIndex].toFixed(1)}} μm</li>
+            </ul>
+            <ul ng-show="ctrl.sdAmplitude">
+                <li>盘车最小双幅值：{{ctrl.amplitude.sdmin.toFixed(1)}} μm</li>
+                <li>盘车最大双幅值：{{ctrl.amplitude.sdmax.toFixed(1)}} μm</li>
+            </ul>
+        </div>
+        <div>
+            <p ng-show="ctrl.xdTitle">下导</p>
+            <ul ng-show="ctrl.basicPanel">
+                <li>X向1X幅值：{{ctrl.spaceCacheData.X1[2].toFixed(1)}} μm</li>
+                <li>X向1X相位：{{ctrl.spaceCacheData.X1P[2].toFixed(1)}}°</li>
+                <li>Y向1X幅值：{{ctrl.spaceCacheData.X1[3].toFixed(1)}} μm</li>
+                <li>Y向1X相位：{{ctrl.spaceCacheData.X1P[3].toFixed(1)}}°</li>
+                <li>弯曲量：{{ctrl.spaceCacheData.roundBendingCapacitys.toFixed(1)}} μm</li>
+                <li>弯曲角：{{ctrl.spaceCacheData.roundBendingAngles.toFixed(1)}}°</li>
+                <li>偏心量：{{ctrl.spaceCacheData.roundHeavyCapacitys.toFixed(1)}} μm</li>
+                <li>偏心角：{{ctrl.spaceCacheData.roundHeavyAngles.toFixed(1)}}°</li>
+                <li>配重角：{{ctrl.spaceCacheData.roundBobHeavyAngles.toFixed(1)}}°</li>
+                <li>镜板不垂直量：{{ctrl.spaceCacheData.roundMirrorCapacitys.toFixed(1)}} μm</li>
+                <li>镜板调整角：{{ctrl.spaceCacheData.roundMirrorAngles.toFixed(1)}}°</li>
+                <li>下导摆度影响量：{{ctrl.spaceCacheData.caDownCapacitys[ctrl.panel.style.pointIndex].toFixed(1)}} μm</li>
+                <li>下机架振动影响量：{{ctrl.spaceCacheData.daDownCapacitys[ctrl.panel.style.pointIndex].toFixed(1)}} μm</li>
+            </ul>
+            <ul ng-show="ctrl.xdAmplitude">
+                <li>盘车最小双幅值：{{ctrl.amplitude.xdmin.toFixed(1)}} μm</li>
+                <li>盘车最大双幅值：{{ctrl.amplitude.xdmax.toFixed(1)}} μm</li>
+            </ul>
+        </div>
+        <div>
+            <p ng-show="ctrl.waterTitle">水导</p>
+            <ul ng-show="ctrl.basicPanel">
+                <li>X向1X幅值：{{ctrl.spaceCacheData.X1[4].toFixed(1)}} μm</li>
+                <li>X向1X相位：{{ctrl.spaceCacheData.X1P[4].toFixed(1)}}°</li>
+                <li>Y向1X幅值：{{ctrl.spaceCacheData.X1[5].toFixed(1)}} μm</li>
+                <li>Y向1X相位：{{ctrl.spaceCacheData.X1P[5].toFixed(1)}}°</li>
+            </ul>
+            <ul ng-show="ctrl.wahterAmplitude">
+                <li>盘车最小双幅值：{{ctrl.amplitude.watermin.toFixed(1)}} μm</li>
+                <li>盘车最大双幅值：{{ctrl.amplitude.watermax.toFixed(1)}} μm</li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>

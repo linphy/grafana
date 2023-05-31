@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "马氏距离",
+  "id": "oge-mahalanobia-distance",
+
+  "info": {
+    "description": "马氏距离展示插件",
+    "author": {
+      "name": "OGE_YH",
+      "url": "https://github.com/190948804"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/oge-mahalanobia-distance"},
+      {"name": "MIT License", "url": "https://github.com/grafana/oge-mahalanobia-distance/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "img/config.png"},
+      {"name": "Options", "path": "img/config.png"}
+    ],
+    "version": "1.0.3",
+    "updated": "2019-05-24"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "5.x.x",
+    "plugins": [ ]
+  }
+}

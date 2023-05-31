@@ -1,0 +1,52 @@
+<div style="max-height:{{ctrl.height}}">
+	<div  ng-if="ctrl.panel.mode === 'json'"style="max-width:500px;text-align:center;margin:0 auto;">
+	<div style="min-width:110px">
+			<div  ng-if="ctrl.dataList.name == undefined" style="height:50%;width:80%;line-height:200%;margin:0 auto;margin-top:5%;">
+				<span style="font-weight:900;font-size:{{ctrl.panel.fontSize}}">请设置取数来源及取数标签</span>
+			</div>
+			<div  ng-if="ctrl.dataList.name != undefined && ctrl.panel.showName" style="height:50%;width:80%;line-height:200%;margin:0 auto;margin-top:5%;display:inline;">
+				<span style="font-weight:900;font-size:{{ctrl.panel.fontSize}}em;">{{ctrl.dataList.name}}</span>
+			</div>
+			</div>
+			<div style="height:50%;width:80%;line-height:200%;margin:0 auto;margin-top:5%;">
+				<span style="font-weight:800;font-size:{{ctrl.panel.timeSize}}em">{{ctrl.panel.time}}</span>
+			</div>
+			<div style="height:60%;width:75%;;line-height:200%;margin:0 auto;margin-top:5%;background-color:{{ctrl.panel.backgroundColor}};font-size:{{ctrl.panel.valueSize}}em;">
+				<div style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</div>
+			</div>
+		
+	</div>
+	</div>
+	<div  ng-if="ctrl.panel.mode === 'default'"style="max-width:500px;text-align:center;margin:0 auto;">
+		<div style="min-width:110px">
+			<div  ng-if="ctrl.dataList[0].target == undefined" style="height:50%;width:80%;line-height:200%;margin:0 auto;margin-top:5%;">
+				<span style="font-weight:900;font-size:{{ctrl.panel.fontSize}}">请设置取数来源及取数标签</span>
+			</div>
+			<div  ng-if="ctrl.dataList[0].target != undefined && ctrl.panel.showName" style="height:50%;width:80%;line-height:200%;margin:0 auto;margin-top:5%;display:inline;">
+				<span style="font-weight:900;font-size:{{ctrl.panel.fontSize}}em">{{ctrl.dataList[0].target}}</br></span>
+			</div>
+			<div style="height:30%;width:80%;line-height:200%;margin:0 auto;margin-top:5%;">
+				<span style="font-weight:800;font-size:{{ctrl.panel.timeSize}}em">{{ctrl.panel.time}}</span>
+			</div>
+			<div  ng-if="ctrl.panel.ogeAlertColorType === 'B'" style="height:60%;width:75%;line-height:200%;margin:0 auto;margin-top:5%;background-color:{{ctrl.panel.backgroundColor}};font-size:{{ctrl.panel.valueSize}}em">
+				<span  ng-if="ctrl.panel.precise == 0" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 1" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 2" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 3" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 4" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 5" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 6" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+			</div>
+			<div  ng-if="ctrl.panel.ogeAlertColorType === 'V'" style="height:60%;width:75%;line-height:200%;margin:0 auto;margin-top:5%;color:{{ctrl.panel.backgroundColor}};font-size:{{ctrl.panel.valueSize}}em">
+				<span  ng-if="ctrl.panel.precise == 0" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 1" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 2" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 3" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 4" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 5" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+				<span  ng-if="ctrl.panel.precise == 6" style="font-weight:900;">{{ctrl.panel.data}}&nbsp{{ctrl.panel.unit}}</span>
+			</div>
+		</div>
+	</div>
+
+</div>

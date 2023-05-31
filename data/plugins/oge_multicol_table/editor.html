@@ -1,0 +1,97 @@
+<div class="editor-row">
+    <div class="gf-form">
+        <div class="section gf-form-group">
+            <h5 class="section-heading">Table setting</h5>
+            <div class="gf-form-inline">
+                <div class="gf-form">
+                    <label class="gf-form-label width-8">行数</label>
+                    <input type="number" class="gf-form-input width-7" ng-model="ctrl.panel.numFour[0]" placeholder="0" ng-change="ctrl.newCreate();" ng-model-onblur>
+                </div>
+                <div class="gf-form">
+                    <label class="gf-form-label width-8">列数</label>
+                    <input type="number" class="gf-form-input width-7" ng-model="ctrl.panel.numFour[1]" placeholder="0" ng-change="ctrl.newCreate();" ng-model-onblur>
+                </div>
+                <div class="gf-form">
+                    <label class="gf-form-label width-8">数据精度</label>
+                    <input type="number" class="gf-form-input width-7" ng-model="ctrl.panel.dataPrecise" placeholder="0" ng-change="ctrl.refresh();" ng-model-onblur>
+                </div>
+                <div class="gf-form">
+                    <label class="gf-form-label width-8">值类型</label>
+                    <metric-segment-model property="ctrl.panel.statvalues" options="ctrl.valueShowStatOptions" on-change="ctrl.refresh();" custom="false" css-class="width-7" select-mode="true"></metric-segment-model>
+                </div>
+                <div class="gf-form">
+                    <label class="gf-form-label width-8">位置</label>
+                    <select class="gf-form-input width-6" ng-model="ctrl.panel.fontposition" ng-options="f.value as f.name for f in ctrl.panel.fontPositions"  on-change="ctrl.refresh();"></select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="gf-form">
+        <div class="section gf-form-group">
+            <h5 class="section-heading">Cell setting</h5>
+            <div ng-repeat="row in ctrl.panel.tableArr" ng-init="firstRow = $index">
+                <div class="gf-form-group" style="margin-bottom:3px" ng-repeat="cell in row">
+                    <div class="gf-form-inline" ng-if="firstRow == 0">
+                        <span class="gf-form-label" style="color:rgb(11, 146, 199)">{{cell.id}}</span>&nbsp;
+                        <span class="gf-form-label">列标题设置</span>
+                        <input ng-model="cell.text" type="text" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-12" placeholder="无" empty-to-null="1">
+                        <label class="gf-form-label width-8">例宽度设置</label>              
+                        <input ng-model="cell.colWidth" type="text" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-6" placeholder="无" empty-to-null="1"> 
+                        <gf-form-switch class="gf-form-inline" label-class="width-6" label="合并单元格" checked="cell.ismergeCell"></gf-form-switch>
+                        <label class="gf-form-label width-6" ng-if="cell.ismergeCell">合并个数</label>
+                        <input ng-model="cell.mergeNumber" type="number" ng-if="cell.ismergeCell" class="gf-form-input width-4" placeholder="1" ng-change="ctrl.newCreate();">
+                    </div>
+                    <div class="gf-form-inline" ng-if="firstRow > 0">
+                        <span class="gf-form-label" style="color:rgb(11, 146, 199)">{{cell.id}}</span>&nbsp;
+                        <span class="gf-form-label">单元格文本</span>
+                        <select class="width-6" ng-model="cell.displayMode" ng-options="f.value as f.name for f in ctrl.displayModeOptions" ng-change="ctrl.changeDisplayMode(cell)" required></select>
+                        <div class="gf-form-inline" ng-if="cell.displayMode == 'text'">
+                            <span class="gf-form-label">文本输入</span>
+                            <input ng-model="cell.target" type="text" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-10 gf-form-inline" placeholder="无" empty-to-null="1" ng-change="ctrl.changeDataShow(cell);">
+                        </div>
+                        <div class="gf-form-inline" ng-if="cell.displayMode == 'value'||cell.displayMode == 'valueMap'">
+                            <span class="gf-form-label">数据选择</span>
+                            <select ng-model="cell.target" ng-options="f.target as f.name for f in ctrl.panel.dataAndRefId" class="gf-form-select width-10" ng-change="ctrl.changeDataShow(cell);"></select>
+                        </div>
+
+                        <div class="gf-form-inline" ng-if="cell.displayMode == 'time'">
+                            <span class="gf-form-label">时间选择</span>
+                            <select ng-model="cell.target" ng-options="f.target as f.name for f in ctrl.panel.dataAndRefId" class="gf-form-select width-10" ng-change="ctrl.changeDataShow(cell);"></select>
+                        </div>
+                        <div class="gf-form-inline">
+                            <span class="gf-form-label">字体大小</span>
+                            <select class="gf-form-select width-6" ng-model="cell.fontsize" ng-options="f for f in ctrl.panel.fontSizes"></select>
+                        </div>
+                        <gf-form-switch class="gf-form-inline" label-class="width-6" label="报警阈值" checked="cell.isAlertValue"></gf-form-switch>
+                        <div class="gf-form-inline">
+                            <span  ng-if="cell.isAlertValue" class="gf-form-label">From</span>
+                            <input ng-if="cell.isAlertValue" ng-model="cell.alertValue1" type="number" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-5 gf-form-inline" >
+                            <span  ng-if="cell.isAlertValue" class="gf-form-label">To</span>
+                            <input ng-if="cell.isAlertValue" ng-model="cell.alertValue2" type="number" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-5 gf-form-inline" >
+                        </div>
+                    </div>
+                    <!-- 数值映射 -->
+                    <div class="gf-form-group" style="margin-left: 42px; margin-top: 2px;">
+                        <div class="gf-form-inline" ng-if="cell.displayMode == 'valueMap' && firstRow > 0" ng-repeat="cvp in cell.valueMap track by cvp.id">
+                            <span class="gf-form-label">数值范围</span>
+                            <input ng-model="cvp.range" type="text" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-6 gf-form-inline" placeholder="0,10" empty-to-null="1" ng-change="ctrl.changeDataShow(cell);">
+                            <span class="gf-form-label ">
+                                <i class="fa fa-arrow-right"></i>
+                            </span>&nbsp;
+                            <span class="gf-form-label">映射文本</span>
+                            <input ng-model="cvp.celText" type="text" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-6 gf-form-inline" placeholder="优秀" empty-to-null="优秀" ng-change="ctrl.changeDataShow(cell);">
+                            <span class="gf-form-label" ng-if="$last" ng-click="ctrl.addValueMap(cell)">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                            <span class="gf-form-label" ng-if="!$first" ng-click="ctrl.minusValueMap(cell, $index)">
+                                <i class="fa fa-minus"></i>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

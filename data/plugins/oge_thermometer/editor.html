@@ -1,0 +1,31 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">插件选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">显示模式</label>
+			<div class="gf-form-select-wrapper max-width-10">
+				<select id="MO" class="input-medium gf-form-input" ng-model="ctrl.panel.mode" ng-options="f.value as f.name for f in ctrl.panel.modeOption" ng-change="ctrl.render()" required></select>
+			</div>
+		</div>
+		<br>
+		<h5 class="section-heading">值的设置</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">显示最小值</label>
+			<input type="number" class="gf-form-input width-9" placeholder="0" data-placement="right" ng-model="ctrl.panel.min" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-9">显示最大值</label>
+			<input type="number" class="gf-form-input width-9" placeholder="100" data-placement="right" ng-model="ctrl.panel.max" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">数据精度</label>
+			<input type="number" class="gf-form-input width-9" placeholder="0" data-placement="right" ng-model="ctrl.panel.Precise" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-9">数据间隔</label>
+			<input type="number" class="gf-form-input width-9" placeholder="0" data-placement="right" ng-model="ctrl.panel.Interval" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">显示名称</label>
+			<input type="string" class="gf-form-input width-9" placeholder="温度" data-placement="right" ng-model="ctrl.panel.Name" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-9">显示单位</label>
+			<input type="string" class="gf-form-input width-9" placeholder="℃" data-placement="right" ng-model="ctrl.panel.Unit" ng-change="ctrl.render()" required>
+		</div>
+	</div>
+</div>

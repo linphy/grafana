@@ -1,0 +1,212 @@
+<div class="edit-tab-with-sidemenu">
+  <aside class="edit-sidemenu-aside">
+    <ul class="edit-sidemenu">
+      <li ng-class="{active: ctrl.subTabIndex === 0}">
+        <a ng-click="ctrl.subTabIndex = 0">Color value setting<tip>可以为不同的数据源中的数据设置不同的颜色，按从上到下的顺序，越向下显示级别越高。</tip></a>
+      </li>
+      <li ng-class="{active: ctrl.subTabIndex === 1}">
+        <a ng-click="ctrl.subTabIndex = 1">
+          Text value setting<tip>根据页面上元素中显示的值来设置。根据值设置显示内容。</tip>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <div class="edit-tab-content" ng-if="ctrl.subTabIndex === 0">
+    <div class="section gf-form-group">
+      <div ng-repeat = "(index,item) in ctrl.panel.valueColors">
+        <div class="editor-row">
+          <div class="gf-form-inline">
+            <div class="gf-form">
+              <label class="gf-form-label">数据源</label>
+              <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="item.thecolorSource" ng-options="f.regexOne as f.alisa for f in ctrl.panel.dataSources" ng-change="ctrl.render()"></select>
+              </div>
+            </div>
+            <div class="gf-form">
+                <span class="gf-form-label">
+                  Color
+                </span>
+                <div class="gf-form-select-wrapper">
+                  <select class="gf-form-input" ng-model="item.coloringType"
+                   ng-options="f.value as f.name for f in ctrl.panel.coloringTypes" ng-change="ctrl.render()"></select>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="editor-row" ng-if="item.coloringType==1">
+          <h5 class="section-heading">Set value colors</h5>
+          <div class="gf-form-group">
+            <div class="gf-form" ng-repeat="map in item.theColorvalues">
+              <span class="gf-form-label">
+                <i class="fa fa-remove pointer" ng-click="ctrl.removeColorValue(map,index)"></i>
+              </span>
+              <input type="text" ng-model="map.value" placeholder="value" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+              <span class="gf-form-label">
+                <i class="fa fa-arrow-right"></i>
+              </span>
+              <span class="gf-form-label">
+                  <spectrum-picker ng-model="map.color" ng-change="ctrl.render()" ></spectrum-picker>
+              </span>
+              <span class="gf-form-label">
+                <i class="fa fa-arrow-right"></i>
+              </span>
+              <input type="text" ng-model="map.color" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+            </div>
+            <div class="gf-form-button-row">
+              <button class="btn btn-inverse" ng-click="ctrl.addColorValue(index)">
+                <i class="fa fa-plus"></i>
+                Add a value color
+              </button>
+              <button class="btn btn-inverse" ng-click="ctrl.removeTheValueColors(item)">
+                <i class="fa fa-remove"></i>
+                Remove this source color value
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="editor-row" ng-if="item.coloringType==2">
+          <h5 class="section-heading">Set range colors</h5>
+          <div class="gf-form-group">
+            <div class="gf-form" ng-repeat="rangeColor in item.theRangeColor">
+                <span class="gf-form-label">
+                  <i class="fa fa-remove pointer" ng-click="ctrl.removeColorRang(rangeColor,index)"></i>
+                </span>
+                <span class="gf-form-label">From</span>
+                <input type="text" ng-model="rangeColor.from" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+                <span class="gf-form-label">To</span>
+                <input type="text" ng-model="rangeColor.to" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+                <span class="gf-form-label">Color</span>
+                <span class="gf-form-label">
+                    <spectrum-picker ng-model="rangeColor.color" ng-change="ctrl.render()"></spectrum-picker>
+                </span>
+                <span class="gf-form-label">
+                  <i class="fa fa-arrow-right"></i>
+                </span>
+                <input type="text" ng-model="rangeColor.color" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+            </div>
+
+            <div class="gf-form-button-row">
+              <button class="btn btn-inverse" ng-click="ctrl.addColorRang(index)">
+                <i class="fa fa-plus"></i>
+                Add a range color
+              </button>
+              <button class="btn btn-inverse" ng-click="ctrl.removeTheValueColors(item)">
+                <i class="fa fa-remove"></i>
+                Remove this source color value
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="gf-form-button-row">
+        <button class="btn btn-inverse" ng-click="ctrl.addTheValueColors()">
+          <i class="fa fa-plus"></i>
+            Add a new color value
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="edit-tab-content" ng-if="ctrl.subTabIndex === 1">
+    <div class="section gf-form-group">
+      <div class="editor-row">
+        <div class="gf-form-group">
+          <div class="gf-form">
+              <span class="gf-form-label">
+                Type
+              </span>
+              <div class="gf-form-select-wrapper">
+                <select class="gf-form-input" ng-model="ctrl.panel.mappingType"
+                 ng-options="f.value as f.name for f in ctrl.panel.mappingTypes" ng-change="ctrl.render()"></select>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="editor-row" ng-if="ctrl.panel.mappingType==1">
+        <h5 class="section-heading">Set value mappings</h5>
+        <div class="gf-form-group">
+          <div class="gf-form" ng-repeat="map in ctrl.panel.valueMaps">
+            <span class="gf-form-label">
+              <i class="fa fa-remove pointer" ng-click="ctrl.removeValueMap(map)"></i>
+            </span>
+            <input type="text" ng-model="map.value" placeholder="value" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+            <span class="gf-form-label">
+              <i class="fa fa-arrow-right"></i>
+            </span>
+            <input type="text" placeholder="text" ng-model="map.text" class="gf-form-input max-width-8" ng-blur="ctrl.render()">
+          </div>
+          <div class="gf-form-button-row">
+            <button class="btn btn-inverse" ng-click="ctrl.addValueMap();">
+              <i class="fa fa-plus"></i>
+              Add a value mapping
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="editor-row" ng-if="ctrl.panel.mappingType==2">
+        <h5 class="section-heading">Set range mappings</h5>
+        <div class="gf-form-group">
+          <div class="gf-form" ng-repeat="rangeMap in ctrl.panel.rangeMaps">
+              <span class="gf-form-label">
+                <i class="fa fa-remove pointer" ng-click="ctrl.removeRangeMap(rangeMap)"></i>
+              </span>
+              <span class="gf-form-label">From</span>
+              <input type="text" ng-model="rangeMap.from" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+              <span class="gf-form-label">To</span>
+              <input type="text" ng-model="rangeMap.to" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+              <span class="gf-form-label">Text</span>
+              <input type="text" ng-model="rangeMap.text" class="gf-form-input max-width-8" ng-blur="ctrl.render()">     
+          </div>
+          <div class="gf-form-button-row">
+            <button class="btn btn-inverse" ng-click="ctrl.addRangeMap()">
+              <i class="fa fa-plus"></i>
+              Add a range mapping
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="editor-row" ng-if="ctrl.panel.mappingType==3">
+        <h5 class="section-heading">Set value images</h5>
+        <div class="gf-form-group">
+          <div class="gf-form" ng-repeat="mapImg in ctrl.panel.valueMapsImg">
+            <span class="gf-form-label">
+              <i class="fa fa-remove pointer" ng-click="ctrl.removeValueMapImg(mapImg)"></i>
+            </span>
+            <input type="text" ng-model="mapImg.value" placeholder="value" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+            <span class="gf-form-label">
+              <i class="fa fa-arrow-right"></i>
+            </span>
+            <input type="text" placeholder="text" ng-model="mapImg.text" class="gf-form-input max-width-8" ng-blur="ctrl.render()">
+          </div>
+          <div class="gf-form-button-row">
+            <button class="btn btn-inverse" ng-click="ctrl.addValueMapImg();">
+              <i class="fa fa-plus"></i>
+              Add a value image
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="editor-row" ng-if="ctrl.panel.mappingType==4">
+        <h5 class="section-heading">Set range images</h5>
+        <div class="gf-form-group">
+          <div class="gf-form" ng-repeat="rangeMapImg in ctrl.panel.rangeMapsImg">
+              <span class="gf-form-label">
+                <i class="fa fa-remove pointer" ng-click="ctrl.removeRangeMapImg(rangeMapImg)"></i>
+              </span>
+              <span class="gf-form-label">From</span>
+              <input type="text" ng-model="rangeMapImg.from" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+              <span class="gf-form-label">To</span>
+              <input type="text" ng-model="rangeMapImg.to" class="gf-form-input max-width-6" ng-blur="ctrl.render()">
+              <span class="gf-form-label">Text</span>
+              <input type="text" ng-model="rangeMapImg.text" class="gf-form-input max-width-8" ng-blur="ctrl.render()">
+          </div>
+          <div class="gf-form-button-row">
+            <button class="btn btn-inverse" ng-click="ctrl.addRangeMapImg()">
+              <i class="fa fa-plus"></i>
+              Add a range image
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

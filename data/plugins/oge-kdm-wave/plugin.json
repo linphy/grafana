@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "OGE-波形频谱",
+  "id": "oge-kdm-wave",
+
+  "info": {
+    "description": "专业工具-波形频谱",
+    "author": {
+      "name": "OGE YH",
+      "url": "http://raintank.io"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/wave_logo.png",
+      "large": "img/wave_logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/clock-panel"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "img/screenshot-showcase.png"},
+      {"name": "Options", "path": "img/screenshot-clock-options.png"}
+    ],
+    "version": "0.0.1",
+    "updated": "2016-07-27"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

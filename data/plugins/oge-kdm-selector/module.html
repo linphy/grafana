@@ -1,0 +1,68 @@
+<div ng-style="{height: ctrl.height}" style="position:relative;">
+	<div style="margin:0 auto;height:100%;width:100%;font-size:8px">
+		<div class="gf-form">
+			<label class="gf-form-label" style="width:30%">省份</label>
+			<span style="width:70%">
+				<select class="input-medium gf-form-input" ng-change="ctrl.changeA1A2()" ng-model="ctrl.panel.manageA1A2Value" ng-options="data.value as data.myself for data in ctrl.panel.manageA1A2ValueOptions"></select>
+			</span>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label" style="width:30%">电厂</label>
+			<span style="width:70%">
+				<select class="input-medium gf-form-input" ng-change="ctrl.changeAN()" ng-model="ctrl.panel.manageANValue" ng-options="data.value as data.myself for data in ctrl.panel.manageANValueOptions"></select>
+			</span>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label" style="width:30%">机组</label>
+			<span style="width:70%">
+				<select class="input-medium gf-form-input" ng-change="ctrl.queryData()" ng-model="ctrl.panel.facilityF0Value" ng-options="data.value as data.myself for data in ctrl.panel.facilityF0ValueOptions"></select>
+			</span>
+		</div>
+		<div class="gf-form" ng-if="ctrl.panel.kksType <= 2">
+			<label class="gf-form-label" style="width:30%">通道选择</label>
+			<!-- <input type="text" class="gf-form-input"  ng-model="ctrl.panel.likeSearch" ng-change="ctrl.queryChangedText()" ></input>
+			<value-select-dropdown  style="width:70%;" variable="ctrl.variable" on-updated="ctrl.getSelectValue()"></value-select-dropdown>	 -->
+			<div class="variable-link-wrapper multi-selector-all">
+				<a ng-click="ctrl.show()" class="variable-value-link multi-alink-selectorclass">
+					{{ctrl.panel.tempInfo}}
+					<i class="fa fa-caret-down" style="font-size:12px"></i>
+				</a>
+				<input type="text" class="gf-form-input multi-input-selectorclass" style="display: none" ng-model="ctrl.variableObj.search.query" ng-change="ctrl.queryChangedText()" ></input>
+				<div class="variable-value-dropdown" ng-show="ctrl.variableObj.dropdownVisible" ng-class="{'multi': true}">
+					<div class="variable-options-wrapper">
+						<div class="variable-options-column">
+							<a class="variable-options-column-header" ng-class="{'many-selected': ctrl.variableObj.selectedValues.length > 1}" bs-tooltip="'清除选项'" data-placement="top" ng-click="ctrl.clearSelections()">
+								<span class="variable-option-icon"></span>
+								已选择 ({{ctrl.variableObj.selectedValues.length}})
+							</a>
+							<a class="variable-option pointer" ng-repeat="option in ctrl.variable.options track by $index" ng-class="{'selected': option.selected}" ng-click="ctrl.selectValue(option, $event)">
+								<span class="variable-option-icon"></span>
+								<span>{{option.text}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="gf-form" ng-if="ctrl.panel.kksType == 5">
+			<label class="gf-form-label" style="width:30%">波形通道选择</label>
+			<span style="width:70%">
+				<select class="input-medium gf-form-input" ng-change="ctrl.getSelectValue('wave')" ng-model="ctrl.panel.waterfallWaveValue" ng-options="data.value as data.text for data in ctrl.panel.waterfallWaveValueOptions"></select>
+			</span>
+		</div>
+		<div class="gf-form" ng-if="ctrl.panel.kksType == 5">
+			<label class="gf-form-label" style="width:30%">相关量选择</label>
+			<span style="width:70%">
+				<select class="input-medium gf-form-input" ng-change="ctrl.getSelectValue('float')" ng-model="ctrl.panel.waterfallFloatValue" ng-options="data.value as data.text for data in ctrl.panel.waterfallFloatValueOptions"></select>
+			</span>
+		</div>
+		<div class="gf-form" ng-if="ctrl.panel.kksType > 0">
+			<label class="gf-form-label" style="width:30%">数据时间</label>
+			<span style="width:70%;" ng-hide="ctrl.panel.kksType==5">
+				<select class="input-medium gf-form-input" ng-change="ctrl.getSelectTime()" ng-model="ctrl.panel.dataTime" ng-options="f for f in ctrl.panel.timeOption"></select>
+			</span>
+			<value-select-dropdown ng-show="ctrl.panel.kksType==5" style="width:70%;" variable="ctrl.variable" on-updated="ctrl.getSelectTime()"></value-select-dropdown>
+		</div>
+	</div>
+</div>

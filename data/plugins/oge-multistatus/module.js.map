@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["MultistatusCtrl"],"mappings":";;;;;;;;AAAQA,qB,qBAAAA,e;;;2BAGNA,e","file":"module.js","sourcesContent":["import {MultistatusCtrl} from './mulatstatus_ctrl';\r\n\r\nexport {\r\n  MultistatusCtrl as PanelCtrl\r\n};\r\n"]}

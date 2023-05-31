@@ -1,0 +1,33 @@
+{
+    "type": "panel",
+    "name": "基础表格",
+    "id": "oge_basic_table",
+
+    "info": {
+        "description": "具备添加连接，报警和手动添加单位的基础表格",
+        "author": {
+            "name": "OGE DF",
+            "url": "http://raintank.io"
+        },
+        "keywords": ["table", "panel"],
+        "logos": {
+            "small": "img/logo.png",
+            "large": "img/logo.png"
+        },
+        "links": [
+            { "name": "Project site", "url": "https://github.com/grafana/clock-panel" },
+            { "name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE" }
+        ],
+        "screenshots": [
+            { "name": "Showcase", "path": "src/img/screenshot-table.png" },
+            { "name": "Options", "path": "src/img/screenshot-table-options.png" }
+        ],
+        "version": "0.0.1",
+        "updated": "2016-07-27"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "3.x.x",
+        "plugins": []
+    }
+}

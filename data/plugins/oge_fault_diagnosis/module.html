@@ -1,0 +1,27 @@
+<div class="fault-panel"  ng-style="{'height': ctrl.panel.options.height+'px','font-size':ctrl.panel.options.fontSize, 'font-family':ctrl.panel.options.fontFamily,'font-style':ctrl.panel.options.fontStyle == 'italic' ? 'italic' : 'normal','font-weight':ctrl.panel.options.fontStyle == 'blob' ? 'blob' : 'normal'}" >
+	<div class="faultTitle" ng-style="{'background-color': ctrl.panel.options.titleBgColor}">
+		<span ng-style="{'line-height':ctrl.panel.options.titleWidth+'px'}">故障诊断</span>
+	</div>
+	<div class="lightdisplay moreDivVmiddle">
+		<div class="lightLeft">
+			<div class="lightLeftChild" ng-repeat="col in ctrl.panel.options.metrics track by $index">
+				<div class="faultCircle" ng-style="{'background-color': col.color}"></div>
+				<p>{{col.name}}</p>
+			</div>
+		</div>
+		<div class="lightRight">
+			<div ng-repeat="color in ctrl.panel.options.colors track by $index">
+				<span class="faultBox" ng-style="{'background-color': color.color}"></span>
+				<span>{{color.name}}</span>
+			</div>
+		</div>
+	</div>
+	<div class="faultdisplay">
+		<h2>故障描述</h2>
+		<p ng-repeat="des in ctrl.panel.options.allDescriptions track by $index">{{des}}</p>
+	</div>
+	<div class="faultdisplay">
+		<h2>维护建议</h2>
+		<p ng-repeat="met in ctrl.panel.options.allMethods track by $index">{{met}}</p>
+	</div>
+</div>

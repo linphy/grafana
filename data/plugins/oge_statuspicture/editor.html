@@ -1,0 +1,24 @@
+<div class="editor-row">
+	<div class="gf-form-group">
+		<div class="gf-form-group">
+			<h5 class="width-6">告警设置</h5>
+			<div class="gf-form" ng-repeat="c in ctrl.panel.threshold track by $index">
+				<div class="gf-form-select-wrapper">
+					<input type="text" class="gf-form-input width-13" ng-model="c.name" placeholder='图片名称（包括格式）' ng-change="ctrl.render()" required>
+		        </div>
+				<span class="gf-form-label">
+		            <i class="fa fa-arrow-right"></i>
+		        </span>
+				<input type="text" class="gf-form-input width-6" ng-model="ctrl.panel.threshold[$index].thresholds" placeholder="30,60" ng-change="ctrl.render()" required>
+				<button class="btn-inverse gf-form-btn btn-small" ng-click="ctrl.onDelete($index)"><i class="fa fa-trash"></i></button>
+				<br>
+			</div>
+			<div class="gf-form-button-row">
+		        <button class="btn btn-inverse" ng-click="ctrl.onAdd()">
+		          <i class="fa fa-plus"></i>
+		            增加指标
+		        </button>
+		    </div>
+		</div>
+	</div>
+</div>

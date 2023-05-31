@@ -1,0 +1,116 @@
+<div class="login container">
+  <div class="login-content">
+    <div class="login-branding">
+      <img class="logo-icon" src="public/img/grafana_icon.svg" alt="Grafana" />
+      <span style="font-size:30px;margin-left:-8px;">奥技异</span>
+    </div>
+    <div class="login-outer-box">
+      <div class="login-inner-box" id="login-view">
+        <form name="loginForm" class="login-form-group gf-form-group" ng-hide="disableLoginForm">
+          <div class="login-form">
+            <input type="text" name="username" class="gf-form-input login-form-input" required ng-model='formModel.user' placeholder={{loginHint}}
+              autofocus>
+          </div>
+          <div class="login-form">
+            <input type="password" name="password" class="gf-form-input login-form-input" required ng-model="formModel.password" id="inputPassword"
+              placeholder="密码">
+          </div>
+          <div class="login-form gf-form-inline" ng-if="verificationCode">
+            <img src="" alt="" id="identificationNumberPic" style="display: inline-block;" ng-click="refreshIdentificationNumberPic()">
+            <input type="text" name="verifyValue" class="gf-form-input login-form-input" required ng-model="formModel.verifyValue"
+              placeholder="验证码" style="min-width: 50px; width: 90px; display: inline-block; margin-left: 2px;">
+          </div>
+          <div class="login-button-group">
+            <button type="submit" class="btn btn-large p-x-2" ng-if="!loggingIn" ng-click="submit();" ng-class="{'btn-inverse': !loginForm.$valid, 'btn-primary': loginForm.$valid}">
+              登录
+            </button>
+            <button type="submit" class="btn btn-large p-x-2 btn-inverse btn-loading" ng-if="loggingIn">
+              正在登录<span>.</span><span>.</span><span>.</span>
+            </button>
+            <div class="small login-button-forgot-password">
+              <a href="user/password/send-reset-email">
+                忘记密码？
+              </a>
+            </div>
+          </div>
+        </form>
+        <div class="text-center login-divider" ng-show="oauthEnabled">
+          <div>
+            <div class="login-divider-line">
+            </div>
+          </div>
+          <div>
+            <span class="login-divider-text">
+              <span ng-hide="disableLoginForm">或者</span>
+            </span>
+          </div>
+          <div>
+            <div class="login-divider-line">
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="login-oauth text-center" ng-show="oauthEnabled">
+          <a class="btn btn-medium btn-service btn-service--google login-btn" href="login/google" target="_self" ng-if="oauth.google">
+            <i class="btn-service-icon fa fa-google"></i>
+            用谷歌账号登录
+          </a>
+          <a class="btn btn-medium btn-service btn-service--github login-btn" href="login/github" target="_self" ng-if="oauth.github">
+            <i class="btn-service-icon fa fa-github"></i>
+            用GitHub账号登录
+          </a>
+          <a class="btn btn-medium btn-service btn-service--gitlab login-btn" href="login/gitlab" target="_self" ng-if="oauth.gitlab">
+            <i class="btn-service-icon fa fa-gitlab"></i>
+            用GitLab账号登录
+          </a>
+          <a class="btn btn-medium btn-service btn-service--oauth login-btn" href="login/generic_oauth" target="_self"
+            ng-if="oauth.generic_oauth">
+            <i class="btn-service-icon fa fa-sign-in"></i>
+            用{{oauth.generic_oauth.name}}登录
+          </a>
+        </div>
+        <div class="login-signup-box" ng-show="!disableUserSignUp">
+          <div class="login-signup-title p-r-1">
+            首次使用
+          </div>
+          <a href="signup" class="btn btn-medium btn-signup btn-p-x-2">
+            注册
+          </a>
+        </div>
+      </div>
+      <div class="login-inner-box remove hidden" id="change-password-view">
+        <div class="text-left login-change-password-info">
+          <h5>修改密码</h5>
+          首次使用前, 需要您通过更改密码来确保帐户更加安全。
+        </div>
+        <form name="passwordForm" class="login-form-group gf-form-group">
+          <div class="login-form">
+            <input type="password" name="oldPassword" class="gf-form-input login-form-input" required ng-model="command.oldPassword" placeholder="旧密码">
+          </div>
+          <div class="login-form">
+            <input type="password" id="newPassword" name="newPassword" minlength="10" class="gf-form-input login-form-input" required ng-model='command.newPassword'
+              placeholder="新密码,最少10位长度,大小写字母/数字/特殊字符最少3种组合且不能包含空格" ng-pattern="passwordPattern">
+            <div ng-show="passwordForm.newPassword.$viewValue && passwordForm.newPassword.$viewValue !== '' && passwordForm.newPassword.$invalid">
+              <span style="color: red">密码复杂度校验失败</span>
+            </div>
+          </div>
+          <div class="login-form">
+            <input type="password" name="confirmNew" class="gf-form-input login-form-input" required ng-model="command.confirmNew" placeholder="确认新的密码">
+          </div>
+          <div class="login-button-group login-button-group--right text-right">
+            <!--<a class="btn btn-link" ng-click="skip();">
+              跳过
+              <info-popover mode="no-padding">
+                如果跳过, 系统将在下次登录时提示您更改密码。
+              </info-popover>
+            </a>-->
+            <button type="submit" class="btn btn-large p-x-2" ng-click="changePassword();" ng-class="{'btn-inverse': !loginForm.$valid, 'btn-success': loginForm.$valid}">
+              保存
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

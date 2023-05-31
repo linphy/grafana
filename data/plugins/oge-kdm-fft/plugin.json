@@ -1,0 +1,27 @@
+{
+  "type": "panel",
+  "name": "点值功率谱",
+  "id": "oge-kdm-fft",
+  "info": {
+    "description": "点值功率谱",
+    "author": {
+      "name": "OGE_YH",
+      "url": "https://github.com/190948804"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "screenshots": [
+      {"name": "Showcase", "path": "img/config.png"},
+      {"name": "Options", "path": "img/config.png"}
+    ],
+    "version": "1.0.0",
+    "updated": "2020-05-24"
+  },
+  "dependencies": {
+    "grafanaVersion": "5.x.x",
+    "plugins": [ ]
+  }
+}

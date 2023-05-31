@@ -1,0 +1,74 @@
+<div class="editor-row" ng-if="ctrl.panel.targets">
+  <div class="gf-form-group">
+    <div class="gf-form-inline" ng-repeat="item in ctrl.panel.metricsOptionsAll">
+      <div class="gf-form">
+        <div class="gf-form width-2 gf-form-label gf-form-query-letter-cell">
+          <span class="gf-form-query-letter-cell-letter">{{$index+1}}</span>
+        </div>
+      </div>
+      <div class="gf-form">
+        <div class="gf-form gf-form--grow  max-width-10">
+          <select class="gf-form-input" ng-model="item.target" ng-options="f for f in ctrl.panel.targetName"></select>
+        </div>
+      </div>
+      <div class="gf-form">
+        <div class="gf-form gf-form--grow  max-width-7">
+          <select class="gf-form-input" ng-model="item.kindOf" ng-options="n for n in ['公式','运算']"></select>
+        </div>
+      </div>
+      <div class="gf-form" ng-if="item.kindOf === '运算'">
+        <div class="gf-form gf-form--grow">
+          <metric-segment-model property="item.metricsOptionLists.targetOne" options="ctrl.panel.targetOrigin" custom="true" on-change="ctrl.refresh();"></metric-segment-model>
+        </div>
+        <div class="gf-form" ng-repeat="sign in item.metricsOptionLists.sign">
+          <select class="gf-form-input max-width-4" ng-model="sign.sign" ng-options="i for i in ['+','-','*','/']" ng-change="ctrl.refresh();"></select>
+          <metric-segment-model property="sign.targetTwo" options="ctrl.panel.targetOrigin" custom="true" on-change="ctrl.refresh();"></metric-segment-model>
+        </div>
+        <div class="gf-form">
+          <label class="gf-form-label">
+            <a class="pointer" ng-click="ctrl.addOneCount(item.metricsOptionLists)"><i class="fa fa-plus"></i></a>
+          </label>
+          <label class="gf-form-label">
+            <a class="pointer" ng-click="ctrl.removeOneCount(item.metricsOptionLists)"><i class="fa fa-minus"></i></a>
+          </label>
+        </div>
+      </div>
+      <div class="gf-form" ng-if="item.kindOf === '公式'">
+        <div class="gf-form">
+          <span class="gf-form-label">别名</span>
+          <input ng-model="item.metricsOptions.alisa" type="text"
+                  class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-12"
+                  placeholder="无" empty-to-null="1"  ng-change="ctrl.refresh();">
+        </div>
+        <div class="gf-form">
+          <span class="gf-form-label">公式转换</span>
+          <span class="gf-form-label"><i class="fa fa-remove"></i></span>
+          <input ng-model="item.metricsOptions.math_multiply" type="number"
+                  class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-6"
+                  placeholder="1" empty-to-null="1"  ng-change="ctrl.refresh();">
+          <span class="gf-form-label"><i class="fa fa-plus"></i></span>
+          <input ng-model="item.metricsOptions.math_add" type="number"
+                  class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-6"
+                  placeholder="0" empty-to-null="0" ng-change="ctrl.refresh();">
+        </div>
+        <div class="gf-form" ng-if="ctrl.panel.metricsOptionSettings.showPrecision">
+          <span class="gf-form-label">精度</span>
+          <input ng-model="item.metricsOptions.precision" type="number"
+                  class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-4"
+                  placeholder="-" empty-to-null="" ng-change="ctrl.refresh();">
+        </div>
+      </div>
+      <div class="gf-form">
+        <div class="gf-form">
+          <button class="btn btn-inverse gf-form-btn" ng-click="ctrl.removeOneRow($index)"><i class="fa fa-trash"></i> 删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gf-form-button-row">
+    <button class="btn btn-inverse" ng-click="ctrl.addOneRow()">
+      <i class="fa fa-plus"></i>
+          添加一行
+    </button>
+  </div>  
+</div>

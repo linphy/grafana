@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["statusPicturePanelCtrl"],"mappings":";;;;;;;;AAAQA,4B,kBAAAA,sB;;;2BAGNA,sB","file":"module.js","sourcesContent":["import {statusPicturePanelCtrl} from './statuspicture';\r\n\r\nexport {\r\n  statusPicturePanelCtrl as PanelCtrl\r\n};\r\n"]}

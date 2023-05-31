@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["BarChartPanelCtrl"],"mappings":";;;;;;;;AAAQA,uB,kBAAAA,iB;;;2BAGNA,iB","file":"module.js","sourcesContent":["import {BarChartPanelCtrl} from './barchart_ctrl';\r\n\r\nexport {\r\n  BarChartPanelCtrl as PanelCtrl\r\n};\r\n"]}

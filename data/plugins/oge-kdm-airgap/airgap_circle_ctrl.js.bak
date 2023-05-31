@@ -1,0 +1,217 @@
+'use strict';
+
+System.register(['jquery', 'lodash', './airgap_circle_painter.js'], function (_export, _context) {
+  "use strict";
+
+  var $, _, AirgapCirclePainter, _createClass, AirgapCircleCtrl;
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  return {
+    setters: [function (_jquery) {
+      $ = _jquery.default;
+    }, function (_lodash) {
+      _ = _lodash.default;
+    }, function (_airgap_circle_painterJs) {
+      AirgapCirclePainter = _airgap_circle_painterJs.default;
+    }],
+    execute: function () {
+      _createClass = function () {
+        function defineProperties(target, props) {
+          for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];
+            descriptor.enumerable = descriptor.enumerable || false;
+            descriptor.configurable = true;
+            if ("value" in descriptor) descriptor.writable = true;
+            Object.defineProperty(target, descriptor.key, descriptor);
+          }
+        }
+
+        return function (Constructor, protoProps, staticProps) {
+          if (protoProps) defineProperties(Constructor.prototype, protoProps);
+          if (staticProps) defineProperties(Constructor, staticProps);
+          return Constructor;
+        };
+      }();
+
+      AirgapCircleCtrl = function () {
+        function AirgapCircleCtrl(ctrl) {
+          _classCallCheck(this, AirgapCircleCtrl);
+
+          // ctrl
+          this.ctrl = ctrl;
+
+          // data
+          this.time = null;
+          this.kksList = null;
+          this.data = null;
+          this.style = {
+            size: 0
+          };
+
+          // view
+          this.info = {
+            waves: [],
+            current: { // 当前测点
+              JXJD: null, // 间相角度
+              CJBH: null, // 磁极编号
+              CJJD: null, // 磁极角度
+              JSQX: null // 计算气隙
+            },
+            rotor: { // 转子信息
+              BYD: null, // 不圆度
+              PXL: null, // 偏心量
+              PXJ: null // 偏心角
+            },
+            character: { // 特征信息
+              CLZXQX: null, // 测量最小气隙
+              CLZXCJBH: null, // 测量最小磁极编号
+              JSZXQXFW: null, // 计算最小气隙方位
+              CLZDQX: null, // 测量最大气隙
+              CLZDCJBH: null, // 测量最大磁极编号
+              JSZDQXFW: null // 计算最大气隙方位
+            }
+          };
+
+          this.canvases = [{
+            name: "JXYTC",
+            description: "间隙圆填充"
+          }, {
+            name: "ZZZXY",
+            description: "转子中心圆"
+          }, {
+            name: "CJZSZ",
+            description: "磁极指示针"
+          }, {
+            name: "JXCKY",
+            description: "间隙参考圆"
+          }, {
+            name: "DZCKY",
+            description: "定子参考圆"
+          }, {
+            name: "ZZCKY",
+            description: "转子参考圆"
+          }, {
+            name: "SZXBC",
+            description: "十字型标尺"
+          }, {
+            name: "WHXBC",
+            description: "五环型标尺"
+          }, {
+            name: "TDBJH",
+            description: "通道标记号"
+          }];
+        }
+
+        _createClass(AirgapCircleCtrl, [{
+          key: '_dataReceived',
+          value: function _dataReceived(kksList, time) {
+            var _this = this;
+
+            return new Promise(function (resolve, reject) {
+
+              if (!_.isEmpty(_this.data) && time == _this.time && _.isEmpty(kksList, _this.kksList)) {
+                resolve(["AirgapCircleCtrl_dataReceived: 使用缓存数据"]);
+                return;
+              }
+
+              var kksCodes = [];
+              for (var i = 0; i < kksList.length; i++) {
+                kksCodes.push(kksList[i].kks);
+              }
+
+              Promise.all([_this.ctrl.getWaveDataByTime(time, 2, kksCodes.join(",")), _this.ctrl.getWaveDataByTime(time, 3, kksCodes.join(","))]).then(function (data) {
+                if (!data || !data.length || !data[0] || !data[1]) {
+                  reject(["getWaveDataByTime 获取数据不正确", data]);
+                }
+
+                _this.data = {
+                  "airgapData": data[1].y ? data[1] : data[0],
+                  "yData": data[1].y ? data[1].y : data[0].y
+                };
+
+                _this.time = time;
+                _this.kksList = kksList;
+                resolve(["getWaveDataByTime 获取数据成功"]);
+              }).catch(function (error) {
+                reject(["getWaveDataByTime 获取数据异常", error]);
+              });
+            });
+          }
+        }, {
+          key: '_render',
+          value: function _render(elem) {
+            var _this2 = this;
+
+            var $cd = elem.find('.data-panel-circle');
+            var $cdv = $cd.parent();
+
+            var size = _.min([elem.parent().width() - 22, (this.ctrl.height >= 550 ? this.ctrl.height : 550) - 78]);
+            this.style.size = size;
+
+            if (_.isEmpty(this.kksList)) return;
+
+            this.painter = new AirgapCirclePainter($cd, size, this.kksList, {});
+            this.painter.draw(this.data);
+            this.ctrl.$timeout(function () {
+              _this2.painter.info(_this2.info);
+            });
+          }
+        }, {
+          key: 'prevIndex',
+          value: function prevIndex() {
+            if (this.painter) {
+              this.painter.prevIndex();
+              this.painter.infoCurrent(this.info.current);
+            }
+          }
+        }, {
+          key: 'nextIndex',
+          value: function nextIndex() {
+            if (this.painter) {
+              this.painter.nextIndex();
+              this.painter.infoCurrent(this.info.current);
+            }
+          }
+        }, {
+          key: 'prevRotor',
+          value: function prevRotor() {
+            if (this.painter) {
+              this.painter.prevRotor();
+              this.painter.infoCurrent(this.info.current);
+            }
+          }
+        }, {
+          key: 'nextRotor',
+          value: function nextRotor() {
+            if (this.painter) {
+              this.painter.nextRotor();
+              this.painter.infoCurrent(this.info.current);
+            }
+          }
+        }, {
+          key: 'switchShow',
+          value: function switchShow(name) {
+            var canvasShow = this.ctrl.panel.canvasShow;
+            if (!_.isArray(name)) {
+              canvasShow[name] = !canvasShow[name];
+              return;
+            }
+            _.each(name, function (n) {
+              canvasShow[n] = !canvasShow[n];
+            });
+          }
+        }]);
+
+        return AirgapCircleCtrl;
+      }();
+
+      _export('default', AirgapCircleCtrl);
+    }
+  };
+});
+//# sourceMappingURL=airgap_circle_ctrl.js.map

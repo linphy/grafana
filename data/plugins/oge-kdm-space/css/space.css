@@ -1,0 +1,56 @@
+panel-plugin-oge-kdm-space .oge-space-buttons {
+  text-align: center;
+}
+panel-plugin-oge-kdm-space .oge-space-buttons > div {
+  display: inline-block;
+  margin: 5px 3px;
+  vertical-align: bottom;
+}
+
+panel-plugin-oge-kdm-space .oge-space-buttons a.btn {
+  padding: 3px 5px;
+  font-size: 20px;
+}
+
+panel-plugin-oge-kdm-space .os-info div {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-size: small;
+  color: #a2a2a2;
+}
+
+
+panel-plugin-oge-kdm-space .os-info p {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #33B5E5;
+}
+
+panel-plugin-oge-kdm-space .os-info ul {
+  list-style-type: none;
+}
+
+
+
+panel-plugin-oge-kdm-space div.data-panel {
+  max-width:400px;
+  text-align:left;
+  display:inline-block;
+}
+
+
+panel-plugin-oge-kdm-space .os-current {
+  color: yellow;
+}
+
+panel-plugin-oge-kdm-space .os-current div {
+  display: inline-block;
+}
+
+panel-plugin-oge-kdm-space .os-current span {
+  margin: 0 5px;
+  color: yellow;
+  display: inline-block;
+}

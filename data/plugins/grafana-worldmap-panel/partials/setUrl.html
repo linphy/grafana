@@ -1,0 +1,64 @@
+<div class="editor-row">
+	<h5 class="editor-heading">Url setting</h5>
+	<div class="gf-form-group" ng-repeat="item in ctrl.panel.deciEveryUrl">
+        <div class="section">
+        	<div class="gf-form max-width-25">
+          		<span class="gf-form-label width-7">匹配字段</span>
+              <div class="gf-form-select-wrapper gf-form--grow">
+                <select class="gf-form-input" ng-model="item.theUseName" ng-options="f for f in ctrl.panel.panelDataPointsKey" ng-change="ctrl.refresh()"></select>
+              </div>
+        	</div>
+        	<div class="gf-form max-width-25">
+          		<div class="gf-form-label width-7">匹配正则</div>
+          		 <input type="text" placeholder="Name or regex" class="gf-form-input" ng-model="item.currentPoint" bs-typeahead="ctrl.panel.mapDatas[$index]" ng-blur="ctrl.refresh();" data-min-length=0 data-items=100 ng-model-onblur data-placement="right">
+        	</div>
+        	<div class="gf-form max-width-25">
+          		<span class="gf-form-label width-7">类型</span>
+          		<div class="gf-form-select-wrapper gf-form--grow">
+            		<select class="gf-form-input" ng-model="item.link.type" ng-options="f for f in ['dashboard','absolute']"></select>
+          		</div>
+        	</div>
+        	<div class="gf-form max-width-25">
+          		<span class="gf-form-label width-7" ng-show="item.link.type === 'dashboard'">面板</span>
+          		<input ng-show="item.link.type === 'dashboard'" type="text" ng-model="item.link.dashboard" bs-typeahead="ctrl.searchDashboards" class="gf-form-input" ng-blur="ctrl.dashboardChanged(item.link)">
+
+          		<span class="gf-form-label width-7" ng-show="item.link.type === 'absolute'">Url</span>
+          		<input ng-show="item.link.type === 'absolute'" type="text" ng-model="item.link.url" class="gf-form-input max-width-14">
+        	</div>
+        	<div class="gf-form max-width-25">
+          		<div class="gf-form-label width-7">标题</div>
+          		<input type="text" ng-model="item.link.title" class="gf-form-input">
+        	</div>
+        	<div class="gf-form max-width-25">
+              <span class="gf-form-label width-7">提取字段</span>
+              <div class="gf-form-select-wrapper gf-form--grow">
+                <select class="gf-form-input" ng-model="item.wordCut" ng-options="f for f in ctrl.panel.panelDataPointsKey" ng-change="ctrl.refresh()"></select>
+              </div>
+          </div>
+        	<div class="gf-form max-width-35">
+          		<div class="gf-form-label width-7">提取正则</div>
+          		<input type="text" class="gf-form-input width-28" ng-model="item.theUrlRegex" ng-change="ctrl.refresh();" ng-model-onblur>
+        	</div>
+      	</div>
+      	<div class="section">
+        	<div class="gf-form">
+          		<span class="gf-form-label width-10">Url参数</span>
+          		<input type="text" ng-model="item.link.paramsOne" class="gf-form-input width-15">
+        	</div>
+        	<gf-form-switch class="gf-form" label-class="width-10" label="包含时间范围" checked="item.link.keepTime"></gf-form-switch>
+        	<gf-form-switch class="gf-form" label-class="width-10" label="包含变量" checked="item.link.includeVars"></gf-form-switch>
+        	<gf-form-switch class="gf-form" label-class="width-10" label="在新页面打开" checked="item.link.targetBlank"></gf-form-switch>
+      	</div>
+      	<div class="section">
+      		<span class="gf-form-label">
+            	<i class="fa fa-remove pointer" ng-click="ctrl.removeAnotherUrl($index)"></i>
+          	</span>
+      	</div>
+    </div>
+	<div class="gf-form-button-row">
+        <button class="btn btn-inverse" ng-click="ctrl.addAnotherUrl()">
+          <i class="fa fa-plus"></i>
+            添加选项
+        </button>
+     </div>
+</div>

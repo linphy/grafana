@@ -1,0 +1,40 @@
+<div class="gf-form-group">
+	<div class="gf-form-inline">
+		<div class="gf-form">
+			<span class="gf-form-label">类型</span>
+			<span class="gf-form-select-wrapper">
+				<select class="gf-form-input" ng-model="ctrl.panel.mode"
+					ng-options="f for f in ['html','markdown','text','log-html']"></select>
+			</span>
+		</div>
+
+		<div class="gf-form" ng-show="ctrl.panel.mode == 'text'">
+			<span class="gf-form-label">字体大小</span>
+			<span class="gf-form-select-wrapper">
+				<select class="gf-form-input" ng-model="ctrl.panel.fontSize" ng-options="f for f in ['20%','30%','50%','70%','80%','100%','110%','120%','150%','170%','200%']" ng-change="ctrl.render()"></select>
+			</span>
+		</div>
+		<div class="gf-form" ng-show="ctrl.panel.mode == 'log-html'">
+			<gf-form-switch class="gf-form" label-class="width-8" label="是否按值循环" checked="ctrl.panel.isCycle">
+			</gf-form-switch>
+		</div>
+		<div class="gf-form" ng-show="ctrl.panel.mode == 'log-html'">
+			<label class="gf-form-label width-4" bs-tooltip="'代码中时间的名称，作为时间标识符存在'">时间</label>
+			<input type="text" class="gf-form-input width-8" ng-model="ctrl.panel.time" placeholder="{{time}}" disabled />
+		</div>
+		<div class="gf-form" ng-show="ctrl.panel.mode == 'log-html'">
+			<label class="gf-form-label width-4" bs-tooltip="'代码中log信息的名称，作为log信息标识符存在'">信息</label>
+			<input type="text" class="gf-form-input width-10" ng-model="ctrl.panel.information" placeholder="{{information}}" disabled />
+		</div>
+	</div>
+</div>
+
+<h3 class="page-heading">内容</h3>
+
+<span ng-show="ctrl.panel.mode == 'markdown'">
+	(This area uses <a target="_blank" href="http://en.wikipedia.org/wiki/Markdown">Markdown</a>. HTML is not supported)
+</span>
+
+<textarea class="gf-form-input" ng-model="ctrl.panel.content" rows="20" style="width:95%" ng-change="ctrl.render()"
+	ng-model-onblur>
+</textarea>

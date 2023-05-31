@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "oge-自制表格_v2",
+  "id": "oge-manualtable-v2",
+
+  "info": {
+    "description": "oge-manualtable panel for grafana",
+    "author": {
+      "name": "fulanke",
+      "url": "https://grafana.com"
+    },
+    "keywords": ["oge-manualtable", "panel"],
+    "logos": {
+      "small": "src/img/table.jpg",
+      "large": "src/img/table.jpg"
+    },
+    "screenshots": [
+      {"name": "Showcase", "path": "src/img/screenshot-showcase.png"},
+      {"name": "Options", "path": "src/img/screenshot-clock-options.png"}
+    ],
+    "version": "0.0.9",
+    "updated": "2017-03-18"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

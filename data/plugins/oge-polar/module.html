@@ -1,0 +1,45 @@
+<div ng-style="{height: ctrl.height}"> 
+    <div class="polarMain" style="height:100%;display:inline-block;" ng-style = "{width:ctrl.panel.showLenged?'70%':'100%'}"></div>
+    <div class="os-info" style="display:inline-block;text-align:left;vertical-align:top;width:25%;margin-left:3%;" ng-if="ctrl.panel.showLenged">
+        <div>
+            <ul>
+                <!-- <li>{{ctrl.panel.thelengedText}}最小值({{ctrl.panel.thelengedUnit}})：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.tiltAmountDataMin[0]}}</span></li>
+                <li>{{ctrl.panel.thelengedText}}平均值({{ctrl.panel.thelengedUnit}})：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.tiltAmountDataAver}}</span></li>
+                <li>{{ctrl.panel.thelengedText}}最大值({{ctrl.panel.thelengedUnit}})：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.tiltAmountDataMax[0]}}</span></li>
+                <li>{{ctrl.panel.thelengedText}}最大值时的工况量：
+                    <ul style="margin-left:20px;">
+                        <li>时间：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.tiltAmountDataMax[1] | date:'yyyy-MM-dd hh:mm:ss'}}</span></li>
+                        <li ng-repeat = "item in ctrl.dataTwo">{{item.target}}:<span style="color:rgb(62, 62, 236);">{{ctrl.data[ctrl.panel.max_index][$index+2] | number:1}}</span></li>
+                    </ul>
+                </li>
+                <li>区域点数统计：
+                    <ul style="margin-left:20px;">
+                        <li>西北区域点数统计：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.northwestCount.length}}</span></li>
+                        <li>占比：<span style="color:rgb(62, 62, 236);">{{ctrl.northwestPer}}</span></li>
+                        <li>西南区域点数统计：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.southwestCount.length}}</span></li>
+                        <li>占比：<span style="color:rgb(62, 62, 236);">{{ctrl.southwestPer}}</span></li>
+                        <li>东南区域点数统计：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.southeastCount.length}}</span></li>
+                        <li>占比：<span style="color:rgb(62, 62, 236);">{{ctrl.southeastPer}}</span></li>
+                        <li>东北区域点数统计：<span style="color:rgb(62, 62, 236);">{{ctrl.panel.northeastCount.length}}</span></li>
+                        <li>占比：<span style="color:rgb(62, 62, 236);">{{ctrl.northeastPer}}</span></li>
+                    </ul>
+                </li> -->
+                <li>开始时间：
+                    <span style="color:rgb(62, 62, 236);">{{ctrl.tiltKksStart| date:'yyyy-MM-dd HH:MM:ss'}}</span>
+                </li>
+                <li>结束时间：
+                    <span style="color:rgb(62, 62, 236);">{{ctrl.tiltKksEnd| date:'yyyy-MM-dd HH:MM:ss'}}</span>
+                </li>
+                <li>{{ctrl.panel.thelengedText}}：
+                    <span style="color:rgb(62, 62, 236);">{{ctrl.tiltLastValue | number:ctrl.panel.thelengedQXLNum}}{{ctrl.panel.thelengedUnit}}</span>
+                </li>
+                <li>{{ctrl.panel.theDirectivelengedText}}：
+                    <span style="color:rgb(62, 62, 236);">{{ctrl.tiltDirectiveLastValue | number:ctrl.panel.thelengedQJNum}}{{ctrl.panel.theDirectivelengedUnit}}</span>
+                </li>
+                <li>时间：
+                    <span style="color:rgb(62, 62, 236);">{{ctrl.tiltKksEnd | date:'yyyy-MM-dd HH:MM:ss'}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

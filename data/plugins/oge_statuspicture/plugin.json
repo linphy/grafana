@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "OGE-状态图片",
+  "id": "oge_statuspicture",
+
+  "info": {
+    "description": "用图片表示机组不同的状态",
+    "author": {
+      "name": "OGE DF",
+      "url": "http://www.baidu.com"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/thermometer"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "version": "0.0.1",
+    "updated": "2016-07-27"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

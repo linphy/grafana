@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["MapCtrl"],"mappings":";;;;;;;;AAAQA,a,eAAAA,O;;;2BAGNA,O","file":"module.js","sourcesContent":["import {MapCtrl} from './graph_ctrl';\r\n\r\nexport {\r\n  MapCtrl as PanelCtrl\r\n};\r\n"]}

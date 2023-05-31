@@ -1,0 +1,26 @@
+<div dash-class ng-if="ctrl.dashboard">
+	<dashnav dashboard="ctrl.dashboard"></dashnav>
+
+	<div class="scroll-canvas scroll-canvas--dashboard" page-scrollbar ng-style="{'background':ctrl.backgroundUrl}">
+    <dashboard-settings dashboard="ctrl.dashboard"
+                        ng-if="ctrl.dashboardViewState.state.editview"
+                        class="dashboard-settings">
+    </dashboard-settings>
+
+		<div class="dashboard-container" ng-class="{'dashboard-container--has-submenu': ctrl.dashboard.meta.submenuEnabled}">
+      <dashboard-submenu ng-if="ctrl.dashboard.meta.submenuEnabled" dashboard="ctrl.dashboard">
+      </dashboard-submenu>
+
+      <dashboard-grid dashboard="ctrl.dashboard"></dashboard-grid>
+    </div>
+  </div>
+  <!-- [OGE]添加全屏按钮 ——df -->
+  <div class="a-hidden-or-show-btn" ng-click = "hiddenOrShowClick()">
+    <span class="gf-form-label" ng-show='!dashboard.showTimes'>
+      <i class="fa fa-arrows-alt pointer"></i>
+    </span>
+    <span class="gf-form-label" ng-show='dashboard.showTimes'>
+      <i class="fa fa-compress pointer"></i>
+    </span> 
+  </div>
+</div>

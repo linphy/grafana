@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["PolarCtrl"],"mappings":";;;;;;;;AAAQA,e,cAAAA,S;;;2BAGNA,S","file":"module.js","sourcesContent":["import {PolarCtrl} from './polar-ctrl';\r\n\r\nexport {\r\n  PolarCtrl as PanelCtrl\r\n};\r\n"]}

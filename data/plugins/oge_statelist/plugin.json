@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "OGE-指标列表",
+  "id": "oge_statelist",
+
+  "info": {
+    "description": "echarts plugin for grafana",
+    "author": {
+      "name": "OGE LPY",
+      "url": "http://raintank.io"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/thermometer"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "version": "0.0.1",
+    "updated": "2016-07-27"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

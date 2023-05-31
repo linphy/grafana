@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["ManualTableCtrl"],"mappings":";;;;;;;;AAAQA,qB,uBAAAA,e;;;2BAGNA,e","file":"module.js","sourcesContent":["import {ManualTableCtrl} from './manualtable_ctrl_v2';\r\n\r\nexport {\r\n  ManualTableCtrl as PanelCtrl\r\n};\r\n"]}

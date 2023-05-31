@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["ThermometerPanelCtrl"],"mappings":";;;;;;;;AAAQA,0B,qBAAAA,oB;;;2BAGNA,oB","file":"module.js","sourcesContent":["import {ThermometerPanelCtrl} from './thermometer_ctrl';\r\n\r\nexport {\r\n  ThermometerPanelCtrl as PanelCtrl\r\n};\r\n"]}

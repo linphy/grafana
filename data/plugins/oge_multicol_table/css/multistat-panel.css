@@ -1,0 +1,16 @@
+.multistat-panel {
+  align-items: center;
+  justify-content: center;
+  height:300px;
+}
+.multi-stat{
+    min-width: 20px;
+    height:100px;
+    background:red;
+    margin:3px;
+    float:left;
+    color:white;
+    text-align:center;
+    padding: 3px;
+    box-sizing:border-box;
+}

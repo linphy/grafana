@@ -1,0 +1,33 @@
+{
+    "type": "panel",
+    "name": "OGE-动态多列表格",
+    "id": "oge-dynamic-multicol-table",
+
+    "info": {
+        "description": "具备自定义标题以及行数列数和对每个单元格进行单独设置的功能",
+        "author": {
+            "name": "OGE DF",
+            "url": "http://raintank.io"
+        },
+        "keywords": ["table", "panel"],
+        "logos": {
+            "small": "img/table.png",
+            "large": "img/table.png"
+        },
+        "links": [
+            { "name": "Project site", "url": "https://github.com/grafana/clock-panel" },
+            { "name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE" }
+        ],
+        "screenshots": [
+            { "name": "Showcase", "path": "src/img/table.png" },
+            { "name": "Options", "path": "src/img/table.png" }
+        ],
+        "version": "0.0.1",
+        "updated": "2021-12-21"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "3.x.x",
+        "plugins": []
+    }
+}

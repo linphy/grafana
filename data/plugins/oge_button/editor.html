@@ -1,0 +1,30 @@
+<div class="editor-row" >
+	<div class="section gf-form-group">
+		<div class="gf-form">
+		<label class="gf-form-label width-6">按钮名称</label>
+			<input type="String" class="gf-form-input width-6" data-placement="right" ng-model="ctrl.panel.NA" ng-change="ctrl.render()" required>	
+			<label class="gf-form-label width-6">按钮状态</label>
+			<div class="gf-form-select-wrapper width-6">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.CK" ng-options="f.value as f.name for f in ctrl.panel.CheckOption" ng-change="ctrl.render()" required></select>
+			</div>
+			</div>
+		
+         <div class="gf-form">		
+			<label class="gf-form-label width-6">字体大小</label>
+			<div class="gf-form-select-wrapper width-6">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.size" ng-options="f for f in ctrl.panel.fontSizes" ng-change="ctrl.render()" required></select>
+			</div>
+			
+			<label class="gf-form-label width-6">按钮颜色</label>
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.colors" ng-change="ctrl.render()"></spectrum-picker>
+          </span>
+		</div>
+		<br>
+		<div class="gf-form">
+			
+			<label class="gf-form-label width-6">添加链接</label>
+			<input type="String" class="gf-form-input width-18" data-placement="right" ng-model="ctrl.panel.url" ng-change="ctrl.render()" required>	
+		</div>	
+	</div>
+	</div>

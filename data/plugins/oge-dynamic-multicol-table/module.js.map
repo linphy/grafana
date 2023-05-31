@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["TimeRangeTableTableCtrl"],"mappings":";;;;;;;;AAAQA,6B,mBAAAA,uB;;;2BAGNA,uB","file":"module.js","sourcesContent":["import {TimeRangeTableTableCtrl} from './timeRangeTable';\r\n\r\nexport {\r\n  TimeRangeTableTableCtrl as PanelCtrl\r\n};\r\n"]}

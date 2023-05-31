@@ -1,0 +1,31 @@
+{
+  "name": "奥技异KDM波形数据源",
+  "id": "oge-wave",
+  "type": "datasource",
+  "metrics": true,
+  "annotations": true,
+  "alerting": true,
+
+  "info": {
+    "description": "奥技异KDM波形数据源",
+    "author": {
+      "name": "oge",
+      "url": "http://oge.cn"
+    },
+    "logos": {
+      "small": "img/simpleJson_logo.svg",
+      "large": "img/simpleJson_logo.svg"
+    },
+    "version": "1.0.0",
+    "updated": "2016-12-02"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "5.x.x",
+    "plugins": [ ]
+  },
+  "queryOptions": {
+    "minInterval": true
+  }
+
+}

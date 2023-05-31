@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "OGE-报警信息",
+  "id": "oge-alarm",
+
+  "info": {
+    "description": "滚动播放报警信息",
+    "author": {
+      "name": "CYN",
+      "url": "http://raintank.io"
+    },
+    "keywords": ["alarm", "panel"],
+    "logos": {
+      "small": "img/alarm.png",
+      "large": "img/alarm.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/clock-panel"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "img/screenshot-showcase.png"},
+      {"name": "Options", "path": "img/screenshot-clock-options.png"}
+    ],
+    "version": "0.0.1",
+    "updated": "2023-04-11"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "5.4.2",
+    "plugins": [ ]
+  }
+}

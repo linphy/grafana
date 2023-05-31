@@ -1,0 +1,48 @@
+<div class="editor-row">
+  <div class="section gf-form-group">
+    <h5 class="section-heading">报警设置</h5>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-7" label="启用报警" checked="ctrl.panel.ogeAlertEnabled" on-change="ctrl.render()"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-7" label="数值变色" checked="ctrl.ogeAlertColorValue" on-change="ctrl.changeOgeAlertColorType('V')"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-7" label="背景变色" checked="ctrl.ogeAlertColorBackground" on-change="ctrl.changeOgeAlertColorType('B')"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-7" label="行变色" checked="ctrl.ogeAlertColorRow" on-change="ctrl.changeOgeAlertColorType('R')"
+         tooltip="仅对表格控件有效"></gf-form-switch>
+    </div>
+  </div>
+
+  <oge-alert-colors-selector panel-ctrl="ctrl"></oge-alert-colors-selector>
+
+  <div class="section gf-form-group" ng-show="ctrl.ogeAlertConfig.showCover">
+    <h5 class="section-heading">显示设置</h5>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-15" label="使用报警状态代替当前数值" checked="ctrl.panel.ogeAlertNameCoverValue"
+         tooltip="勾选此选项则所有显示的数值均以其报警状态显示" on-change="ctrl.selectCoverValue(true)"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-15" label="使用报警数值代替当前数值" checked="ctrl.panel.ogeAlertValueCoverValue"
+         tooltip="勾选此选项则所有显示的数值均以其报警数值显示" on-change="ctrl.selectCoverValue(false)"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-15" label="使用报警时间代替当前时间" checked="ctrl.panel.ogeAlertTimeCoverTime"
+         tooltip="勾选此选项则所有显示的时间均以其报警时间显示" on-change="ctrl.render()"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline">
+      <gf-form-switch class="gf-form" label-class="width-15" label="播放报警音" checked="ctrl.panel.ogeAlertSound"
+         tooltip="勾选此选项则在危险状态时播放报警音" on-change="ctrl.render()"></gf-form-switch>
+    </div>
+    <div class="gf-form-inline" ng-show="ctrl.panel.ogeAlertSound">
+      <label class="gf-form-label width-15">播放间隔
+        <tip>0表示播放一次后终止，大于0则表示播放下一次的间隔，单位ms，注意间隔时间需大于音频时长</tip>
+      </label>
+      <input type="number" class="gf-form-input" style = "width:57px" placeholder="2000"
+        empty-to-null ng-model="ctrl.panel.timeInterval" valid-time-span
+        ng-change="ctrl.refresh()" ng-model-onblur />
+    </div>
+  </div>
+</div>

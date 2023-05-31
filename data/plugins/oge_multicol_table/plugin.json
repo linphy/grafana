@@ -1,0 +1,33 @@
+{
+    "type": "panel",
+    "name": "OGE-多列表格",
+    "id": "oge_multicol_table",
+
+    "info": {
+        "description": "具备自定义标题以及行数列数和对每个单元格进行单独设置的功能",
+        "author": {
+            "name": "OGE DF",
+            "url": "http://raintank.io"
+        },
+        "keywords": ["table", "panel"],
+        "logos": {
+            "small": "img/table.jpg",
+            "large": "img/table.jpg"
+        },
+        "links": [
+            { "name": "Project site", "url": "https://github.com/grafana/clock-panel" },
+            { "name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE" }
+        ],
+        "screenshots": [
+            { "name": "Showcase", "path": "src/img/table.jpg" },
+            { "name": "Options", "path": "src/img/table.jpg" }
+        ],
+        "version": "0.0.1",
+        "updated": "2019-09-29"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "3.x.x",
+        "plugins": []
+    }
+}

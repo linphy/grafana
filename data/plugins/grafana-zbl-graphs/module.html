@@ -1,0 +1,79 @@
+<div style="max-height:{{ctrl.height}}">
+	<div ng-if="ctrl.panel.mode === 'kpi'" style="max-width:310px;text-align:center;margin:0 auto;">
+		<div style="min-width:310px">
+			<div style="height:50px;line-height:50px;">
+				<span style="font-size:100%;font-weight:900;font-size:2em">{{ctrl.data.name}}</span>
+			</div>
+			<div style="height:50px;line-height:50px;margin-top:10px;">
+				<span style="font-size:100%;font-weight:900;font-size:2em">{{ctrl.data.times}}</span>
+			</div>
+			<div style="height:50px;line-height:50px;margin-top:10px;;" ng-style="ctrl.setColor(ctrl.data.alarmCode)">
+				<span style="font-size:100%;font-weight:900;font-size:2em;">{{ctrl.data.value}}</span>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-if="ctrl.panel.mode === 'kpiGauge'">
+		<div style="margin:0 auto;"> 
+			<div class="singleGraph" style="width:100%;margin-bottom:-150px;"></div>
+		</div>
+	</div>
+	
+	<div ng-if="ctrl.panel.mode == 'alarmInfo'" >
+		<div class="table-panel-container">
+			<div class="table-panel-header-bg"></div>
+			<div class="table-panel-scroll">
+				<table class="table-panel-table">
+					<thead>
+					<tr>
+						<th><div class="table-panel-table-header-inner pointer">告警级别</div></th>
+						<th><div class="table-panel-table-header-inner pointer">最小值</div></th>
+						<th><div class="table-panel-table-header-inner pointer">最大值</div></th>
+					</tr>
+					</thead>
+					<tr ng-repeat="col in ctrl.data">
+						<td>{{col.level}}</td>
+						<td>{{col.min}}</td>
+						<td>{{col.max}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-if="ctrl.panel.mode == 'relativeInfo'">
+		<div class="table-panel-container">
+			<div class="table-panel-header-bg"></div>
+			<div class="table-panel-scroll">
+				<table class="table-panel-table">
+					<thead>
+					<tr>
+						<th><div class="table-panel-table-header-inner pointer">名称</div></th>
+						<th><div class="table-panel-table-header-inner pointer">实时值</div></th>
+						<th style="width:15%"><div class="table-panel-table-header-inner pointer">单位</div></th>
+					</tr>
+					</thead>
+					<tr ng-repeat="col in ctrl.data">
+						<td>{{col.name}}</td>
+						<td>{{col.value}}</td>
+						<td>{{col.unit}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<div ng-if="ctrl.panel.mode === 'kpiDesc'" ng-bind-html="ctrl.data.content">
+	</div>
+	
+	<div ng-if="ctrl.panel.mode === 'kpiWebUrl'" style="margin-top:-20px">
+		<div style="float:right">
+			<ul>
+			<a class="btn btn-outline-primary" ng-if="ctrl.data.charts.trend" href="public/app/plugins/panel/oge_professional_plugIn/normalGraph.html?kdmUrl={{ctrl.data.kdmUrl}}&pluginUrl={{ctrl.data.pluginUrl}}&kks={{ctrl.data.kpi.kks}}" target="_blank">趋势图</a>
+			<a class="btn btn-outline-secondary" ng-if="ctrl.data.charts.spectrum" href="public/app/plugins/panel/oge_professional_plugIn/waveGraph.html?kdmUrl={{ctrl.data.kdmUrl}}&pluginUrl={{ctrl.data.pluginUrl}}&kks={{ctrl.data.kpi.kks}}" target="_blank">波形频谱</a>
+			<a class="btn btn-outline-danger" ng-if="ctrl.data.charts.axisAttitude" href="public/app/plugins/panel/oge_professional_plugIn/spaceGraph.html?kdmUrl={{ctrl.data.kdmUrl}}&pluginUrl={{ctrl.data.pluginUrl}}&kks={{ctrl.data.kpi.kks}}" target="_blank">空间轴线</a>
+			<a class="btn btn-outline-success" ng-if="ctrl.data.charts.airgap" href="public/app/plugins/panel/oge_professional_plugIn/airgapGraph.html?kdmUrl={{ctrl.data.kdmUrl}}&pluginUrl={{ctrl.data.pluginUrl}}&kks={{ctrl.data.kpi.kks}}" target="_blank">气隙</a>
+			</ul>
+		</div>
+	</div>
+</div>

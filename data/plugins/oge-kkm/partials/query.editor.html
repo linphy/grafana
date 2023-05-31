@@ -1,0 +1,14 @@
+<query-editor-row query-ctrl="ctrl">
+  <div class="gf-form-inline">
+    <div class="gf-form">
+      <span class="gf-form-label width-7">度量类型</span>
+      <select class="gf-form-input width-18" ng-model="ctrl.target.messureType" ng-options="f.value as f.name for f in ctrl.messureType"
+        required></select>
+    </div>
+    <div class="gf-form max-width-37">
+      <span class="gf-form-label width-7">标签名称</span>
+      <metric-segment-model property="ctrl.target.tagName" get-options="ctrl.getOptions()" on-change="ctrl.onChangeInternal()"
+        css-class="gf-form-label--grow width-32"></metric-segment-model>
+    </div>
+  </div>
+</query-editor-row>

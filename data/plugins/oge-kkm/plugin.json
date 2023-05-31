@@ -1,0 +1,27 @@
+{
+  "type": "datasource",
+  "name": "奥技异KKM KPI数据源",
+  "id": "oge-kkm",
+
+  "info": {
+    "description": "奥技异KKM KPI数据源",
+    "author": {
+      "name": "oge",
+      "url": "http://oge.cn"
+    },
+    "keywords": ["oge-rest"],
+    "logos": {
+      "small": "img/logo-small.svg",
+      "large": "img/logo-large.svg"
+    },
+    "version": "1.0.0",
+    "updated": "2017-02-06"
+  },
+  "metrics": true,
+  "annotations": true,
+  "alerting": true,
+
+  "queryOptions": {
+    "minInterval": true
+  }
+}

@@ -1,0 +1,25 @@
+<div ng-style="{height: ctrl.height}" style="position:relative;">
+    <div style="position:absolute;top:0px;bottom:0px;left:0px;right:0px;">
+        <div class="page-header-tabs">
+            <ul class="gf-tabs" style="margin:0px" ng-show="ctrl.panel.tabIsShow">
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab(0)" ng-class="{active: ctrl.panel.tabIndex === 0}">原始波形</a></li>
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab(1)" ng-class="{active: ctrl.panel.tabIndex === 1}">阶次比</a></li>
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab(2)" ng-class="{active: ctrl.panel.tabIndex === 2}">功率谱</a></li>
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab(3)" ng-class="{active: ctrl.panel.tabIndex === 3}">相位谱</a></li>
+            </ul>
+            <div class="gf-form" style="float:right;" ng-show="ctrl.panel.tabIsShow">
+			<span class="os-current-time" style="font-size:12px;margin-right:10px;">{{ctrl.panel.times}}</span>
+                <gf-form-switch class="gf-form max-width-30" label="同轴" label-class="width-4" checked="ctrl.panel.showType" switch-class="max-width-6"
+                    on-change="ctrl.changeViewType()">
+                    <label class="gf-form-label pointer"></label>
+                    <div class="gf-form-switch">
+                        <input type="checkbox" ng-model="ctrl.panel.showType" ng-change="ctrl.changeViewType()" class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-empty">
+                        <label data-on="Yes" data-off="No"></label>
+                    </div>
+                </gf-form-switch>
+            </div>
+        </div>
+        <div class="data-panel" style="margin:0 auto;height:100%;width:100%;" ng-style="{'margin-top': ctrl.panel.marginTrue ? '45px':'0'}">
+        </div>
+        <div>
+        </div>

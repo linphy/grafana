@@ -1,0 +1,32 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">顶部显示选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">是否显示切换卡</label>
+			<div class="gf-form-select-wrapper max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.tabIsShow" ng-options="data.value as data.name for data in ctrl.panel.options" ng-change="ctrl.render()"></select>
+			</div>
+		</div>
+	</div>
+	<div class="section gf-form-group">
+		<h5 class="section-heading">插件选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">键相图标</label>
+			<div class="gf-form-select-wrapper max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.currentSymbol" ng-options="data.value as data.name for data in ctrl.panel.symbolArr" ng-change="ctrl.render()"></select>
+			</div>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">默认TAB页</label>
+			<div class="gf-form-select-wrapper max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.tabIndex" ng-options="data.value as data.name for data in ctrl.panel.tabOptions" ng-change="ctrl.render()"></select>
+			</div>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">默认显示方式</label>
+			<div class="gf-form-select-wrapper max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.showType" ng-options="data.value as data.name for data in ctrl.panel.showTypeArr" ng-change="ctrl.render()"></select>
+			</div>
+		</div>
+	</div>
+</div>

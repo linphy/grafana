@@ -1,0 +1,53 @@
+<div class="editor-row">
+	<div ng-if="ctrl.panel.mode === 'default'" class="section gf-form-group">
+		<h5 class="section-heading">插件选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">保留几位小数</label>
+			<div class="gf-form-select-wrapper width-5">
+				<select class="input-small gf-form-input" ng-model="ctrl.panel.precise" ng-options="f.value as f.name for f in ctrl.panel.preciseOption" ng-change="ctrl.fixed()" required></select>
+			</div>
+			<span class="gf-form-label width-4">单位</span>
+			<input type="text" ng-model="ctrl.panel.unit" class="gf-form-input width-4 " />
+		</div>
+	<div class="gf-form">
+			<label class="gf-form-label width-9">标签名字体大小</label>
+			<div class="input-small tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-small gf-form-input" ng-model="ctrl.panel.fontSize"  ng-blur="ctrl.setfontSize()" required placeholder="请输入0~5之间的数字"></input>
+		    </div>
+			<label class="gf-form-label width-9">时间字体大小</label>
+			<div class="input-small tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-small gf-form-input" ng-model="ctrl.panel.timeSize"  ng-blur="ctrl.settimeSize()" required placeholder="请输入0~5之间的数字"></input>
+		    </div>
+			<label class="gf-form-label width-9">数值字体大小</label>
+			<div class="input-small tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-small gf-form-input" ng-model="ctrl.panel.valueSize"  ng-blur="ctrl.setvalueSize()" required placeholder="请输入0~5之间的数字"></input>
+		    </div>
+	</div>
+</div>
+<div ng-if="ctrl.panel.mode === 'json'" class="section gf-form-group">
+	<h5 class="section-heading">插件选项</h5>
+	<div class="gf-form">
+			<span class="gf-form-label width-4">单位</span>
+			<input type="text" ng-model="ctrl.panel.unit" class="gf-form-input " />
+	</div>
+	<div class="gf-form">
+			<label class="gf-form-label width-9">标签名字体大小</label>
+			<div class="input-large tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input width-6" ng-model="ctrl.panel.fontSize"  ng-blur="ctrl.setfontSize()" required placeholder="请输入0~5之间的数字"></input>
+		    </div>
+			<label class="gf-form-label width-9">时间字体大小</label>
+			<div class="input-large tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.timeSize"  ng-blur="ctrl.settimeSize()" required placeholder="请输入0~5之间的数字"></input>
+		    </div>
+			<label class="gf-form-label width-9">数值字体大小</label>
+			<div class="input-large tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.valueSize"  ng-blur="ctrl.setvalueSize()" required placeholder="请输入0~5之间的数字"></input>
+		    </div>
+	</div>
+</div>
+	<gf-form-switch class="gf-form" label="是否显示名称" label-class="width-8" checked="ctrl.panel.showName">
+		<div class="gf-form-switch ">
+			<input  type="checkbox" ng-model="ctrl.panel.showName"  class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-not-empty"></input>
+
+			</gf-form-switch>
+		</div>

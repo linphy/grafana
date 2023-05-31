@@ -1,0 +1,21 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">插件选项</h5>
+		<div class="gf-form" ng-if="ctrl.panel.mode == 'json'" ng-model ="ctrl.panel.mode" ng-change="ctrl.render()">
+		</div>
+		<div class="gf-form" ng-if="ctrl.panel.mode == 'Conventional'" ng-model ="ctrl.panel.mode" ng-change="ctrl.render()">
+			<label class="gf-form-label width-7">请输入单位</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.unit" ng-blur="ctrl.render()" required></input>
+			</div>
+			<label class="gf-form-label width-11">请输入最大值最小值</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.limit" ng-blur="ctrl.render()" required></input>
+			</div>
+			<label class="gf-form-label width-9">请输入报警范围</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.alarmColor" ng-blur="ctrl.render()" required></input>
+			</div>
+		</div>
+	</div>
+</div>

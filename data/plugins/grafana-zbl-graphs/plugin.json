@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "OGE-指标量",
+  "id": "grafana-zbl-graphs",
+
+  "info": {
+    "description": "kdm-graphs plugin for grafana",
+    "author": {
+      "name": "OGE YH",
+      "url": "http://raintank.io"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "src/img/logo.png",
+      "large": "src/img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/clock-panel"},
+      {"name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "src/img/screenshot-showcase.png"},
+      {"name": "Options", "path": "src/img/screenshot-clock-options.png"}
+    ],
+    "version": "0.0.1",
+    "updated": "2016-07-27"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

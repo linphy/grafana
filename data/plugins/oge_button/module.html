@@ -1,0 +1,10 @@
+<table style="margin:auto auto;">
+<tr>
+<td>
+<button ng-if="ctrl.panel.CK === 'uncheck'" class="btn btn-secondary" style= "margin:auto center ;
+ background-color:{{ctrl.panel.colors}};font-size:{{ctrl.panel.size}};"><a href="/dashboard/db/{{ctrl.panel.url}}?{{ctrl.panel.NA}}">{{ctrl.panel.NA}}</a></button>
+<button ng-if="ctrl.panel.CK === 'check'" class="btn btn-large" style= "margin:auto center ;
+ background-color:{{ctrl.panel.colors}};font-size:{{ctrl.panel.size}};"><a href="/dashboard/db/{{ctrl.panel.url}}?{{ctrl.panel.NA}}">{{ctrl.panel.NA}}</a></button>
+</td>
+</tr>
+</table>

@@ -1,0 +1,66 @@
+<div class="editor-row">
+	<div class="gf-form">
+		<div class="section gf-form-group">
+			<h5 class="section-heading">字体设置</h5>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+					<label class="gf-form-label width-6">字体大小</label>
+					<div class="gf-form-select-wrapper width-6">
+						<select class="input-medium gf-form-input" ng-model="ctrl.panel.options.fontSize" ng-options="f for f in ['80%', '90%', '100%', '110%', '120%', '130%', '150%',	'160%', '180%', '200%', '220%', '250%']"
+							ng-change="ctrl.render()" required></select>
+					</div>
+				</div>
+				<div class="gf-form">
+					<label class="gf-form-label width-6">字体风格</label>
+					<div class="gf-form-select-wrapper width-6">
+						<select class="input-medium gf-form-input" ng-model="ctrl.panel.options.fontStyle" ng-options="k as v for (k,v) in {normal:'正常',italic:'斜体',bold:'粗体'}"
+							ng-change="ctrl.render()" required></select>
+					</div>
+				</div>
+				<div class="gf-form">
+					<label class="gf-form-label width-6">字体样式</label>
+					<input type="String" class="gf-form-input width-6" placeholder="微软雅黑" data-placement="right" ng-model="ctrl.panel.options.fontFamily"
+						ng-change="ctrl.render()" required>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="gf-form">
+			<div class="section gf-form-group">
+				<h5 class="section-heading">标题背景色设置</h5>
+				<div class="gf-form ">
+					<label class="gf-form-label width-6">标题背景色</label>&nbsp
+					<span class="gf-form-label">
+						<spectrum-picker ng-model="ctrl.panel.options.titleBgColor"></spectrum-picker>
+					</span>&nbsp
+					<input
+						type="text"
+						class="gf-form-input width-13"
+						ng-model="ctrl.panel.options.titleBgColor"
+						ng-model-onblur
+					/>
+				</div>
+			</div>
+		</div>
+	<div class="gf-form">
+		<div class="section gf-form-group">
+			<h5 class="section-heading">告警颜色设置</h5>
+			<div class="gf-form " ng-repeat="col in ctrl.panel.options.colors track by $index">
+				<label class="gf-form-label width-6">{{col.name}}</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="col.color" ng-change="ctrl.render();"></spectrum-picker>
+				</span>
+				&nbsp
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="col.color"
+					ng-model-onblur
+					ng-blur = "ctrl.render();"
+				/>
+			</div>
+			</br>
+			<button class="btn btn-inverse width-7 " ng-click="ctrl.invertColorOrder()">反转顺序</button>
+		</div>
+	</div>
+</div>

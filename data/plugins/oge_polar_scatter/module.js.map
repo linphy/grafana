@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["PolScatPanelCtrl"],"mappings":";;;;;;;;AAAQA,sB,sBAAAA,gB;;;2BAGNA,gB","file":"module.js","sourcesContent":["import {PolScatPanelCtrl} from './polarscatter_ctrl';\r\n\r\nexport {\r\n  PolScatPanelCtrl as PanelCtrl\r\n};\r\n"]}

@@ -1,0 +1,36 @@
+<datasource-http-settings current="ctrl.current">
+</datasource-http-settings>
+
+<h3 class="page-heading">KDM SET</h3>
+<div class="gf-form-group">
+	<div class="gf-form max-width-35">
+		<span class="gf-form-label width-12">KDM REST SERVER</span>
+		<input class="gf-form-input" type="text" ng-model='ctrl.current.jsonData.kdmUrl' placeholder="" required></input>
+		<info-popover mode="right-absolute">
+			<p>kdm地址 (http://127.0.0.1:8082/kdmService/rest/1.0/)</p>
+			<p>关联量取历史数据，实时数据来源</p>
+		</info-popover>
+	</div>
+</div>
+<!-- 因kks网关取消
+<h3 class="page-heading">KKM SET</h3>
+<div class="gf-form-group">
+	<div class="gf-form max-width-35">
+		<span class="gf-form-label width-12">KKM KDM SERVER</span>
+		<input class="gf-form-input" type="text" ng-model='ctrl.current.jsonData.kkm.kdmUrl' placeholder=""></input>
+		<info-popover mode="right-absolute">
+			<p>kdm地址 (http://127.0.0.1:8082/kdmService/rest/1.0/)</p>
+			<p>获取指标量信息</p>
+		</info-popover>
+	</div>
+	<div class="gf-form max-width-35">
+		<span class="gf-form-label width-12">KKM DAS SERVER</span>
+		<input class="gf-form-input" type="text" ng-model='ctrl.current.jsonData.kkm.dasUrl' placeholder=""></input>
+		<info-popover mode="right-absolute">
+			<p>DAS地址 (https://192.168.0.143:9443)</p>
+			<p>获取指标量数据</p>
+		</info-popover>
+	</div>
+</div>
+</div>
+-->

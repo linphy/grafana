@@ -1,0 +1,45 @@
+<h3 class="page-heading">服务中间件设置</h3>
+<div class="gf-form-group">
+	<div class="gf-form-inline">
+		<div class="gf-form">
+			<span class="gf-form-label width-8">服务地址</span>
+			<input class="gf-form-input" type="text" ng-model='ctrl.current.url' placeholder="http://127.0.0.1:8080" required></input>
+		</div>
+	</div>
+	<div class="gf-form-inline">
+		<div class="gf-form max-width-16">
+			<span class="gf-form-label width-8">实时库表名</span>
+			<input class="gf-form-input" type="text" ng-model='ctrl.current.jsonData.tableName' placeholder="nx" required></input>
+		</div>
+	</div>
+
+	<div class="gf-form-inline">
+		<div class="gf-form max-width-30">
+			<span class="gf-form-label width-8">访问模式</span>
+			<div class="gf-form-select-wrapper max-width-24">
+				<select class="gf-form-input" ng-model="ctrl.current.access" ng-options="f.key as f.value for f in [{key: 'proxy', value: '服务器'}, { key: 'direct', value: '浏览器'}]"></select>
+			</div>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label query-keyword pointer" ng-click="ctrl.showAccessHelp = !ctrl.showAccessHelp;">
+				?&nbsp;
+				<i class="fa fa-caret-down" ng-show="ctrl.showAccessHelp"></i>
+				<i class="fa fa-caret-right" ng-hide="ctrl.showAccessHelp">&nbsp;</i>
+			</label>
+		</div>
+	</div>
+
+	<div class="grafana-info-box m-t-2" ng-show="ctrl.showAccessHelp">
+		<p>
+		访问模式：控制如何处理对数据源的请求。
+		 如果没有其他设置，<strong><i>服务器</i></strong> 是默认访问方式. 
+		</p>
+		<div class="alert-title">服务器访问模式:</div>
+		<p>
+		所有请求都将从浏览器发出到KAM后端/服务器，后者再将请求转发到数据源。并以此规避可能的跨域资源共享（CORS）要求。如果您选择此访问模式，则需要可以从KAM后端/服务器访问该URL
+		</p>
+		<div class="alert-title">浏览器访问模式:</div>
+		<p>
+		所有请求都将从浏览器直接发送到数据源，并且可能会受到跨域资源共享（CORS）要求。 如果选择此模式，则需要保证从当前浏览器能访问到该服务URL. 
+	</div>
+</div>

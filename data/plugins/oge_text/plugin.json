@@ -1,0 +1,34 @@
+{
+  "type": "panel",
+  "name": "OGE-自定义文本",
+  "id": "oge_text",
+
+  "info": {
+    "description": "自定义文本展示插件",
+    "author": {
+      "name": "OGE",
+      "url": ""
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/text"},
+      {"name": "MIT License", "url": "https://github.com/grafana//blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "img/screenshot-text.png"},
+      {"name": "Options", "path": "img/screenshot-text-options.png"},
+	  {"name": "Options", "path": "img/screenshot-text-metrics.png"}
+    ],
+    "version": "0.0.1",
+    "updated": "2016-07-27"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "type": "panel",
+    "name": "OGE-散点坐标图",
+    "id": "oge_polar_scatter",
+
+    "info": {
+        "description": "根据传入数据判断部件是否存在故障，以及故障等级，显示故障描述及处理建议",
+        "author": {
+            "name": "OGE DF",
+            "url": "http://raintank.io"
+        },
+        "keywords": ["scatter", "panel"],
+        "logos": {
+            "small": "img/logo.png",
+            "large": "img/logo.png"
+        },
+        "links": [
+            { "name": "Project site", "url": "https://github.com/grafana/clock-panel" },
+            { "name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE" }
+        ],
+        "screenshots": [
+            { "name": "Showcase", "path": "src/img/screenshot-table.png" },
+            { "name": "Options", "path": "src/img/screenshot-table-options.png" }
+        ],
+        "version": "0.0.1",
+        "updated": "2019-11-29"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "6.x.x",
+        "plugins": []
+    }
+}

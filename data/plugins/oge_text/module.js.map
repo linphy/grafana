@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["TextPanelCtrl"],"mappings":";;;;;;;;AAAQA,mB,cAAAA,a;;;2BAGNA,a","file":"module.js","sourcesContent":["import {TextPanelCtrl} from './text_ctrl';\r\n\r\nexport {\r\n  TextPanelCtrl as PanelCtrl\r\n};\r\n"]}

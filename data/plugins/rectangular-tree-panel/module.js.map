@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["RectangularTreeCtrl"],"mappings":";;;;;;;;AAAQA,yB,cAAAA,mB;;;2BAGNA,mB","file":"module.js","sourcesContent":["import {RectangularTreeCtrl} from './tree_ctrl';\r\n\r\nexport {\r\n  RectangularTreeCtrl as PanelCtrl\r\n};\r\n"]}

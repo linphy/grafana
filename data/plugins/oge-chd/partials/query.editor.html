@@ -1,0 +1,77 @@
+<query-editor-row query-ctrl="ctrl" class="generic-datasource-query-row" has-text-edit-mode="true">
+  <div class="gf-form-inline">
+    <div class="gf-form max-width-9">
+      <select class="gf-form-input" ng-model="ctrl.target.dsType" ng-options="f.value as f.name for f in ctrl.dsOption"></select>
+    </div>
+
+    <div class="gf-form max-width-8" ng-if="ctrl.target.dsType == 0">
+      <select class="gf-form-input" ng-model="ctrl.target.rtdbType" ng-options="f.value as f.name for f in ctrl.rtdbOption"></select>
+    </div>
+    <div class="gf-form max-width-5" ng-if="ctrl.target.rtdbType != 0">
+      <input type="number" min="1000" class="gf-form-input" placeholder="个数"" ng-model="ctrl.target.hisCount"  ng-change="ctrl.onChangeInternal()" />
+    </div>
+    <div class="gf-form max-width-5" ng-if="ctrl.target.rtdbType == 2">
+      <input type="number" min="1000" class="gf-form-input" placeholder="间隔" ng-model="ctrl.target.hisInterval"  ng-change="ctrl.onChangeInternal()" />
+    </div>
+    
+    <div class="gf-form" ng-if="ctrl.target.dsType == 0">
+        <gf-form-dropdown css-class="width-30" model="ctrl.target.tag"
+          allow-custom="true"
+          lookup-text="true"
+          get-options="ctrl.getOptions($query)"
+          on-change="ctrl.onChangeInternal()">
+        </gf-form-dropdown>
+    </div>
+
+    <div class="gf-form max-width-8" ng-if="ctrl.target.dsType == 1">
+      <select class="gf-form-input" ng-model="ctrl.target.waveType" ng-options="f.value as f.name for f in ctrl.typeOption"></select>
+    </div>
+    <div class="gf-form" ng-if="ctrl.target.dsType == 1">
+      <input type="text" class="gf-form-input max-width-30" placeholder="路径" ng-model="ctrl.target.tag"  ng-change="ctrl.onChangeInternal()" />
+    </div>
+
+    <div class="gf-form" ng-if="ctrl.target.dsType == 0 && ctrl.target.rtdbType == 0">
+      <label class="gf-form-label query-keyword pointer" ng-click="ctrl.showInsertScript = !ctrl.showInsertScript">
+				脚本&nbsp;
+				<i class="fa fa-caret-down" ng-show="ctrl.showInsertScript"></i>
+				<i class="fa fa-caret-right" ng-hide="ctrl.showInsertScript">&nbsp;</i>
+			</label>
+    </div>
+
+    <div class="gf-form">
+        <label class="gf-form-label query-keyword pointer" ng-click="ctrl.showHelp = !ctrl.showHelp">
+          帮助&nbsp;
+          <i class="fa fa-caret-down" ng-show="ctrl.showHelp"></i>
+          <i class="fa fa-caret-right" ng-hide="ctrl.showHelp">&nbsp;</i>
+        </label>
+      </div>
+  </div>
+
+  <div class="gf-form-inline" ng-if="ctrl.showInsertScript">
+      <div class="gf-form">
+        <label class="gf-form-label query-keyword width-7">脚本
+          <info-popover >
+              允许动态执行脚本，将返回值进行改变。支持变量$value
+          </info-popover>
+        </label>
+      </div>
+      <div class="gf-form  gf-form--grow" >
+		    <code-editor data-max-lines=30 data-mode="javascript" content="ctrl.target.script" ng-blur="ctrl.refresh()"> </code-editor>
+      </div>
+  </div>
+
+  <div class="grafana-info-box m-t-2" ng-if="ctrl.showHelp">
+        <div class="alert-title">数据类型:</div>
+        <p></p>
+        <p>
+          智杰实时库：从实时库获取数据，支持以下格式。[-kksName]为返回名称，可不需要；</br>
+          &nbsp;&nbsp;kksCode[-kksName] 获取'表名.kksCode'对应的实时或历史数据。 </br>
+          &nbsp;&nbsp;sum:kksCode[-kksName] 搜索匹配所有kksCode的标签，累计和返回。  </br>
+          &nbsp;&nbsp;script:%kksCode%+200[-kksName] 获取'kksCode'对应的实时数据，并根据表达式进行计算，例中对实时结果加200返回。 </br>
+        </p>
+        <p>
+          振动波形：从txt文件读取原始数据，远程调用python获取包络谱数据，频域数据
+        </p>
+      </div>
+  </div>
+</query-editor-row>

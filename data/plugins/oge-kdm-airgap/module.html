@@ -1,0 +1,95 @@
+<div style="text-align:center;">
+  <div class="page-header-tabs" style="text-align: right;">
+      <ul class="gf-tabs" style="margin:0px">
+          <li class="gf-tabs-item" ng-click="ctrl.changeWaveTab(0)" ng-class="{active: ctrl.panel.tabIndex === 0}"><i class="fa fa-area-chart" aria-hidden="true"></i> 轮廓</li>
+          <li class="gf-tabs-item" ng-click="ctrl.changeWaveTab(1)" ng-class="{active: ctrl.panel.tabIndex === 1}"><i class="fa fa-bar-chart" aria-hidden="true"></i> 棒图</li>
+          <li class="gf-tabs-item" ng-click="ctrl.changeWaveTab(2)" ng-class="{active: ctrl.panel.tabIndex === 2}"><i class="fa fa-empire" aria-hidden="true"></i> 定转子圆</li>
+      </ul>
+
+      <div ng-show="ctrl.panel.tabIndex == 0" class="oge-space-buttons">
+          <div><a class="btn btn-outline-warning" title="同轴" ng-click="ctrl.changeSwitch(ctrl.panel, 'isCoaxial', true)" ng-class="{checked: ctrl.panel.isCoaxial}"><i class="fa fa-fw fa-tasks" aria-hidden="true"></i></a></div></div>
+      <div ng-show="ctrl.panel.tabIndex == 1" class="oge-space-buttons">
+          <div><a class="btn btn-outline-secondary" title="相位" ng-click="ctrl.changeSwitch(ctrl.panel.bar, 'isAlignPhase', true)"    ng-class="{checked: ctrl.panel.bar.isAlignPhase}"   ><i class="fa fa-fw fa-list"         aria-hidden="true"></i></a></div>
+          <div><a class="btn btn-outline-danger"    title="轮廓" ng-click="ctrl.changeSwitch(ctrl.panel.bar, 'isShowOutline', true)"   ng-class="{checked: ctrl.panel.bar.isShowOutline}"  ><i class="fa fa-fw fa-align-left"   aria-hidden="true"></i></a></div>
+          <div><a class="btn btn-outline-success"   title="伸长" ng-click="ctrl.changeSwitch(ctrl.panel.bar, 'isShowExtension', true)" ng-class="{checked: ctrl.panel.bar.isShowExtension}"><i class="fa fa-fw fa-align-center" aria-hidden="true"></i></a></div>
+          <div><a class="btn btn-outline-warning"   title="同轴" ng-click="ctrl.changeSwitch(ctrl.panel, 'isCoaxial', true)"           ng-class="{checked: ctrl.panel.isCoaxial}"          ><i class="fa fa-fw fa-tasks"        aria-hidden="true"></i></a></div>
+      </div>
+
+      <div ng-show="ctrl.panel.tabIndex == 2" class="oge-space-buttons">
+          <div>
+            <a class="btn btn-outline-secondary" title="转子－" ng-click="ctrl.ctrlCircle.prevRotor()"><i class="fa fa-fw fa-chevron-circle-left"  aria-hidden="true"></i></a>
+            <a class="btn btn-outline-secondary" title="转子＋" ng-click="ctrl.ctrlCircle.nextRotor()"><i class="fa fa-fw fa-chevron-circle-right" aria-hidden="true"></i></a>
+          </div>
+          <div>
+            <a class="btn btn-outline-danger" title="磁极－" ng-click="ctrl.ctrlCircle.prevIndex()"><i class="fa fa-fw fa-chevron-left"    aria-hidden="true"></i></a>
+            <a class="btn btn-outline-danger" title="磁极＋" ng-click="ctrl.ctrlCircle.nextIndex()"><i class="fa fa-fw fa-chevron-right"  aria-hidden="true"></i></a>
+          </div>
+          <div>
+            <a class="btn btn-outline-success" title="转子圆" ng-click="ctrl.changeSwitch(ctrl.panel.circle.canvasShow, 'ZZCKY')" ng-class="{checked: ctrl.panel.circle.canvasShow.ZZCKY}"><i class="fa fa-fw fa-circle"        aria-hidden="true"></i></a>
+            <a class="btn btn-outline-success" title="定子圆" ng-click="ctrl.changeSwitch(ctrl.panel.circle.canvasShow, 'DZCKY')" ng-class="{checked: ctrl.panel.circle.canvasShow.DZCKY}"><i class="fa fa-fw fa-circle-thin"   aria-hidden="true"></i></a>
+          </div>
+          <div>
+            <a class="btn btn-outline-warning" title="间隙圆" ng-click="ctrl.changeSwitch(ctrl.panel.circle.canvasShow, 'JXYTC')" ng-class="{checked: ctrl.panel.circle.canvasShow.JXYTC}"><i class="fa fa-fw fa-crosshairs" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-warning" title="标尺"   ng-click="ctrl.changeSwitch(ctrl.panel.circle.canvasShow, 'WHXBC')" ng-class="{checked: ctrl.panel.circle.canvasShow.WHXBC  }"><i class="fa fa-fw fa-bullseye"   aria-hidden="true"></i></a>
+          </div>
+      </div>
+  </div>
+
+  <div class="oge-chart-content">
+
+    <div ng-show="ctrl.panel.tabIndex != 2" class="data-panel-charts">
+    </div>
+
+    <!-- 定转子圆 -->
+    <div ng-show="ctrl.panel.tabIndex == 2">
+
+      <div data-warning="Don't delete this div.">
+  			<div class="data-panel-circle" style="max-width:100%; text-align:left; display:inline-block;">
+          <canvas name="{{c.name}}" ng-style="{width:ctrl.ctrlCircle.style.size,height:ctrl.ctrlCircle.style.size}" ng-repeat="c in ctrl.ctrlCircle.canvases" style="z-index: {{$index}}" ng-show="ctrl.panel.circle.canvasShow[c.name]">{{c.description}}</canvas>
+          <canvas name="__PLACEHOLDER__" ng-style="{width:ctrl.ctrlCircle.style.size,height:ctrl.ctrlCircle.style.size}" style="position: static;">占位</canvas>
+        </div>
+  			<div class="os-info" style="display:inline-block; text-align:left; vertical-align:top; max-width:300px">
+  				<div>
+  				<p>测点信息</p>
+  					<ul>
+              <li>##: 气隙波形名称 [位置, 平均气隙]</li>
+  						<li ng-repeat="item in ctrl.ctrlCircle.info.waves">{{$index + 1}}#: {{item.name}} [{{item.angle}}°, {{item.avg}}mm]</li>
+  					</ul>
+  				</div>
+  				<div>
+  					<p>当前测点</p>
+  					<ul>
+  						<li>间相角度: {{ctrl.ctrlCircle.info.current.JXJD}}°</li>
+  						<li>磁极编号: {{ctrl.ctrlCircle.info.current.CJBH}}#</li>
+  						<li>磁极角度: {{ctrl.ctrlCircle.info.current.CJJD}}°</li>
+  						<li>计算气隙: {{ctrl.ctrlCircle.info.current.JSQX}}mm</li>
+  					</ul>
+  				</div>
+  				<div>
+  					<p>转子信息</p>
+  					<ul>
+  						<li>不圆度: {{ctrl.ctrlCircle.info.rotor.BYD}}μm</li>
+  						<li>偏心量: {{ctrl.ctrlCircle.info.rotor.PXL}}mm</li>
+  						<li>偏心角: {{ctrl.ctrlCircle.info.rotor.PXJ}}°</li>
+  					</ul>
+  				</div>
+  				<div>
+  					<p>特征信息</p>
+  					<ul>
+  						<li>测量最小气隙: {{ctrl.ctrlCircle.info.character.CLZXQX}}mm</li>
+  						<li>测量最小磁极编号: {{ctrl.ctrlCircle.info.character.CLZXCJBH}}#</li>
+  						<li>计算最小气隙方位: {{ctrl.ctrlCircle.info.character.JSZXQXFW}}°</li>
+  						<li>测量最大气隙: {{ctrl.ctrlCircle.info.character.CLZDQX}}mm</li>
+  						<li>测量最大磁极编号: {{ctrl.ctrlCircle.info.character.CLZDCJBH}}#</li>
+  						<li>计算最大气隙方位: {{ctrl.ctrlCircle.info.character.JSZDQXFW}}mm</li>
+  					</ul>
+  				</div>
+        </div>
+			</div>
+    </div>
+  </div>
+
+  <div class="os-current">
+    <span class="os-current-time">{{ctrl.time}}</span>
+  </div>
+</div>

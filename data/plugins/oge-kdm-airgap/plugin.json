@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "OGE-气隙",
+  "id": "oge-kdm-airgap",
+
+  "info": {
+    "description": "对发电机的空气间隙进行中心偏移，磁极伸长等分析展示",
+    "author": {
+      "name": "OGE YH",
+      "url": "www.oge.cn"
+    },
+    "keywords": ["airgap", "panel", "专业插件", "气隙", "气隙棒图", "气隙轮廓", "定转子圆"],
+    "logos": {
+      "small": "img/logo.svg",
+      "large": "img/logo.svg"
+    },
+    "links": [
+      {"name": "奥技异", "url": "http://www.oge.cn"}
+    ],
+    "screenshots": [
+      {"name": "轮廓", "path": "img/screenshot-outline.png"},
+      {"name": "棒图", "path": "img/screenshot-bar.png"},
+      {"name": "定转子圆", "path": "img/screenshot-circle.png"}
+    ],
+    "version": "0.2.0",
+    "updated": "2016-12-14"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

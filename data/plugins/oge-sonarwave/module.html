@@ -1,0 +1,20 @@
+<div ng-style="{height: ctrl.height}" style="position:relative;">
+    <div style="position:absolute;top:0px;bottom:0px;left:0px;right:0px;">
+        <div class="page-header-tabs" ng-show="ctrl.panel.tabIsShow">
+            <ul class="gf-tabs" style="margin:0px">
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab('ST')" ng-class="{active: ctrl.panel.tabIndex === 'ST'}">时域</a></li>
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab('SF')" ng-class="{active: ctrl.panel.tabIndex === 'SF'}">频域</a></li>
+                <li class="gf-tabs-item"><a class="gf-tabs-link" href="javascript:void(0);" ng-click="ctrl.changeWaveTab('SX')" ng-class="{active: ctrl.panel.tabIndex === 'SX'}">时频域</a></li>
+            </ul>
+            <div class="gf-form" style="float:right;" >
+                <button class="btn navbar-button max-width-30" label-class="width-4" style="margin-right:10px;" ng-show="ctrl.panel.tabIndex === 'ST'" ng-click="ctrl.playAudio()">播放</button>
+			    <span class="os-current-time" style="font-size:12px;margin-right:10px;">{{ctrl.panel.times}}</span>
+                <gf-form-switch class="gf-form max-width-30" label="同轴" label-class="width-4" checked="ctrl.panel.showType" ng-show="ctrl.panel.tabIndex === 'SF'" switch-class="max-width-6"
+                    on-change="ctrl.changeViewType()">
+                </gf-form-switch>
+            </div>
+        </div>
+        <div class="data-panel" style="margin:0 auto;height:100%;width:100%;" ng-style="{'margin-top': ctrl.panel.marginTrue ? '45px':'0'}">
+        </div>
+    </div>
+</div>

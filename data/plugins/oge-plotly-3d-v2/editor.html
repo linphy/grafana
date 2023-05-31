@@ -1,0 +1,32 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">图形选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">是否显示切面</label>
+			<span class="max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.showCut" ng-change="ctrl.render()">
+					<option value="0">隐藏</option>
+					<option value="1">显示</option>
+				</select>
+			</span>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">是否显示比例条</label>
+			<span class="max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.showscale" ng-change="ctrl.render()">
+					<option value="0">隐藏</option>
+					<option value="1">显示</option>
+				</select>
+			</span>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">是否显示未收敛值</label>
+			<span class="max-width-10">
+				<select class="input-medium gf-form-input"  ng-model="ctrl.panel.isConvergence" ng-change="ctrl.render()">
+					<option value="0">隐藏</option>
+					<option value="1">显示</option>
+				</select>
+			</span>
+		</div>
+	</div>
+</div>

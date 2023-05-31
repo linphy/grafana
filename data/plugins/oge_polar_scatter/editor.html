@@ -1,0 +1,103 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">配置项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">背景颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.bgColor" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.bgColor" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">坐标轴颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.axis.lineColor" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.axis.lineColor" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+			<span class="gf-form-label">坐标轴宽度</span>
+			<input type="number" ng-model="ctrl.panel.axis.lineWidth" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">坐标轴刻度颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.tickColour" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.tickColour" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+			<span class="gf-form-label">坐标轴刻度间距</span>
+			<input type="number" ng-model="ctrl.panel.tickSpace" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+			<span class="gf-form-label">坐标轴最大值</span>
+			<input type="number" ng-model="ctrl.panel.theMaxValue" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">坐标轴刻度值颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.axis.textColor" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.axis.textColor" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">散点颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.scatter.color" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.scatter.color" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+
+			<span class="gf-form-label">散点半径</span>
+			<input type="number" ng-model="ctrl.panel.scatter.r" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">中心点颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.centerScatter.color" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.centerScatter.color" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+
+			<span class="gf-form-label">中心点半径</span>
+			<input type="number" ng-model="ctrl.panel.centerScatter.r" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">中心点连线颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.line.lineColor" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.line.lineColor" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+
+			<span class="gf-form-label">中心点连线宽</span>
+			<input type="number" ng-model="ctrl.panel.line.lineWidth" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">虚线圆颜色</label>
+			<span class="gf-form-label">
+				<spectrum-picker ng-model="ctrl.panel.circleLine.color" ng-change="ctrl.render()" ></spectrum-picker>
+			</span>
+			<span class="gf-form-label">
+				<i class="fa fa-arrow-right"></i>
+			</span>
+			<input type="text" ng-model="ctrl.panel.circleLine.color" class="gf-form-input max-width-9" ng-blur="ctrl.render()">
+
+			<span class="gf-form-label">虚线圆半径</span>
+			<input type="number" ng-model="ctrl.panel.circleLine.r" class="gf-form-input max-width-9" ng-change="ctrl.render()">
+		</div>
+	</div>
+</div>

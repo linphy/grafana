@@ -1,0 +1,12 @@
+<query-editor-row query-ctrl="ctrl" class="generic-datasource-query-row">
+	<div class="gf-form-inline">
+		<div class="gf-form max-width-25">
+			<span class="gf-form-label width-7">取数来源</span>
+			<select class="gf-form-input width-18" ng-model="ctrl.target.dataSource" ng-options="f.value as f.name for f in ctrl.dataSource" required></select>
+		</div>
+		<div class="gf-form max-width-37">
+			<span class="gf-form-label width-7">取数标签</span>
+			<metric-segment-model property="ctrl.target.target" get-options="ctrl.getOptions()" on-change="ctrl.onChangeInternal()" css-class="gf-form-label--grow width-30"></metric-segment-model>
+		</div>
+	</div>
+</query-editor-row>

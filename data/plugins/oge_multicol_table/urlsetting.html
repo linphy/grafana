@@ -1,0 +1,33 @@
+<div class="editor-row">
+    <div class="gf-form">
+        <div class="gf-form-group">
+            <h5 class="group-heading">链接设置</h5>
+            <div class="gf-form-inline" ng-repeat="row in ctrl.panel.tableArr">
+                <div class="gf-form" ng-repeat="urlInd in row">
+                    <div class="gf-form">
+                        <span class="width-3" class="gf-form-query-letter-cell-letter">{{urlInd.id}}</span>
+                        <span class="gf-form-label ">Link</span>
+                        <select class="gf-form-input width-11 " ng-model="urlInd.link.type " ng-options="f for f in [ 'dashboard', 'absolute', '无'] "></select>
+                    </div>
+                    <div class="gf-form ">
+                        <span class="gf-form-label width-7 " ng-show="urlInd.link.type==='dashboard' ">Dashboard</span>
+                        <input ng-show="urlInd.link.type==='dashboard' " type="text " ng-model="urlInd.link.dashboard " bs-typeahead="ctrl.searchDashboards " class="gf-form-input width-15 " ng-blur="ctrl.dashboardChanged(urlInd.link) ">
+                    </div>
+                    <div class="gf-form ">
+                        <span class="gf-form-label width-7 " ng-show="urlInd.link.type==='absolute' ">Url</span>
+                        <input ng-show="urlInd.link.type==='absolute' " type="text " ng-model="urlInd.link.url " class="gf-form-input width-15 ">
+                    </div>
+                    <div class="gf-form ">
+                        <span class="gf-form-label ">
+                            <i class="fa fa-arrow-right "></i>
+                        </span>
+                        <span class="gf-form-label width-7 ">Url params</span>
+                        <input type="text " ng-model="urlInd.link.params " class="gf-form-input width-35 ">
+                    </div>
+                    <gf-form-switch class="gf-form " label-class="width-8 " label="是否添加变量 " checked="urlInd.link.includeVars "></gf-form-switch>
+                    <gf-form-switch class="gf-form " label-class="width-10 " label="是否在新页面打开 " checked="urlInd.link.targetBlank "></gf-form-switch>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

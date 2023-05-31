@@ -1,0 +1,36 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">值的设置</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">最小值</label>
+			<input type="number" class="gf-form-input width-6" placeholder="0" data-placement="right" ng-model="ctrl.panel.min" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-6">最大值</label>
+			<input type="number" class="gf-form-input width-6" placeholder="100" data-placement="right" ng-model="ctrl.panel.max" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">数据精度</label>
+			<input type="number" class="gf-form-input width-6" placeholder="0" data-placement="right" ng-model="ctrl.panel.dataPrecise" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-6">显示单位</label>
+			<input type="string" class="gf-form-input width-6" placeholder="℃" data-placement="right" ng-model="ctrl.panel.unit" ng-change="ctrl.render()" required>
+		</div>
+		<br>
+		<h5 class="section-heading">告警设置</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">告警阀值</label>
+			<input type="text" class="gf-form-input width-6" ng-model="ctrl.panel.threshold" placeholder="30,60" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form ">
+			<label class="gf-form-label width-6">告警颜色</label>
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.colors[0]" ng-change="ctrl.render()"></spectrum-picker>
+          </span>
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.colors[1]" ng-change="ctrl.render()"></spectrum-picker>
+          </span>
+			<span class="gf-form-label">
+            <spectrum-picker ng-model="ctrl.panel.colors[2]" ng-change="ctrl.render()"></spectrum-picker>
+          </span>
+				<button class="btn btn-inverse width-7 " ng-click="ctrl.invertColorOrder()">颜色倒序</button>
+		</div>
+	</div>
+</div>

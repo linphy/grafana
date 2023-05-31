@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["FaultPanelCtrl"],"mappings":";;;;;;;;AAAQA,oB,eAAAA,c;;;2BAGNA,c","file":"module.js","sourcesContent":["import {FaultPanelCtrl} from './fault_ctrl';\r\n\r\nexport {\r\n  FaultPanelCtrl as PanelCtrl\r\n};\r\n"]}

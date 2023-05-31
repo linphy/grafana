@@ -1,0 +1,211 @@
+<div class="editor-row">
+	<div class="gf-form">
+		<div class="section gf-form-group">
+			<h4 class="section-heading">地图基本设置</h4>
+			<div class="gf-form">
+				<label class="gf-form-label width-9">面板背景色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.bgColor" ng-change="ctrl.changeLabelStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.bgColor"
+					ng-change="ctrl.changeLabelStyle()"
+					ng-model-onblur
+				/>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-9">选择省</label>
+				<div class="gf-form-select-wrapper max-width-10">
+					<select class="input-small gf-form-input" ng-model="ctrl.panel.province" ng-options="value as key for (key , value) in ctrl.cityMap"
+					ng-change="ctrl.changeProvince(key)"></select>
+				</div>
+			</div>
+			<div class="gf-form">
+				<gf-form-switch class="gf-form" label-class="width-9" label="是否显示省/市" checked="ctrl.panel.showLabel" on-change="ctrl.changeLabelStyle()"></gf-form-switch>
+			</div>
+			<div class="gf-form" ng-if="ctrl.panel.showLabel">
+				<label class="gf-form-label width-9">省/市标签颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.labelColor" ng-change="ctrl.changeLabelStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.labelColor"
+					ng-change="ctrl.changeLabelStyle()"
+					ng-model-onblur
+				/>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-9">地图区域颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.areaColor" ng-change="ctrl.changeitemStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.areaColor"
+					ng-change="ctrl.changeitemStyle()"
+					ng-model-onblur
+				/>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-9">地图边框颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.borderColor" ng-change="ctrl.changeitemStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.borderColor"
+					ng-change="ctrl.changeitemStyle()"
+					ng-model-onblur
+				/>
+			</div>
+		</div>
+		<div class="section gf-form-group">
+			<h4 class="section-heading">高亮设置</h4>
+			<div class="gf-form">
+				<gf-form-switch class="gf-form" label-class="width-12" label="高亮时是否显示省/市" checked="ctrl.panel.emShowLabel" on-change="ctrl.changeLabelStyle()"></gf-form-switch>
+			</div>
+			<div class="gf-form" ng-if="ctrl.panel.emShowLabel">
+				<label class="gf-form-label width-12">高亮时省/市标签颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.emLabelColor" ng-change="ctrl.changeLabelStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.emLabelColor"
+					ng-change="ctrl.changeLabelStyle()"
+					ng-model-onblur
+				/>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-12">高亮时地图区域颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.emAreaColor" ng-change="ctrl.changeitemStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.emAreaColor"
+					ng-change="ctrl.changeitemStyle()"
+					ng-model-onblur
+				/>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-12">高亮时地图边框颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.emBorderColor" ng-change="ctrl.changeitemStyle();"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.emBorderColor"
+					ng-change="ctrl.changeitemStyle()"
+					ng-model-onblur
+				/>
+			</div>
+		</div>
+		<div class="section gf-form-group">
+			<h4 class="section-heading">点样式设置</h4>
+			<div class="gf-form">
+				<label class="gf-form-label width-12">图形点形状</label>
+				<div class="gf-form-select-wrapper width-6">
+					<select class="input-medium gf-form-input" ng-model="ctrl.panel.symbolStyle" ng-options="f.value as f.name for f in ctrl.symbol"
+						ng-change="ctrl.changePointLabelStyle()" required></select>
+				</div>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-12">图形点大小</label>
+				<input type="number" class="gf-form-input width-8" ng-model="ctrl.panel.symbolSize" ng-change="ctrl.changePointLabelStyle()" ng-model-onblur>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-12">图形点颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.symbolColor" ng-change="ctrl.changePointLabelStyle()"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.symbolColor"
+					ng-change="ctrl.changePointLabelStyle()"
+					ng-model-onblur
+				/>
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-12">高亮时图形点颜色</label>&nbsp
+				<span class="gf-form-label">
+					<spectrum-picker ng-model="ctrl.panel.emSymbolColor" ng-change="ctrl.changePointLabelStyle()"></spectrum-picker>
+				</span>
+				<input
+					type="text"
+					class="gf-form-input width-13"
+					ng-model="ctrl.panel.emSymbolColor"
+					ng-change="ctrl.changePointLabelStyle()"
+					ng-model-onblur
+				/>
+			</div>
+		</div>
+	</div>
+	<div class="gf-form">
+		<div class="section gf-form-group">
+			<h5 class="section-heading">源数据点</h5>
+			<div style="margin-bottom:30px;" class="section">
+				<div class="gf-form">
+					<span class="gf-form-label width-7">详情描述</span>
+					<input type="text" class="gf-form-input width-15" ng-model="ctrl.panel.sourceP.description" ng-change="ctrl.changeScatterData()" ng-model-onblur>
+				</div>
+				<div class="gf-form-inline">
+					<div class="gf-form">
+						<span class="gf-form-label width-7">链接</span>
+						<input type="text" ng-model="ctrl.panel.sourceP.link.url" class="gf-form-input max-width-14" ng-change="ctrl.changeScatterData()" ng-model-onblur>
+					</div>
+				</div>
+				<gf-form-switch class="gf-form" label-class="width-10" label="在新页面打开 " checked="ctrl.panel.sourceP.link.targetBlank"  on-change="ctrl.changeScatterData()"></gf-form-switch>
+			</div>
+		</div>
+	</div>
+	<div class="gf-form">
+		<div class="section gf-form-group">
+			<h5 class="section-heading">自定义数据点</h5>
+			<div style="margin-bottom:30px;" class="section"  ng-repeat="point in ctrl.panel.points">
+				<div class="gf-form">
+					<span class="gf-form-label width-7">名称</span>
+					<input type="text" class="gf-form-input width-15" ng-model="point.name" ng-change="ctrl.changeScatterData()" ng-disabled="point.sourcePoint" ng-model-onblur>
+					<span class="gf-form-label" ng-hide="point.sourcePoint">
+						<i class="fa fa-remove pointer" ng-click="ctrl.removePoint($index)"></i>
+					</span>
+				</div>
+				<div class="gf-form">
+					<span class="gf-form-label width-7">经度</span>
+					<input type="number" class="gf-form-input width-15" ng-model="point.value[0]" ng-change="ctrl.changeScatterData()" ng-disabled="point.sourcePoint" ng-model-onblur>
+				</div>
+				<div class="gf-form">
+					<span class="gf-form-label width-7">纬度</span>
+					<input type="number" class="gf-form-input width-15" ng-model="point.value[1]" ng-change="ctrl.changeScatterData()" ng-disabled="point.sourcePoint" ng-model-onblur>
+				</div>
+				<div class="gf-form">
+					<span class="gf-form-label width-7">详情描述</span>
+					<input type="text" class="gf-form-input width-15" ng-model="point.description" ng-change="ctrl.changeScatterData()" ng-model-onblur>
+				</div>
+				<div class="gf-form-inline">
+					<div class="gf-form">
+						<span class="gf-form-label width-7">链接</span>
+						<input type="text" ng-model="point.link.url" class="gf-form-input max-width-14" ng-change="ctrl.changeScatterData()" ng-model-onblur>
+					</div>
+				</div>
+				<gf-form-switch class="gf-form" label-class="width-10" label="在新页面打开 " checked="point.link.targetBlank"  on-change="ctrl.changeScatterData()"></gf-form-switch>
+			</div>
+		</div>
+	</div>
+	<div class="gf-form-button-row">
+		<button class="btn btn-inverse" ng-click="ctrl.addPoint()">
+			<i class="fa fa-plus"></i>
+			添加点
+		</button>
+	</div>
+</div>

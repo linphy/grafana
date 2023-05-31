@@ -1,0 +1,98 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">顶部显示选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">是否显示切换卡</label>
+			<div class="gf-form-select-wrapper max-width-10">
+				<select class="input-medium gf-form-input" ng-model="ctrl.panel.tabIsShow" ng-options="data.value as data.name for data in ctrl.panel.options" ng-change="ctrl.render()"></select>
+			</div>
+		</div>
+	</div>
+	<div class="section gf-form-group">
+		<h5 class="section-heading">数据乘法系数</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">频域乘法系数</label>
+			<div class="max-width-10">
+				<input type="number" class="gf-form-input" ng-model="ctrl.panel.sfCoefficient" ng-blur="ctrl.setSfCoefficient()" />
+			</div>
+		</div>
+	</div>
+	<div class="section gf-form-group">
+		<h5 class="section-heading">波形选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-9">{{ctrl.panel.tabOptions["ST"].name}}</label>
+			<div class="variable-link-wrapper multi-selector-all">
+				<a ng-click="ctrl.show(ctrl.panel.tabOptions['ST'])" class="variable-value-link multi-alink-selectorclass-0">
+					{{ctrl.panel.tabOptions['ST'].tempInfo}}
+					<i class="fa fa-caret-down" style="font-size:12px"></i>
+				</a>
+				<input type="text" class="gf-form-input multi-input-selectorclass-0" style="display: none" ng-model="ctrl.panel.tabOptions['ST'].query" ng-change="ctrl.queryChangedText(ctrl.panel.tabOptions['ST'])" ></input>
+				<div class="variable-value-dropdown" ng-show="ctrl.panel.tabOptions['ST'].dropdownVisible" ng-class="{'multi': true}">
+					<div class="variable-options-wrapper">
+						<div class="variable-options-column">
+							<a class="variable-options-column-header" ng-class="{'many-selected': ctrl.panel.tabOptions['ST'].selectedValues.length > 1}" bs-tooltip="'清除选项'" data-placement="top" ng-click="ctrl.clearSelections(ctrl.panel.tabOptions['ST'])">
+								<span class="variable-option-icon"></span>
+								已选择 ({{ctrl.panel.tabOptions['ST'].selectedValues.length}})
+							</a>
+							<a class="variable-option pointer" ng-repeat="option in ctrl.panel.tabOptions['ST'].variable.options track by option.value" ng-class="{'selected': option.selected}" ng-click="ctrl.selectValue(option, ctrl.panel.tabOptions['ST'])">
+								<span class="variable-option-icon"></span>
+								<span>{{option.text}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="gf-form">
+			<label class="gf-form-label width-9">{{ctrl.panel.tabOptions['SF'].name}}</label>
+			<div class="variable-link-wrapper multi-selector-all">
+				<a ng-click="ctrl.show(ctrl.panel.tabOptions['SF'])" class="variable-value-link multi-alink-selectorclass-1">
+					{{ctrl.panel.tabOptions['SF'].tempInfo}}
+					<i class="fa fa-caret-down" style="font-size:12px"></i>
+				</a>
+				<input type="text" class="gf-form-input multi-input-selectorclass-1" style="display: none" ng-model="ctrl.panel.tabOptions['SF'].query" ng-change="ctrl.queryChangedText(ctrl.panel.tabOptions['SF'])" ></input>
+				<div class="variable-value-dropdown" ng-show="ctrl.panel.tabOptions['SF'].dropdownVisible" ng-class="{'multi': true}">
+					<div class="variable-options-wrapper">
+						<div class="variable-options-column">
+							<a class="variable-options-column-header" ng-class="{'many-selected': ctrl.panel.tabOptions['SF'].selectedValues.length > 1}" bs-tooltip="'清除选项'" data-placement="top" ng-click="ctrl.clearSelections(ctrl.panel.tabOptions['SF'])">
+								<span class="variable-option-icon"></span>
+								已选择 ({{ctrl.panel.tabOptions['SF'].selectedValues.length}})
+							</a>
+							<a class="variable-option pointer" ng-repeat="option in ctrl.panel.tabOptions['SF'].variable.options track by option.value" ng-class="{'selected': option.selected}" ng-click="ctrl.selectValue(option, ctrl.panel.tabOptions['SF'])">
+								<span class="variable-option-icon"></span>
+								<span>{{option.text}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="gf-form">
+			<label class="gf-form-label width-9">{{ctrl.panel.tabOptions['SX'].name}}</label>
+			<div class="variable-link-wrapper multi-selector-all">
+				<a ng-click="ctrl.show(ctrl.panel.tabOptions['SX'])" class="variable-value-link multi-alink-selectorclass-2">
+					{{ctrl.panel.tabOptions['SX'].tempInfo}}
+					<i class="fa fa-caret-down" style="font-size:12px"></i>
+				</a>
+				<input type="text" class="gf-form-input multi-input-selectorclass-2" style="display: none" ng-model="ctrl.panel.tabOptions['SX'].query" ng-change="ctrl.queryChangedText(ctrl.panel.tabOptions['SX'])" ></input>
+				<div class="variable-value-dropdown" ng-show="ctrl.panel.tabOptions['SX'].dropdownVisible" ng-class="{'multi': true}">
+					<div class="variable-options-wrapper">
+						<div class="variable-options-column">
+							<a class="variable-options-column-header" ng-class="{'many-selected': ctrl.panel.tabOptions['SX'].selectedValues.length > 1}" bs-tooltip="'清除选项'" data-placement="top" ng-click="ctrl.clearSelections(ctrl.panel.tabOptions['SX'])">
+								<span class="variable-option-icon"></span>
+								已选择 ({{ctrl.panel.tabOptions['SX'].selectedValues.length}})
+							</a>
+							<a class="variable-option pointer" ng-repeat="option in ctrl.panel.tabOptions['SX'].variable.options track by option.value" ng-class="{'selected': option.selected}" ng-click="ctrl.selectValue(option, ctrl.panel.tabOptions['SX'])">
+								<span class="variable-option-icon"></span>
+								<span>{{option.text}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>

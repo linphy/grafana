@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/module.js"],"names":["RingThermometerPanelCtrl"],"mappings":";;;;;;;;AAAQA,8B,qBAAAA,wB;;;2BAGNA,wB","file":"module.js","sourcesContent":["import {RingThermometerPanelCtrl} from './ring_thermometer';\r\n\r\nexport {\r\n  RingThermometerPanelCtrl as PanelCtrl\r\n};\r\n"]}

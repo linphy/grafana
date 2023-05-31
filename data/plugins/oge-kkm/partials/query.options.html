@@ -1,0 +1,19 @@
+<section class="grafana-metric-options gf-form-group">
+  <div class="gf-form-inline">
+    <div class="gf-form max-width-15">
+      <span class="gf-form-label width-7">取数方式</span>
+      <select class="gf-form-input" ng-model="ctrl.panelCtrl.panel.kdm.dataType" ng-options="f.value as f.name for f in ctrl.dataTypeOptions"
+        required ng-change="ctrl.panelCtrl.refresh()"></select>
+    </div>
+    <div class="gf-form max-width-15">
+      <gf-form-switch class="gf-form" label="是否获取告警" ng-change="ctrl.panelCtrl.refresh()" label-class="width-8" checked="ctrl.panelCtrl.panel.kdm.isAlert"
+        switch-class="max-width-6">
+        <label class="gf-form-label pointer"></label>
+        <div class="gf-form-switch">
+          <input type="checkbox" ng-model="ctrl.panelCtrl.panel.kdm.isAlert" class="ng-untouched ng-valid ng-dirty ng-valid-parse ng-empty">
+          <label data-on="Yes" data-off="No"></label>
+        </div>
+      </gf-form-switch>
+    </div>
+  </div>
+</section>

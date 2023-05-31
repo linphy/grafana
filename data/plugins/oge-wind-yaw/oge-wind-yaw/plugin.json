@@ -1,0 +1,33 @@
+{
+  "type": "panel",
+  "name": "风机偏航展示",
+  "id": "oge-wind-yaw",
+
+  "info": {
+    "description": "风机偏航展示插件",
+    "author": {
+      "name": "OGE_YH",
+      "url": "https://github.com/190948804"
+    },
+    "keywords": ["clock", "panel"],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {"name": "Project site", "url": "https://github.com/grafana/oge-wind-yaw"},
+      {"name": "MIT License", "url": "https://github.com/grafana/oge-wind-yaw/blob/master/LICENSE"}
+    ],
+    "screenshots": [
+      {"name": "Showcase", "path": "img/config.png"},
+      {"name": "Options", "path": "img/config.png"}
+    ],
+    "version": "1.0.3",
+    "updated": "2019-05-24"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "5.x.x",
+    "plugins": [ ]
+  }
+}

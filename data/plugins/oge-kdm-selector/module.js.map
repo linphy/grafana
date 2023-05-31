@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/module.js"],"names":["SelectCtrl"],"mappings":";;;;;;;;AAAQA,gB,kBAAAA,U;;;2BAGNA,U","file":"module.js","sourcesContent":["import {SelectCtrl} from './selector_ctrl';\r\n\r\nexport {\r\n  SelectCtrl as PanelCtrl\r\n};\r\n"]}

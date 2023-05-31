@@ -1,0 +1,29 @@
+{
+  "type": "panel",
+  "name": "OGE-多状态v2",
+  "id": "oge-multistatus",
+
+  "info": {
+    "description": "Multistat panel for grafana",
+    "author": {
+      "name": "DF",
+      "url": "https://grafana.com"
+    },
+    "keywords": ["oge-multistatus", "panel"],
+    "logos": {
+      "small": "src/img/clock_panel_logo.svg",
+      "large": "src/img/clock_panel_logo.svg"
+    },
+    "screenshots": [
+      {"name": "Showcase", "path": "src/img/screenshot-showcase.png"},
+      {"name": "Options", "path": "src/img/screenshot-clock-options.png"}
+    ],
+    "version": "0.0.9",
+    "updated": "2017-03-18"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}

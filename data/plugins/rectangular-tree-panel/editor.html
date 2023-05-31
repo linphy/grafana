@@ -1,0 +1,46 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">插件选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">显示层级</label>
+			<input type="number" class="gf-form-input width-4 ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required" ng-model="ctrl.panel.showLevel" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">标题</label>
+			<input class="gf-form-input width-8" ng-model="ctrl.panel.chart.name" ng-change="ctrl.render()" required>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-6">颜色</label>
+			<span class="gf-form-label" ng-repeat="col in ctrl.panel.color">
+			<spectrum-picker ng-model="col.color" ng-change="ctrl.render()"></spectrum-picker>&nbsp&nbsp&nbsp
+			<i class="fa fa-times fa-4x" aria-hidden="true" ng-click="ctrl.dropElement($index)" style="cursor:pointer;font-size:15px;"></i>
+			</span >
+			<span class="gf-form-label" style="height:38px;">
+			<i class="fa fa-plus fa-4x" aria-hidden="true" ng-click="ctrl.addElement()" style="cursor:pointer;font-size:20px;"></i>
+			</span>
+		</div>
+	</div>
+	<div class="section gf-form-group">
+		<h5 class="section-heading">图形占比</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-3">宽</label>
+			<input class="gf-form-input width-5" ng-model="ctrl.panel.layout.width" ng-change="ctrl.render()" required>
+			<label class="gf-form-label width-3">高</label>
+			<input class="gf-form-input width-5" ng-model="ctrl.panel.layout.height" ng-change="ctrl.render()" required>
+		</div>
+		<h5 class="section-heading">字体</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-4">大小</label>
+			<input type="number" class="gf-form-input width-5" ng-model="ctrl.panel.fontSize" ng-change="ctrl.render()" required>
+		</div>
+	</div>
+	<div class="section gf-form-group">
+		<div class="gf-form-inline">
+			<gf-form-switch class="gf-form" label-class="width-7" label="显示路径" checked="ctrl.panel.breadcrumbs" on-change="ctrl.render()"></gf-form-switch>
+		</div>
+		<div class="gf-form-inline">
+			<gf-form-switch class="gf-form" label-class="width-7" label="悬停提示" checked="ctrl.panel.tooltip" on-change="ctrl.changeOgeAlertColorType('V')"></gf-form-switch>
+		</div>
+	</div>	
+	
+</div>

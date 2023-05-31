@@ -1,0 +1,135 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<div class="gf-form">
+			<label class="gf-form-label width-8">图片链接</label>
+			<input type="text" class="input-small gf-form-input width-30" ng-model="ctrl.panel.bgimage" ng-model-onblur />
+		</div>	
+		<div class="gf-form">
+			<label class="gf-form-label width-8">显示方式</label>
+			<span class="gf-form-select-wrapper">
+				<select class="gf-form-input" ng-model="ctrl.panel.mode" ng-options="f for f in ['居中','平铺']" ng-change="ctrl.render()"></select>
+			</span>
+		</div>	
+	</div>
+</div>
+<div class="editor-row">
+	<div ng-repeat="sensor in ctrl.panel.sensors track by $index" ng-init="outIndex=$index">
+		<div class="section gf-form-group">
+			<h5 class="section-heading">&nbsp</h5>
+			<div class="gf-form">
+				<div class="gf-form-label gf-form-query-letter-cell">
+					<span class="gf-form-query-letter-cell-letter">{{outIndex+1}}</span>
+				</div>&nbsp;&nbsp;
+				<span class="gf-form-label">
+					<i class="fa fa-remove pointer" ng-click="ctrl.deleteSensor(outIndex)"></i>
+				</span>
+			</div>
+		</div>
+		<div class="section gf-form-group">
+			<h5 class="section-heading">Metric</h5>
+			<div class="gf-form" max-width-25>
+				<label class="gf-form-label width-5">名称</label>
+				<select class="width-6" ng-model="sensor.displayMode" ng-options="f.value as f.name for f in ctrl.displayModeOptions" ng-change="ctrl.changeDisplayMode(sensor)" required></select>
+				<div class="gf-form-inline" ng-if="sensor.displayMode == 'text'">
+					<span class="gf-form-label">文本输入</span>
+					<input ng-model="sensor.nameText" type="text" class="gf-form-input ng-pristine ng-untouched ng-valid ng-empty width-10 gf-form-inline" placeholder="无" empty-to-null="1" ng-blur="ctrl.render()" />
+				</div>
+				<div class="gf-form-inline" ng-if="sensor.displayMode == 'value'">
+					<span class="gf-form-label">数据选择</span>
+					<select ng-model="sensor.name" ng-options="f.refId as f.targetName for f in ctrl.panel.targets" class="gf-form-select width-10" ng-change="ctrl.render()"></select>
+				</div>
+				
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-5">单位</label>
+				<!-- <div class="gf-form-dropdown-typeahead width-15" ng-model="sensor.format" dropdown-typeahead2="ctrl.unitFormats" dropdown-typeahead-on-select="ctrl.setUnitFormat($subItem,outIndex)"></div> -->
+				<input ng-model="sensor.format" type="text" class="gf-form-input width-15" ng-blur="ctrl.render()" />
+			</div>
+		</div>
+		<div class="section gf-form-group">
+			<h5 class="section-heading">位置设置</h5>
+			<div class="gf-form">
+				<label class="gf-form-label width-8">X轴位置(%)</label>
+				<input type="number" class="input-small gf-form-input width-6" ng-model="sensor.xlocation" ng-blur="ctrl.render()" />
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-8">Y轴位置(%)</label>
+				<input type="number" class="input-small gf-form-input width-6" ng-model="sensor.ylocation" ng-blur="ctrl.render()" />
+			</div>
+		</div>
+
+		<div class="section gf-form-group">
+			<h5 class="section-heading">链接设置</h5>
+			<div class="gf-form">
+				<label class="gf-form-label width-8">链接(absolute)</label>
+				<input type="text" class="input-small gf-form-input width-30" ng-model="sensor.link_url" ng-model-onblur />
+			</div>
+			<div class="gf-form">
+				<label class="gf-form-label width-8">提示</label>
+				<input type="text" class="input-small gf-form-input width-30" ng-model="sensor.link_hover" ng-model-onblur />
+			</div>
+		</div>
+
+		<div class="section gf-form-group">
+			<h5 class="section-heading">样式设置</h5>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+					<label class="gf-form-label width-8">精确度</label>
+					<input type="number" class="gf-form-input width-5" placeholder="auto" bs-tooltip="'默认保留1位小数'" data-placement="right" ng-model="sensor.decimals" ng-blur="ctrl.render()">
+
+                    <label class="gf-form-label width-8">字体颜色</label>
+					<span class="gf-form-label">
+						<spectrum-picker ng-model="sensor.color" ng-change="ctrl.render()" ></spectrum-picker>
+					</span>
+					
+                    <label class="gf-form-label width-8">边框颜色</label>
+					<span class="gf-form-label">
+						<spectrum-picker ng-model="sensor.bordercolor" ng-change="ctrl.render()" ></spectrum-picker>
+					</span>
+				</div>
+			</div>
+			<div class="gf-form-inline">
+				<div class="gf-form">
+					<label class="gf-form-label width-8">字体大小</label>
+					<input type="number" class="input-small gf-form-input width-5" ng-model="sensor.size" ng-blur="ctrl.render()" />
+					
+                    <label class="gf-form-label width-8">背景颜色</label>
+					<span class="gf-form-label">
+						<spectrum-picker ng-model="sensor.bgcolor" ng-change="ctrl.render()" ></spectrum-picker>
+					</span>
+					<gf-form-switch 
+						class="gf-form" 
+						label="右键事件" 
+						label-class="width-8" 
+						checked="sensor.rightType"
+						tooltip="开启右键事件">
+					</gf-form-switch>
+				</div>
+			</div>
+		</div>
+		<div class="section gf-form-group" ng-if="sensor.rightType">
+			<h5 class="section-heading">右键列表</h5>
+			<div class="gf-form-inline" ng-repeat="rightObj in sensor.rightObjectArr track by rightObj.id">
+				<div class="gf-form">
+					<label class="gf-form-label width-4">名称</label>
+					<input type="text" class="input-small gf-form-input width-30" ng-model="rightObj.link_name" ng-model-onblur />
+					<label class="gf-form-label width-8">链接 (absolute)</label>
+					<input type="text" class="input-small gf-form-input width-30" ng-model="rightObj.link_url" ng-model-onblur />
+					<button class="btn btn-inverse" ng-click="ctrl.addRightObj(sensor.rightObjectArr)" ng-if="$last">
+						<i class="fa fa-plus"></i>
+					</button>
+					<button class="btn btn-inverse" ng-click="ctrl.removeRightObj(sensor.rightObjectArr,$index)" ng-if="!$last">
+						<i class="fa fa-remove"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="editor-row">
+	<div class="gf-form-button">
+		<button class="btn btn-inverse" ng-click="ctrl.addSensor();ctrl.render()">
+			<i class="fa fa-plus"></i>&nbsp;Add Sensor
+		</button>
+	</div>
+</div>

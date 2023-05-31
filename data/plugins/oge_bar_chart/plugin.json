@@ -1,0 +1,33 @@
+{
+    "type": "panel",
+    "name": "OGE-柱状图",
+    "id": "oge_bar_chart",
+
+    "info": {
+        "description": "电厂月度柱状图",
+        "author": {
+            "name": "OGE DF",
+            "url": "http://raintank.io"
+        },
+        "keywords": ["bar", "chart", "panel"],
+        "logos": {
+            "small": "img/logo.png",
+            "large": "img/logo.png"
+        },
+        "links": [
+            { "name": "Project site", "url": "https://github.com/grafana/clock-panel" },
+            { "name": "MIT License", "url": "https://github.com/grafana/clock-panel/blob/master/LICENSE" }
+        ],
+        "screenshots": [
+            { "name": "Showcase", "path": "src/img/screenshot-table.png" },
+            { "name": "Options", "path": "src/img/screenshot-table-options.png" }
+        ],
+        "version": "0.0.1",
+        "updated": "2022-07-15"
+    },
+
+    "dependencies": {
+        "grafanaVersion": "5.x.x",
+        "plugins": []
+    }
+}

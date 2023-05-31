@@ -1,0 +1,39 @@
+<div class="editor-row">
+	<div class="section gf-form-group">
+		<h5 class="section-heading">插件选项</h5>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">请输入最大值</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.maxArr" ng-blur="ctrl.getArr()" required></input>
+			</div>
+			<label class="gf-form-label width-6">外型设置</label>
+			<div class="gf-form-select-wrapper width-6">
+				<select class="gf-form-input" ng-model="ctrl.panel.shape" ng-options="f.value as f.name for f in ctrl.panel.shapeOption" ng-change="ctrl.render()"></select>
+			</div>
+		</div>
+		<div class="gf-form">
+			<label class="gf-form-label width-11">请输入分组名称</label>
+			<label class="gf-form-label width-2">组1</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.targetStr[0]" ng-blur="ctrl.render()" required></input>
+			</div>
+			<label class="gf-form-label width-2">组2</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.targetStr[1]" ng-blur="ctrl.render()" required></input>
+			</div>
+			<label class="gf-form-label width-2">组3</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.targetStr[2]" ng-blur="ctrl.render()" required></input>
+			</div>
+			<label class="gf-form-label width-2">组4</label>
+			<div class="input-medium tight-form-input ng-pristine ng-valid ng-empty ng-touched">
+				<input class="input-medium gf-form-input" ng-model="ctrl.panel.targetStr[3]" ng-blur="ctrl.render()" required></input>
+			</div>	
+		</div>
+		<div ng-repeat="col in ctrl.dataList" class="gf-form">
+			<label class="gf-form-label width-18">{{col.target}}</label>
+				<input type="text" class="gf-form-input width-6" ng-model="$parent.ctrl.panel.threshold[$index]" placeholder="1" ng-change="ctrl.render()" required>
+			<br>
+		</div>
+	</div>
+</div>

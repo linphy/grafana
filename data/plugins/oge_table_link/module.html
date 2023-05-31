@@ -1,0 +1,28 @@
+<div style="font-size:{{ctrl.panel.options.fontSize}}; font-family:{{ctrl.panel.options.fontFamily}}; font-style:{{ctrl.panel.options.fontStyle == 'italic' ? 'italic' : 'normal'}}; font-weight:{{ctrl.panel.options.fontStyle == 'blob' ? 'blob' : 'normal'}};">
+
+		<div class="table-panel-container">
+			<div class="table-panel-header-bg"></div>
+			<div class="table-panel-scroll">
+				<table class="table-panel-table">
+					<thead>
+						<tr >
+							<th><div class="table-panel-table-header-inner pointer">名称</div></th>
+							<th ng-if="ctrl.panel.options.isShowTime"><div class="table-panel-table-header-inner pointer">时间</div></th>
+							<th><div class="table-panel-table-header-inner pointer">值</div></th>
+							<th style="min-width:32px;"ng-if="ctrl.panel.options.isShowUnit"><div class="table-panel-table-header-inner pointer">单位</div></th>
+						</tr>
+					</thead>
+					<tr ng-repeat="col in ctrl.data" style="background-color:{{ctrl.panel.ogeAlertColorType === 'R' ? col.color : 'transparent'}};">
+						<td><a ng-href="{{ctrl.formatLinkHref(ctrl.panel.options.metrics[col.refId].link)}}">{{col.target}}</a></td>
+						<td ng-if="ctrl.panel.options.isShowTime">{{col.time}}</td>
+						<td style="background-color:{{ctrl.panel.ogeAlertColorType === 'B' ? col.color : 'transparent'}};">
+							<span ng-if="ctrl.panel.ogeAlertColorType === 'V'" style="color: {{col.color}}">{{col.value}}</span>
+							<span ng-if="ctrl.panel.ogeAlertColorType != 'V'">{{col.value}}</span>
+						</td>
+						<td ng-if="ctrl.panel.options.isShowUnit">{{ctrl.panel.options.metrics[col.refId].unit}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+</div>

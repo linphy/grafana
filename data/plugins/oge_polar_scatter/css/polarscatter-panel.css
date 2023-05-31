@@ -1,0 +1,20 @@
+.oge-scatter-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.canvas-panel {
+    height: 100%;
+    width: 100%;
+    cursor: default;
+}  
+  
+.tip {
+    position: absolute; 
+    width: 100px; 
+    height: auto;
+    cursor: default;
+    padding-left:3px;
+}

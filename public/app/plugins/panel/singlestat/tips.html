@@ -1,0 +1,47 @@
+<div class="editor-row">
+  <div class="gf-form-group">
+    <div class="gf-form">
+      <span class="gf-form-label">
+        提示类型
+      </span>
+      <div class="gf-form-select-wrapper">
+        <select class="gf-form-input" ng-model="ctrl.panel.tipType" ng-options="f.value as f.name for f in ctrl.panel.tipTypes"
+          ng-change="ctrl.render()"></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="editor-row" ng-if="ctrl.panel.tipType==1">
+    <h5 class="page-heading">设置文本提示</h5>
+    <div class="gf-form-group">
+      <div class="gf-form" >
+        <span class="gf-form-label" style="line-height: 4.0;">
+          <i class="fa fa-remove pointer" ng-click="ctrl.removeTextTip()"></i>
+        </span>
+        <textarea  class="gf-form-input width-25" rows="3"   ng-model="ctrl.panel.textTips" placeholder="文本提示" class="gf-form-input max-width-6" ng-blur="ctrl.render() " >
+      </div>
+    </div>
+  </div>
+
+  <div class="editor-row" ng-if="ctrl.panel.tipType==2">
+    <h5 class="page-heading">设置kks提示</h5>
+    <div class="gf-form-group">
+      <div class="gf-form" ng-repeat="tip in ctrl.panel.kksTips">
+        <span class="gf-form-label">
+          <i class="fa fa-remove pointer" ng-click="ctrl.removeKKSTip(tip)"></i>
+        </span>
+        <input type="text" ng-model="tip.value" placeholder="kks" class="gf-form-input width-25" ng-blur="ctrl.render()">
+        <span class="gf-form-label">别名</span>
+        <input type="text" placeholder="标签" ng-model="tip.alias" class="gf-form-input width-10" ng-blur="ctrl.render()">
+      </div>
+
+      <div class="gf-form-button-row">
+        <button class="btn btn-inverse" ng-click="ctrl.addKKSTip()">
+          <i class="fa fa-plus"></i>
+          Add a kks tip
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
